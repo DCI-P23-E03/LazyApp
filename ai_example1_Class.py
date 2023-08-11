@@ -1,7 +1,11 @@
 import openai
+from dotenv import load_dotenv
+import os
 
-# api key again
-key = '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'
+load_dotenv()
+
+# hidden api key
+key = os.getenv("KEY")
 
 class ChatGPT:
     def __init__(self, api_key=key, engine="text-davinci-003", max_tokens=150, temperature=0.7, completions=3, best_of=3, presence_penalty=0.5, frequency_penalty=0.5):
