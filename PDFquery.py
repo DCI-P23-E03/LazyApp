@@ -2,7 +2,7 @@
 
 from pdfquery import PDFQuery
 
-pdf = PDFQuery('/home/user/Documents/DCI_CODE/LAZY/PDF input/indexmiete.pdf')
+pdf = PDFQuery('Lebenslauf.pdf')
 pdf.load()
 
 # Use CSS-like selectors to locate the elements
