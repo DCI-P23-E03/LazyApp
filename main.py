@@ -1,7 +1,11 @@
 from prompting import *
 from user_input import userinput
-import PDFquery
+from PDFquery import text
 
+
+if __name__== "__main__":
+    userinput()
+    cv = text
 
 
 

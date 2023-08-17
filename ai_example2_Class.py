@@ -36,7 +36,7 @@ class ChatGPT:
         # Display welcome message
         print(cs("Welcome to ChatGPT!", "blue"))
         print(cs("Type 'quit' to exit the chat.\n", "darkblue"))
-        system_role = "You are a helpful assistant for applications. You adapt the wording in regards to the job the user wants to apply for." # DEFINE SYSTEM ROLE HERE
+        system_role = "You are a helpful assistant for applications. You adapt the wording in regards to the job the user wants to apply for and provide additional information on companies and competitive market salaries." # DEFINE SYSTEM ROLE HERE
         messages = [{"role": "system", "content": system_role}] 
         while True:
             user_input = input("You: ")
