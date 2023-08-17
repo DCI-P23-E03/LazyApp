@@ -1,13 +1,15 @@
-
-
 class Prompt:
     # constructor method including all prompt parameter with default values
-    def __init__(self, cv: str, job_adv: str,
-                 salary_expt="",
-                 language="en",
-                 availability="immediately",
-                 hours="full-time",
-                 max_length=350):
+    def __init__(
+        self,
+        cv: str,
+        job_adv: str,
+        salary_expt="",
+        language="en",
+        availability="immediately",
+        hours="full-time",
+        max_length=350,
+    ):
         self.cv = cv
         self.job_adv = job_adv
         self.salary_expt = salary_expt
@@ -22,16 +24,24 @@ class LetterPrompt(Prompt):
     application_counter = 0
 
     def __init__(
-                self, cv: str, job_adv: str,
-                salary_expt="", language="en",
-                availability="immediately",
-                hours="full-time", max_length=350
-                ):
+        self,
+        cv: str,
+        job_adv: str,
+        salary_expt="",
+        language="en",
+        availability="immediately",
+        hours="full-time",
+        max_length=350,
+    ):
         super().__init__(
-                        cv, job_adv, salary_expt, language,
-                        availability="immediately", hours="full-time",
-                        max_length=350
-                        )
+            cv,
+            job_adv,
+            salary_expt,
+            language,
+            availability="immediately",
+            hours="full-time",
+            max_length=350,
+        )
         LetterPrompt.application_counter += 1
 
     def write_application_letter(self):
@@ -43,7 +53,7 @@ class LetterPrompt(Prompt):
             return f"""Entwerfe ein Anschreiben für den Job {self.job_adv}, basierend auf diesem CV {self.cv}.
                     Die folgenden Information müssen enthalten sein: {self.hours},Gehaltsvorstellungen:{self.salary_expt},Verfügbarkeit:{self.availability}.
                     Das Anschreiben sollte nicht länger als {self.max_length} Wörter sein."""
-        
+
 
 class CheatSheetPrompt(Prompt):
     def __init__(self, job_adv, language="en"):
@@ -57,8 +67,8 @@ class CheatSheetPrompt(Prompt):
             der relevante Informationen zum Unternehmen, zur Branche und zu den Gehältern in der Branche enthält."""
 
 
-class CvPointersPrompt(Prompt): 
-    def __init__(self,  job_adv, cv, language="en"):
+class CvPointersPrompt(Prompt):
+    def __init__(self, job_adv, cv, language="en"):
         super().__init__(job_adv, cv, language="en")
 
     def write_cv_pointers(self):
@@ -69,11 +79,10 @@ class CvPointersPrompt(Prompt):
 
 
 # Test without AI link
-if __name__ == '__main__':
+if __name__ == "__main__":
     letter = LetterPrompt(
-        cv="I was a farmer for 20 years",
-        job_adv="Farmhand",
-        salary_expt=20000)
+        cv="I was a farmer for 20 years", job_adv="Farmhand", salary_expt=20000
+    )
 
     print(letter.write_application_letter())
     print(letter.application_counter)
@@ -82,6 +91,8 @@ if __name__ == '__main__':
 
     print(cheat_sheet.write_cheat_sheet())
 
-    cv_pointers = CvPointersPrompt(language="en", job_adv="farmhand", cv="worked on a farm")
+    cv_pointers = CvPointersPrompt(
+        language="en", job_adv="farmhand", cv="worked on a farm"
+    )
 
     print(cv_pointers.write_cv_pointers())
