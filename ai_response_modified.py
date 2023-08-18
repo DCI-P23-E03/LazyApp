@@ -35,16 +35,10 @@ class ChatGPTCompletion:
         return choices
 
     def chat_interface(self):
-        print("Welcome to ChatGPT!")
-        print("Type 'quit' to exit the chat.\n")
-        while True:
-            user_input = input("You: ")
-            if user_input.lower() == 'quit':
-                break
-            responses = self.get_chatgpt_response(user_input)
-            print("CHAT GPT: ")
-            for response in responses:
-                print(response)
+        responses = self.get_chatgpt_response(user_input)
+        print("Hier sind deine Bewerbungsunterlagen: ")
+        for response in responses:
+            print(response)
 
 
 if __name__ == '__main__':

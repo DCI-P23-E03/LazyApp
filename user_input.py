@@ -25,7 +25,7 @@ def userinput():
         availability = input(
             """When are you available to start your new challenge?\nEnter a start date or press 'Enter' for immediately. """
         )
-        if availability == "":
+        if not availability:
             availability = "immediately"  # change to immediately if no value is given, otherwise take string entered by user - calender/dropdown in tkinter?
 
         # input on letter length
@@ -62,7 +62,7 @@ def userinput():
         availability = input(
             """Wann kannst du frühstens im neuen Job durchstarten?\nGebe ein Datum ein oder drücke 'Enter' für sofort. """
         )
-        if availability == "":
+        if not availability:
             availability = "sofort"  # change to immediately if no value is given, otherwise take string entered by user - calender/dropdown in tkinter?
 
         # input on letter length
@@ -81,11 +81,14 @@ def userinput():
         salary_expt = input(
             """ Was sind deine Gehaltvorstellungen?\nGebe eine Zahl ein, drücke 'v' für einen Vorschlag oder \n'Enter', wenn du keine Angaben dazu machen möchtest. """
         )
-        if salary_expt.lower() == "v":
+        if salary_expt.lower() == "v" or not salary_expt:
             salary_expt = ""  # empty until webscraping from glassdoor is finished
+        
     else:
         print(valid_choice)
 
+    return [job_adv, salary_expt, language, availability, hours, max_length]
+
 
 if __name__ == "__main__":
-    userinput()
+    print(userinput())
