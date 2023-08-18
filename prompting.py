@@ -1,22 +1,8 @@
 class Prompt:
     # constructor method including all prompt parameter with default values
-    def __init__(
-        self,
-        cv: str,
-        job_adv: str,
-        salary_expt,
-        language,
-        availability,
-        hours,
-        max_length,
-    ):
-        self.cv = cv
+    def __init__(self, job_adv: str, language: str):
         self.job_adv = job_adv
-        self.salary_expt = salary_expt
         self.language = language
-        self.availability = availability
-        self.hours = hours
-        self.max_length = max_length
 
 
 class LetterPrompt(Prompt):
@@ -33,15 +19,13 @@ class LetterPrompt(Prompt):
         hours,
         max_length,
     ):
-        super().__init__(
-            cv,
-            job_adv,
-            salary_expt,
-            language,
-            availability,
-            hours,
-            max_length=350,
-        )
+        super().__init__(job_adv, language)
+        self.cv = cv
+        self.salary_expt = salary_expt
+        self.availability = availability
+        self.hours = hours
+        self.max_length = max_length
+
         LetterPrompt.application_counter += 1
 
     def write_application_letter(self):
@@ -83,23 +67,3 @@ class CvPointersPrompt(Prompt):
             return f"Based on the previous point out what could be improved on the CV."
         if self.language == "de":
             return f"""Mache Verbesserungsvorschläge für den Lebenslauf basierend auf den vorherigen Infos."""
-
-
-# Test without AI link
-if __name__ == "__main__":
-    #letter = LetterPrompt(
-    #    cv="I was a farmer for 20 years", job_adv="Farmhand", salary_expt=20000
-    #)
-
-    #print(letter.write_application_letter())
-    #print(letter.application_counter)
-
-    #cheat_sheet = CheatSheetPrompt("farmhand", "en")
-
-    #print(cheat_sheet.write_cheat_sheet())
-
-    cv_pointers = CvPointersPrompt(
-        language="en", job_adv="farmhand", cv="worked on a farm"
-    )
-
-    print(cv_pointers.write_cv_pointers())
