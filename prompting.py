@@ -4,11 +4,11 @@ class Prompt:
         self,
         cv: str,
         job_adv: str,
-        salary_expt="",
-        language="en",
-        availability="immediately",
-        hours="full-time",
-        max_length=350,
+        salary_expt,
+        language,
+        availability,
+        hours,
+        max_length,
     ):
         self.cv = cv
         self.job_adv = job_adv
@@ -27,45 +27,40 @@ class LetterPrompt(Prompt):
         self,
         cv: str,
         job_adv: str,
-        salary_expt="",
-        language="en",
-        availability="immediately",
-        hours="full-time",
-        max_length=350,
+        salary_expt,
+        language,
+        availability,
+        hours,
+        max_length,
     ):
         super().__init__(
             cv,
             job_adv,
             salary_expt,
             language,
-            availability="immediately",
-            hours="full-time",
+            availability,
+            hours,
             max_length=350,
         )
         LetterPrompt.application_counter += 1
 
     def write_application_letter(self):
         if self.language == "en":
-            return f"""Compile application letter for {self.job_adv}, based on this CV: {self.cv}. 
-                    Include information on {self.hours}, salaryexpecatations{self.salary_expt}, availability:{self.availability}.
-                    The letter should not be longer than {self.max_length} words."""
+            return f"""Compile application letter for {self.job_adv}, based on this CV: {self.cv}. Include information on {self.hours}, salaryexpecatations{self.salary_expt}, availability:{self.availability}. The letter should not be longer than {self.max_length} words."""
         if self.language == "de":
-            return f"""Entwerfe ein Anschreiben für den Job {self.job_adv}, basierend auf diesem CV {self.cv}.
-                    Die folgenden Information müssen enthalten sein: {self.hours},Gehaltsvorstellungen:{self.salary_expt},Verfügbarkeit:{self.availability}.
-                    Das Anschreiben sollte nicht länger als {self.max_length} Wörter sein."""
+            return f"""Entwerfe ein Anschreiben für den Job {self.job_adv}, basierend auf diesem CV {self.cv}. Die folgenden Information müssen enthalten sein: {self.hours},Gehaltsvorstellungen:{self.salary_expt},Verfügbarkeit:{self.availability}. Das Anschreiben sollte nicht länger als {self.max_length} Wörter sein."""
 
 
 class CheatSheetPrompt(Prompt):
-    def __init__(self, job_adv, language="en"):
+    def __init__(self, job_adv, language):
         super().__init__(job_adv, language)
 
     def write_cheat_sheet(self):
         if self.language == "en":
             return f"Compile a cheatsheet for a job interview for this job {self.job_adv}. Include information on the company and average salaries."
         if self.language == "de":
-            return f"""Stelle einen Spickzettel für ein Bewerbungsgespräche für diese Stelle zusammen {self.job_adv},
-            der relevante Informationen zum Unternehmen, zur Branche und zu den Gehältern in der Branche enthält."""
-        
+            return f"""Stelle einen Spickzettel für ein Bewerbungsgespräche für diese Stelle zusammen {self.job_adv}, der relevante Informationen zum Unternehmen, zur Branche und zu den Gehältern in der Branche enthält."""
+
     def cheat_sheet_followup(self):
         if self.language == "en":
             return f"Compile a cheatsheet for a job interview for the job. Include information on the company and average salaries."
@@ -74,15 +69,14 @@ class CheatSheetPrompt(Prompt):
 
 
 class CvPointersPrompt(Prompt):
-    def __init__(self, job_adv, cv, language="en"):
-        super().__init__(job_adv, cv, language="en")
+    def __init__(self, job_adv, cv, language):
+        super().__init__(job_adv, cv, language)
 
     def write_cv_pointers(self):
         if self.language == "en":
             return f"Based on {self.job_adv} point out if anything could be improved on {self.cv}."
         if self.language == "de":
             return f"""Mache Verbesserungsvorschläge für den CV {self.cv} basierend auf der Stellenausschreibung {self.job_adv}."""
-    
 
     def cv_pointers_followup(self):
         if self.language == "en":
@@ -93,16 +87,16 @@ class CvPointersPrompt(Prompt):
 
 # Test without AI link
 if __name__ == "__main__":
-    letter = LetterPrompt(
-        cv="I was a farmer for 20 years", job_adv="Farmhand", salary_expt=20000
-    )
+    #letter = LetterPrompt(
+    #    cv="I was a farmer for 20 years", job_adv="Farmhand", salary_expt=20000
+    #)
 
-    print(letter.write_application_letter())
-    print(letter.application_counter)
+    #print(letter.write_application_letter())
+    #print(letter.application_counter)
 
-    cheat_sheet = CheatSheetPrompt("farmhand")
+    #cheat_sheet = CheatSheetPrompt("farmhand", "en")
 
-    print(cheat_sheet.write_cheat_sheet())
+    #print(cheat_sheet.write_cheat_sheet())
 
     cv_pointers = CvPointersPrompt(
         language="en", job_adv="farmhand", cv="worked on a farm"
