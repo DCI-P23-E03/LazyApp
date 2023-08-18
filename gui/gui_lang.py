@@ -5,24 +5,13 @@ root = Tk()
 v = IntVar()
 v.set(1)  # initializing the choice
 
-root.title("Lazy Application")
+root.title("Lazy Application Letter Generator")
 root.config(background="lavender")
 
 languages = [
     ("English", 1),
     ("German", 2),
 ]
-
-label_file_explorer = Label(
-    root,
-    text="Lazy Application Letter Generator",
-    font=("Arial", 20, "bold"),
-    width=100,
-    height=2,
-    fg="purple",
-    bg="lavender",
-)
-label_file_explorer.pack(pady=10)
 
 frame_language_browse = Frame(root, background="lavender")
 frame_language_browse.pack(pady=10)

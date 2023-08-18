@@ -3,7 +3,7 @@ from tkinter import filedialog
 
 root = Tk()
 
-root.title("Lazy Application")
+root.title("Lazy Application Letter Generator")
 root.config(background="lavender")
 
 def browseFiles():
@@ -12,19 +12,7 @@ def browseFiles():
         title="Wähle eine Datei aus",
         filetypes=(("Text files", "*.txt*"), ("all files", "*.*")),
     )
-    label_file_explorer.configure(text="Geöffnete Datei: " + filename)
-
-label_file_explorer = Label(
-    root,
-    text="Lazy Application Letter Generator",
-    font=("Arial", 20, "bold"),
-    width=100,
-    height=2,
-    fg="purple",
-    bg="lavender",
-)
-label_file_explorer.pack(pady=10)
-
+    #label_file_explorer.configure(text="Geöffnete Datei: " + filename)
 
 def clear_default_text(event):
     if text_field.get("1.0", "end-1c") == "Füge die Stellenausschreibung hier ein.":
@@ -52,7 +40,7 @@ text_field.pack(pady=10)
 
 button_browse_file = Button(
     root,
-    text="Importiere Deinen Lebenslauf",
+    text="Lebenslauf importieren",
     command=browseFiles,
     bg="lavender",
     fg="purple",
