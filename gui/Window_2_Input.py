@@ -9,12 +9,12 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Window_1_Start(object):
-    def setupUi(self, Window_1_Start):
-        Window_1_Start.setObjectName("Window_1_Start")
-        Window_1_Start.resize(1000, 800)
-        Window_1_Start.setStyleSheet("background-color: rgb(220, 138, 221);")
-        self.centralwidget = QtWidgets.QWidget(parent=Window_1_Start)
+class Ui_Window_2_Input(object):
+    def setupUi(self, Window_2_Input):
+        Window_2_Input.setObjectName("Window_2_Input")
+        Window_2_Input.resize(1000, 800)
+        Window_2_Input.setStyleSheet("background-color: rgb(220, 138, 221);")
+        self.centralwidget = QtWidgets.QWidget(parent=Window_2_Input)
         self.centralwidget.setObjectName("centralwidget")
         self.text_FirstThingFirst = QtWidgets.QTextBrowser(parent=self.centralwidget)
         self.text_FirstThingFirst.setGeometry(QtCore.QRect(0, 50, 1000, 60))
@@ -98,50 +98,50 @@ class Ui_Window_1_Start(object):
         self.radioButton_partTime = QtWidgets.QRadioButton(parent=self.centralwidget)
         self.radioButton_partTime.setGeometry(QtCore.QRect(520, 290, 112, 23))
         self.radioButton_partTime.setObjectName("radioButton_partTime")
-        Window_1_Start.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=Window_1_Start)
+        Window_2_Input.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(parent=Window_2_Input)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 22))
         self.menubar.setObjectName("menubar")
-        Window_1_Start.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=Window_1_Start)
+        Window_2_Input.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(parent=Window_2_Input)
         self.statusbar.setObjectName("statusbar")
-        Window_1_Start.setStatusBar(self.statusbar)
+        Window_2_Input.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Window_1_Start)
-        QtCore.QMetaObject.connectSlotsByName(Window_1_Start)
+        self.retranslateUi(Window_2_Input)
+        QtCore.QMetaObject.connectSlotsByName(Window_2_Input)
 
-    def retranslateUi(self, Window_1_Start):
+    def retranslateUi(self, Window_2_Input):
         _translate = QtCore.QCoreApplication.translate
-        Window_1_Start.setWindowTitle(_translate("Window_1_Start", "LazyApp"))
-        self.text_FirstThingFirst.setHtml(_translate("Window_1_Start", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        Window_2_Input.setWindowTitle(_translate("Window_2_Input", "LazyApp"))
+        self.text_FirstThingFirst.setHtml(_translate("Window_2_Input", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">FIRST THINGS FIRST</span></p></body></html>"))
-        self.button_nextToJobAd.setText(_translate("Window_1_Start", "NEXT ->"))
-        self.button_backToWelcomeWindow.setText(_translate("Window_1_Start", "<- BACK"))
-        self.label_wordAmount_251.setText(_translate("Window_1_Start", "400"))
-        self.textEdit_annuaSalary.setHtml(_translate("Window_1_Start", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.button_nextToJobAd.setText(_translate("Window_2_Input", "NEXT ->"))
+        self.button_backToWelcomeWindow.setText(_translate("Window_2_Input", "<- BACK"))
+        self.label_wordAmount_251.setText(_translate("Window_2_Input", "400"))
+        self.textEdit_annuaSalary.setHtml(_translate("Window_2_Input", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#dc8add;\">ANNUAL SALARY</span></p></body></html>"))
-        self.label_AiBehaviour_rational.setText(_translate("Window_1_Start", "RATIONAL"))
-        self.radioButton_fullTime.setText(_translate("Window_1_Start", "FULL-TIME"))
-        self.label_wordAmount_250.setText(_translate("Window_1_Start", "250"))
-        self.label_wordAmount.setText(_translate("Window_1_Start", "WORDS"))
-        self.label_AiBehaviour.setText(_translate("Window_1_Start", "AI BEHAVIOUR"))
-        self.button_CV_browseFile.setText(_translate("Window_1_Start", "CV"))
-        self.label_AiBehaviour_creative.setText(_translate("Window_1_Start", "CREATIVE"))
-        self.label_availabilty.setText(_translate("Window_1_Start", "AVAILABILITY"))
-        self.radioButton_partTime.setText(_translate("Window_1_Start", "PART-TIME"))
+        self.label_AiBehaviour_rational.setText(_translate("Window_2_Input", "RATIONAL"))
+        self.radioButton_fullTime.setText(_translate("Window_2_Input", "FULL-TIME"))
+        self.label_wordAmount_250.setText(_translate("Window_2_Input", "250"))
+        self.label_wordAmount.setText(_translate("Window_2_Input", "WORDS"))
+        self.label_AiBehaviour.setText(_translate("Window_2_Input", "AI BEHAVIOUR"))
+        self.button_CV_browseFile.setText(_translate("Window_2_Input", "CV"))
+        self.label_AiBehaviour_creative.setText(_translate("Window_2_Input", "CREATIVE"))
+        self.label_availabilty.setText(_translate("Window_2_Input", "AVAILABILITY"))
+        self.radioButton_partTime.setText(_translate("Window_2_Input", "PART-TIME"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Window_1_Start = QtWidgets.QMainWindow()
-    ui = Ui_Window_1_Start()
-    ui.setupUi(Window_1_Start)
-    Window_1_Start.show()
+    Window_2_Input = QtWidgets.QMainWindow()
+    ui = Ui_Window_2_Input()
+    ui.setupUi(Window_2_Input)
+    Window_2_Input.show()
     sys.exit(app.exec())
