@@ -9,6 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
+
 class Ui_Window_2_Input(object):
     def setupUi(self, Window_2_Input):
         Window_2_Input.setObjectName("Window_2_Input")
