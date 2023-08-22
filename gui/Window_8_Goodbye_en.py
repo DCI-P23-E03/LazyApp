@@ -9,36 +9,35 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Window_1_Start(object):
-    def setupUi(self, Window_1_Start):
-        Window_1_Start.setObjectName("Window_1_Start")
-        Window_1_Start.resize(1000, 800)
-        Window_1_Start.setStyleSheet("background-color: rgb(220, 138, 221);")
-        self.centralwidget = QtWidgets.QWidget(parent=Window_1_Start)
+class Ui_Window_8_Goodbye_en(object):
+    def setupUi(self, Window_8_Goodbye_en):
+        Window_8_Goodbye_en.setObjectName("Window_8_Goodbye_en")
+        Window_8_Goodbye_en.resize(1000, 800)
+        Window_8_Goodbye_en.setStyleSheet("background-color: rgb(220, 138, 221);")
+        self.centralwidget = QtWidgets.QWidget(parent=Window_8_Goodbye_en)
         self.centralwidget.setObjectName("centralwidget")
-        self.welcoming_text_1 = QtWidgets.QTextBrowser(parent=self.centralwidget)
-        self.welcoming_text_1.setGeometry(QtCore.QRect(0, 270, 1001, 51))
-        self.welcoming_text_1.setAutoFillBackground(True)
-        self.welcoming_text_1.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.welcoming_text_1.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
-        self.welcoming_text_1.setLineWidth(0)
-        self.welcoming_text_1.setObjectName("welcoming_text_1")
+        self.goodbye_text_1 = QtWidgets.QTextBrowser(parent=self.centralwidget)
+        self.goodbye_text_1.setGeometry(QtCore.QRect(0, 270, 1001, 51))
+        self.goodbye_text_1.setAutoFillBackground(True)
+        self.goodbye_text_1.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.goodbye_text_1.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
+        self.goodbye_text_1.setLineWidth(0)
+        self.goodbye_text_1.setObjectName("goodbye_text")
         self.exit_button = QtWidgets.QPushButton(parent=self.centralwidget)
         self.exit_button.setGeometry(QtCore.QRect(410, 440, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        font.setWeight(75)
         self.exit_button.setFont(font)
         self.exit_button.setStyleSheet("color: rgb(255, 255, 255);")
         self.exit_button.setObjectName("exit_button")
-        self.welcoming_text_2 = QtWidgets.QTextBrowser(parent=self.centralwidget)
-        self.welcoming_text_2.setGeometry(QtCore.QRect(0, 140, 1001, 121))
-        self.welcoming_text_2.setAutoFillBackground(True)
-        self.welcoming_text_2.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.welcoming_text_2.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
-        self.welcoming_text_2.setLineWidth(0)
-        self.welcoming_text_2.setObjectName("welcoming_text_2")
+        self.goodbye_text__2 = QtWidgets.QTextBrowser(parent=self.centralwidget)
+        self.goodbye_text__2.setGeometry(QtCore.QRect(0, 140, 1001, 121))
+        self.goodbye_text__2.setAutoFillBackground(True)
+        self.goodbye_text__2.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.goodbye_text__2.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
+        self.goodbye_text__2.setLineWidth(0)
+        self.goodbye_text__2.setObjectName("goodbye_text__2")
         self.start_button_2 = QtWidgets.QPushButton(parent=self.centralwidget)
         self.start_button_2.setGeometry(QtCore.QRect(411, 522, 200, 50))
         palette = QtGui.QPalette()
@@ -109,44 +108,43 @@ class Ui_Window_1_Start(object):
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        font.setWeight(75)
         self.start_button_2.setFont(font)
         self.start_button_2.setStyleSheet("color: rgb(255, 255, 255);")
         self.start_button_2.setObjectName("start_button_2")
-        Window_1_Start.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=Window_1_Start)
+        Window_8_Goodbye_en.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(parent=Window_8_Goodbye_en)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 22))
         self.menubar.setObjectName("menubar")
-        Window_1_Start.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=Window_1_Start)
+        Window_8_Goodbye_en.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(parent=Window_8_Goodbye_en)
         self.statusbar.setObjectName("statusbar")
-        Window_1_Start.setStatusBar(self.statusbar)
+        Window_8_Goodbye_en.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Window_1_Start)
-        QtCore.QMetaObject.connectSlotsByName(Window_1_Start)
+        self.retranslateUi(Window_8_Goodbye_en)
+        QtCore.QMetaObject.connectSlotsByName(Window_8_Goodbye_en)
 
-    def retranslateUi(self, Window_1_Start):
+    def retranslateUi(self, Window_8_Goodbye_en):
         _translate = QtCore.QCoreApplication.translate
-        Window_1_Start.setWindowTitle(_translate("Window_1_Start", "LazyApp"))
-        self.welcoming_text_1.setHtml(_translate("Window_1_Start", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        Window_8_Goodbye_en.setWindowTitle(_translate("Window_8_Goodbye_en", "LazyApp"))
+        self.goodbye_text_1.setHtml(_translate("Window_8_Goodbye_en", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; color:#ffffff;\">Best of luck and thanks for being lazy with us.</span></p></body></html>"))
-        self.exit_button.setText(_translate("Window_1_Start", "EXIT"))
-        self.welcoming_text_2.setHtml(_translate("Window_1_Start", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.exit_button.setText(_translate("Window_8_Goodbye_en", "EXIT"))
+        self.goodbye_text__2.setHtml(_translate("Window_8_Goodbye_en", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:72pt; font-weight:704; color:#ffffff;\">GOODBYE!</span></p></body></html>"))
-        self.start_button_2.setText(_translate("Window_1_Start", "START AGAIN"))
+        self.start_button_2.setText(_translate("Window_8_Goodbye_en", "START AGAIN"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Window_1_Start = QtWidgets.QMainWindow()
-    ui = Ui_Window_1_Start()
-    ui.setupUi(Window_1_Start)
-    Window_1_Start.show()
+    Window_8_Goodbye_en = QtWidgets.QMainWindow()
+    ui = Ui_Window_8_Goodbye_en()
+    ui.setupUi(Window_8_Goodbye_en)
+    Window_8_Goodbye_en.show()
     sys.exit(app.exec())

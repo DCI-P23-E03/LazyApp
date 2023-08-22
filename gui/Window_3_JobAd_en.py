@@ -23,37 +23,41 @@ class Ui_Window_3_JobAd_en(object):
         self.headline_3.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.headline_3.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.headline_3.setLineWidth(0)
-        self.headline_3.setObjectName("welcoming_text_1")
+        self.headline_3.setObjectName("headline_3")
         self.next_button_3 = QtWidgets.QPushButton(parent=self.centralwidget)
         self.next_button_3.setGeometry(QtCore.QRect(650, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        font.setWeight(80)
         self.next_button_3.setFont(font)
         self.next_button_3.setStyleSheet("color: rgb(255, 255, 255);")
         self.next_button_3.setObjectName("next_button")
-        self.plainTextEdit = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
-        self.plainTextEdit.setGeometry(QtCore.QRect(50, 139, 900, 549))
-        self.plainTextEdit.setStyleSheet("background-color: rgb(252, 240, 251);")
-        self.plainTextEdit.setOverwriteMode(True)
-        self.plainTextEdit.setBackgroundVisible(False)
-        self.plainTextEdit.setCenterOnScroll(False)
-        self.plainTextEdit.setObjectName("plainTextEdit")
+
+        # add functionality to button
+        self.next_button_3.clicked.connect(self.next_button_3_clicked)
+        
+
+        self.jobTextEdit = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
+        self.jobTextEdit.setGeometry(QtCore.QRect(50, 139, 900, 549))
+        self.jobTextEdit.setStyleSheet("background-color: rgb(252, 240, 251);")
+        self.jobTextEdit.setOverwriteMode(True)
+        self.jobTextEdit.setBackgroundVisible(False)
+        self.jobTextEdit.setCenterOnScroll(False)
+        self.jobTextEdit.setObjectName("plainTextEdit")
         self.back_button_3 = QtWidgets.QPushButton(parent=self.centralwidget)
         self.back_button_3.setGeometry(QtCore.QRect(150, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        font.setWeight(80)
         self.back_button_3.setFont(font)
         self.back_button_3.setStyleSheet("color: rgb(255, 255, 255);")
         self.back_button_3.setObjectName("back_button")
+
+         # add functionality to button
+        self.back_button_3.clicked.connect(self.back_button_3_clicked)
+
         Window_3_JobAd_en.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=Window_3_JobAd_en)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 22))
-        self.menubar.setObjectName("menubar")
-        Window_3_JobAd_en.setMenuBar(self.menubar)
+        
         self.statusbar = QtWidgets.QStatusBar(parent=Window_3_JobAd_en)
         self.statusbar.setObjectName("statusbar")
         Window_3_JobAd_en.setStatusBar(self.statusbar)
@@ -70,8 +74,19 @@ class Ui_Window_3_JobAd_en(object):
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">Which job do you want to apply for?</span></p></body></html>"))
         self.next_button_3.setText(_translate("Window_3_JobAd_en", "NEXT ->"))
-        self.plainTextEdit.setPlainText(_translate("Window_3_JobAd_en", "Please copy and paste the advertising for your dream job here."))
+        self.jobTextEdit.setPlainText(_translate("Window_3_JobAd_en", "Please copy and paste the advertising for your dream job here."))
         self.back_button_3.setText(_translate("Window_3_JobAd_en", "<- BACK"))
+
+    # define action for buttons
+
+    def next_button_3_clicked(self):
+        job_adv = jobTextEdit.text()
+        print("The next button was clicked")
+        print(job_adv)
+
+    def back_button_3_clicked(self):
+        print("The back button was clicked")
+
 
 
 if __name__ == "__main__":
