@@ -7,9 +7,18 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+from Window_2_Input import Ui_Window_2_Input
 
 
 class Ui_Window_1_Start(object):
+
+    def start_button_clicked(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_Window_2_Input()
+        self.ui.setupUi(self.window)
+        Window_1_Start.close()
+        self.window.show()
+
     def setupUi(self, Window_1_Start):
         Window_1_Start.setObjectName("Window_1_Start")
         Window_1_Start.resize(1000, 800)
@@ -31,6 +40,11 @@ class Ui_Window_1_Start(object):
         font.setBold(True)
         self.start_button.setFont(font)
         self.start_button.setObjectName("start_button")
+
+        # give function to Start button
+        self.start_button.clicked.connect(self.start_button_clicked)
+
+
         self.welcoming_text_2 = QtWidgets.QTextBrowser(parent=self.centralwidget)
         self.welcoming_text_2.setGeometry(QtCore.QRect(0, 140, 1001, 121))
         self.welcoming_text_2.setAutoFillBackground(True)

@@ -9,6 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
+
 class Ui_Window_3_JobAd_en(object):
     def setupUi(self, Window_3_JobAd_en):
         Window_3_JobAd_en.setObjectName("Window_3_JobAd_en")
@@ -80,9 +81,11 @@ class Ui_Window_3_JobAd_en(object):
     # define action for buttons
 
     def next_button_3_clicked(self):
-        job_adv = jobTextEdit.text()
+        job_adv = self.jobTextEdit.toPlainText()
         print("The next button was clicked")
         print(job_adv)
+        
+        
 
     def back_button_3_clicked(self):
         print("The back button was clicked")
