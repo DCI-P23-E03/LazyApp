@@ -1,11 +1,11 @@
-class Prompt:
+class PromptMixin:
     # constructor method including all prompt parameter with default values
     def __init__(self, job_adv: str, language: str):
         self.job_adv = job_adv
         self.language = language
 
 
-class LetterPrompt(Prompt):
+class LetterPrompt(PromptMixin):
     # application counter
     application_counter = 0
 
@@ -35,7 +35,7 @@ class LetterPrompt(Prompt):
             return f"""Entwerfe ein Anschreiben für den Job {self.job_adv}, basierend auf diesem CV {self.cv}. Die folgenden Information müssen enthalten sein: {self.hours},Gehaltsvorstellungen:{self.salary_expt},Verfügbarkeit:{self.availability}. Das Anschreiben sollte nicht länger als {self.max_length} Wörter sein."""
 
 
-class CheatSheetPrompt(Prompt):
+class CheatSheetPrompt(PromptMixin):
     def __init__(self, job_adv, language):
         super().__init__(job_adv, language)
 
@@ -52,7 +52,7 @@ class CheatSheetPrompt(Prompt):
             return f"""Stelle einen Spickzettel für ein Bewerbungsgespräch für diese Stelle mit relevanten Infos zum Unternehmen,zur Branche und zu Gehältern."""
 
 
-class CvPointersPrompt(Prompt):
+class CvPointersPrompt(PromptMixin):
     def __init__(self, job_adv, cv, language):
         super().__init__(job_adv, cv, language)
 
