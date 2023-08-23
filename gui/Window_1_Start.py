@@ -11,7 +11,8 @@ import Window_2_Input
 
 
 class Ui_Window_1_Start(object):
-
+  
+  
     def setupUi(self, Window_1_Start):
         Window_1_Start.setObjectName("Window_1_Start")
         Window_1_Start.resize(1000, 800)
@@ -85,6 +86,13 @@ class Ui_Window_1_Start(object):
         self.ui = Window_2_Input.Ui_Window_2_Input()
         self.ui.setupUi(self.window)
         Window_1_Start.hide()
+        self.window.show()
+
+    def start_button_clicked(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Window_2_Input.Ui_Window_2_Input()
+        self.ui.setupUi(self.window)
+        Window_1_Start.Ui_Window_1_Start.hide()
         self.window.show()
 
 
