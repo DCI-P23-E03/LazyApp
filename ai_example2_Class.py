@@ -8,7 +8,7 @@ load_dotenv()
 # hidden api key 
 key = os.getenv("KEY")
 
-class ChatGPT:
+class ChatGPTChat:
     def __init__(self, api_key=key, model="gpt-3.5-turbo", max_tokens=350, temperature=0.7, completions=1, presence_penalty=0.5, frequency_penalty=0.5):
         self.api_key = api_key
         self.model = model # The ChatGPT model used (gpt-3.5-turbo is an example, can be replaced)
@@ -36,7 +36,7 @@ class ChatGPT:
         # Display welcome message
         print(cs("Welcome to ChatGPT!", "blue"))
         print(cs("Type 'quit' to exit the chat.\n", "darkblue"))
-        system_role = "You are a helpful assistant for applications. You adapt the wording in regards to the job the user wants to apply for." # DEFINE SYSTEM ROLE HERE
+        system_role = "You are a helpful assistant for applications. You adapt the wording in regards to the job the user wants to apply for and provide additional information on companies and competitive market salaries." # DEFINE SYSTEM ROLE HERE
         messages = [{"role": "system", "content": system_role}] 
         while True:
             user_input = input("You: ")
