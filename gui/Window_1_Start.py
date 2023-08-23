@@ -7,7 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-import Window_2_Input
+from Window_2_Input import Ui_Window_2_Input
 
 
 class Ui_Window_1_Start(object):
@@ -83,19 +83,11 @@ class Ui_Window_1_Start(object):
 
     def start_button_clicked(self):
         self.window = QtWidgets.QMainWindow()
-        self.ui = Window_2_Input.Ui_Window_2_Input()
+        self.ui = Ui_Window_2_Input()
         self.ui.setupUi(self.window)
-        Window_1_Start.hide()
+        self.hide()
         self.window.show()
-
-    def start_button_clicked(self):
-        self.window = QtWidgets.QMainWindow()
-        self.ui = Window_2_Input.Ui_Window_2_Input()
-        self.ui.setupUi(self.window)
-        Window_1_Start.Ui_Window_1_Start.hide()
-        self.window.show()
-
-
+        
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
