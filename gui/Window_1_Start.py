@@ -7,12 +7,11 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-from Window_2_Input import Ui_Window_2_Input
+import Window_2_Input
 
 
 class Ui_Window_1_Start(object):
-  
-  
+
     def setupUi(self, Window_1_Start):
         Window_1_Start.setObjectName("Window_1_Start")
         Window_1_Start.resize(1000, 800)
@@ -34,11 +33,7 @@ class Ui_Window_1_Start(object):
         font.setBold(True)
         self.start_button.setFont(font)
         self.start_button.setObjectName("start_button")
-
-        # give function to Start button
-        self.start_button.clicked.connect(self.start_button_clicked)
-
-
+        #self.start_button.clicked.connect(self.next_clicked) # functionatlity for start button
         self.welcoming_text_2 = QtWidgets.QTextBrowser(parent=self.centralwidget)
         self.welcoming_text_2.setGeometry(QtCore.QRect(0, 140, 1001, 121))
         self.welcoming_text_2.setAutoFillBackground(True)
@@ -81,12 +76,9 @@ class Ui_Window_1_Start(object):
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:72pt; font-weight:700;\">WELCOME</span></p></body></html>"))
 
-    def start_button_clicked(self):
-        self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_Window_2_Input()
-        self.ui.setupUi(self.window)
-        self.hide()
-        self.window.show()
+    # give function to Start button
+    def next_clicked(self):
+        return True
         
 if __name__ == "__main__":
     import sys
@@ -95,4 +87,5 @@ if __name__ == "__main__":
     ui = Ui_Window_1_Start()
     ui.setupUi(Window_1_Start)
     Window_1_Start.show()
+
     sys.exit(app.exec())

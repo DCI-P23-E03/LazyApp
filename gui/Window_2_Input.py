@@ -37,7 +37,7 @@ class Ui_Window_2_Input(object):
         self.button_nextToJobAd.setObjectName("button_nextToJobAd")
 
         # add functionality to button
-        self.button_nextToJobAd.clicked.connect(self.next_to_jobad_clicked)
+        #self.button_nextToJobAd.clicked.connect(self.next_to_jobad_clicked)
 
         self.button_backToWelcomeWindow = QtWidgets.QPushButton(parent=self.centralwidget)
         self.button_backToWelcomeWindow.setGeometry(QtCore.QRect(150, 705, 200, 50))
@@ -148,14 +148,14 @@ class Ui_Window_2_Input(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = Window_3_JobAd_en.Ui_Window_3_JobAd_en()
         self.ui.setupUi(self.window)
-        Window_2_Input.hide()
+        #Window_2_Input.hide()
         self.window.show()
     
     def back_to_welcome_clicked(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Window_1_Start.Ui_Window_1_Start()
         self.ui.setupUi(self.window)
-        Window_2_Input.hide()
+        #Window_2_Input.hide()
         self.window.show()
 
 if __name__ == "__main__":

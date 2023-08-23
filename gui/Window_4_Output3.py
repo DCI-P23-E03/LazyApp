@@ -9,15 +9,15 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow4_Output(object):
-    def setupUi(self, MainWindow4_Output):
-        MainWindow4_Output.setObjectName("MainWindow4_Output")
-        MainWindow4_Output.resize(1000, 800)
-        MainWindow4_Output.setAutoFillBackground(False)
-        MainWindow4_Output.setStyleSheet("\n"
+class Ui_Window_4_Output(object):
+    def setupUi(self, Window_4_Output):
+        Window_4_Output.setObjectName("Window_4_Output")
+        Window_4_Output.resize(1000, 800)
+        Window_4_Output.setAutoFillBackground(False)
+        Window_4_Output.setStyleSheet("\n"
 "background-color: rgb(202, 112, 217);")
-        MainWindow4_Output.setDocumentMode(False)
-        self.centralwidget = QtWidgets.QWidget(parent=MainWindow4_Output)
+        Window_4_Output.setDocumentMode(False)
+        self.centralwidget = QtWidgets.QWidget(parent=Window_4_Output)
         self.centralwidget.setObjectName("centralwidget")
         self.textBrowser_Window4_Output = QtWidgets.QTextBrowser(parent=self.centralwidget)
         self.textBrowser_Window4_Output.setGeometry(QtCore.QRect(30, 40, 961, 111))
@@ -43,18 +43,20 @@ class Ui_MainWindow4_Output(object):
         self.radioButton_CV_improvements.setFont(font)
         self.radioButton_CV_improvements.setStyleSheet("background-color: rgb(97, 53, 131);")
         self.radioButton_CV_improvements.setObjectName("radioButton_CV_improvements")
-        self.pushButton = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(600, 700, 89, 25))
+        self.next_button_4 = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.next_button_4.setGeometry(QtCore.QRect(650, 705, 200, 50))
         font = QtGui.QFont()
         font.setBold(True)
-        self.pushButton.setFont(font)
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_Ba = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.pushButton_Ba.setGeometry(QtCore.QRect(310, 700, 89, 25))
+        self.next_button_4.setFont(font)
+        self.next_button_4.setStyleSheet("color: rgb(255, 255, 255);")
+        self.next_button_4.setObjectName("next_button_4")
+        self.back_button_4 = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.back_button_4.setGeometry(QtCore.QRect(150, 705, 200, 50))
         font = QtGui.QFont()
         font.setBold(True)
-        self.pushButton_Ba.setFont(font)
-        self.pushButton_Ba.setObjectName("pushButton_Ba")
+        self.back_button_4.setFont(font)
+        self.back_button_4.setStyleSheet(("color: rgb(255, 255, 255);"))
+        self.back_button_4.setObjectName("back_button_4")
         self.textBrowser_Application_Letter = QtWidgets.QTextBrowser(parent=self.centralwidget)
         self.textBrowser_Application_Letter.setGeometry(QtCore.QRect(450, 200, 491, 131))
         font = QtGui.QFont()
@@ -82,17 +84,17 @@ class Ui_MainWindow4_Output(object):
         self.checkBox_CV_Improvements = QtWidgets.QCheckBox(parent=self.centralwidget)
         self.checkBox_CV_Improvements.setGeometry(QtCore.QRect(100, 570, 150, 30))
         self.checkBox_CV_Improvements.setObjectName("checkBox_CV_Improvements")
-        MainWindow4_Output.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(parent=MainWindow4_Output)
+        Window_4_Output.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(parent=Window_4_Output)
         self.statusbar.setObjectName("statusbar")
-        MainWindow4_Output.setStatusBar(self.statusbar)
+        Window_4_Output.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow4_Output)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow4_Output)
+        self.retranslateUi(Window_4_Output)
+        QtCore.QMetaObject.connectSlotsByName(Window_4_Output)
 
-    def retranslateUi(self, MainWindow4_Output):
+    def retranslateUi(self, Window_4_Output):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow4_Output.setWindowTitle(_translate("MainWindow4_Output", "Output"))
+        Window_4_Output.setWindowTitle(_translate("MainWindow4_Output", "LazyApp"))
         self.textBrowser_Window4_Output.setHtml(_translate("MainWindow4_Output", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -104,8 +106,8 @@ class Ui_MainWindow4_Output(object):
         self.radioButton_Application_letter.setText(_translate("MainWindow4_Output", "Application letter"))
         self.radioButton_Cheat_Sheet.setText(_translate("MainWindow4_Output", "Cheat Sheet"))
         self.radioButton_CV_improvements.setText(_translate("MainWindow4_Output", "CV Improvements"))
-        self.pushButton.setText(_translate("MainWindow4_Output", "Next"))
-        self.pushButton_Ba.setText(_translate("MainWindow4_Output", "Back"))
+        self.next_button_4.setText(_translate("MainWindow4_Output", "NEXT ->"))
+        self.back_button_4.setText(_translate("MainWindow4_Output", "<- BACK"))
         self.textBrowser_Application_Letter.setHtml(_translate("MainWindow4_Output", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -143,8 +145,8 @@ class Ui_MainWindow4_Output(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow4_Output = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow4_Output()
-    ui.setupUi(MainWindow4_Output)
-    MainWindow4_Output.show()
+    Window_4_Output = QtWidgets.QMainWindow()
+    ui = Ui_Window_4_Output()
+    ui.setupUi(Window_4_Output)
+    Window_4_Output.show()
     sys.exit(app.exec())
