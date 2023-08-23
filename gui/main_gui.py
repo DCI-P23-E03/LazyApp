@@ -53,7 +53,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'button_backToWelcomeWindow'):  # Input page
             current_ui.button_backToWelcomeWindow.clicked.connect(self.prev_window)
         if hasattr(current_ui, 'back_button_3'):  # Job Ad page
-            current_ui.Appl_letter_baback_button_3ck_button.clicked.connect(self.prev_window)
+            current_ui.back_button_3.clicked.connect(self.prev_window)
         if hasattr(current_ui, 'back_button_4'): # Output Page 4
             current_ui.back_button_4.clicked.connect(self.prev_window)
         if hasattr(current_ui, 'Appl_letter_back_button'): #Output Page 5
