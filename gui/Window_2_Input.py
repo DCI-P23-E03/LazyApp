@@ -7,10 +7,12 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-
+import Window_1_Start
+import Window_3_JobAd_en
 
 
 class Ui_Window_2_Input(object):
+    
     def setupUi(self, Window_2_Input):
         Window_2_Input.setObjectName("Window_2_Input")
         Window_2_Input.resize(1000, 800)
@@ -30,19 +32,25 @@ class Ui_Window_2_Input(object):
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        font.setWeight(75)
         self.button_nextToJobAd.setFont(font)
         self.button_nextToJobAd.setStyleSheet("color: rgb(255, 255, 255);")
         self.button_nextToJobAd.setObjectName("button_nextToJobAd")
+
+        # add functionality to button
+        self.button_nextToJobAd.clicked.connect(self.next_to_jobad_clicked)
+
         self.button_backToWelcomeWindow = QtWidgets.QPushButton(parent=self.centralwidget)
         self.button_backToWelcomeWindow.setGeometry(QtCore.QRect(150, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        font.setWeight(75)
         self.button_backToWelcomeWindow.setFont(font)
         self.button_backToWelcomeWindow.setStyleSheet("color: rgb(255, 255, 255);")
         self.button_backToWelcomeWindow.setObjectName("button_backToWelcomeWindow")
+
+        # add functionality to button
+        self.button_backToWelcomeWindow.clicked.connect(self.back_to_welcome_clicked)
+
         self.label_wordAmount_251 = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_wordAmount_251.setGeometry(QtCore.QRect(600, 420, 31, 17))
         self.label_wordAmount_251.setObjectName("label_wordAmount_251")
@@ -79,7 +87,6 @@ class Ui_Window_2_Input(object):
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
-        font.setWeight(75)
         self.button_CV_browseFile.setFont(font)
         self.button_CV_browseFile.setObjectName("button_CV_browseFile")
         self.button_availibility_date = QtWidgets.QDateEdit(parent=self.centralwidget)
@@ -93,7 +100,6 @@ class Ui_Window_2_Input(object):
         self.label_availabilty.setGeometry(QtCore.QRect(400, 260, 111, 20))
         font = QtGui.QFont()
         font.setBold(True)
-        font.setWeight(75)
         self.label_availabilty.setFont(font)
         self.label_availabilty.setObjectName("label_availabilty")
         self.radioButton_partTime = QtWidgets.QRadioButton(parent=self.centralwidget)
@@ -137,6 +143,20 @@ class Ui_Window_2_Input(object):
         self.label_availabilty.setText(_translate("Window_2_Input", "AVAILABILITY"))
         self.radioButton_partTime.setText(_translate("Window_2_Input", "PART-TIME"))
 
+    #def back and forth buttons
+    def next_to_jobad_clicked(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Window_3_JobAd_en.Ui_Window_3_JobAd_en()
+        self.ui.setupUi(self.window)
+        Window_2_Input.hide()
+        self.window.show()
+    
+    def back_to_welcome_clicked(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Window_1_Start.Ui_Window_1_Start()
+        self.ui.setupUi(self.window)
+        Window_2_Input.hide()
+        self.window.show()
 
 if __name__ == "__main__":
     import sys

@@ -7,17 +7,10 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-from Window_2_Input import Ui_Window_2_Input
-
+import Window_2_Input
 
 class Ui_Window_1_Start(object):
 
-    def start_button_clicked(self):
-        self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_Window_2_Input()
-        self.ui.setupUi(self.window)
-        Window_1_Start.close()
-        self.window.show()
 
     def setupUi(self, Window_1_Start):
         Window_1_Start.setObjectName("Window_1_Start")
@@ -87,6 +80,13 @@ class Ui_Window_1_Start(object):
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:72pt; font-weight:700;\">WELCOME</span></p></body></html>"))
 
+
+    def start_button_clicked(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Window_2_Input.Ui_Window_2_Input()
+        self.ui.setupUi(self.window)
+        Window_1_Start.Ui_Window_1_Start.hide()
+        self.window.show()
 
 
 if __name__ == "__main__":

@@ -7,10 +7,12 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-
+import Window_2_Input
+import Window_4_Output3
 
 
 class Ui_Window_3_JobAd_en(object):
+
     def setupUi(self, Window_3_JobAd_en):
         Window_3_JobAd_en.setObjectName("Window_3_JobAd_en")
         Window_3_JobAd_en.resize(1000, 800)
@@ -78,23 +80,27 @@ class Ui_Window_3_JobAd_en(object):
         self.jobTextEdit.setPlainText(_translate("Window_3_JobAd_en", "Please copy and paste the advertising for your dream job here."))
         self.back_button_3.setText(_translate("Window_3_JobAd_en", "<- BACK"))
 
-    # define action for buttons
-
+    #connect back and forth
     def next_button_3_clicked(self):
         job_adv = self.jobTextEdit.toPlainText()
-        print("The next button was clicked")
-        print(job_adv)
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Window_4_Output3.Ui_MainWindow4_Output()
+        self.ui.setupUi(self.window)
+        Window_3_JobAd_en.hide()
+        self.window.show()
         
-        
-
     def back_button_3_clicked(self):
-        print("The back button was clicked")
-
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Window_2_Input.Ui_Window_2_Input()
+        self.ui.setupUi(self.window)
+        Window_3_JobAd_en.hide()
+        self.window.show()
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
+
     Window_3_JobAd_en = QtWidgets.QMainWindow()
     ui = Ui_Window_3_JobAd_en()
     ui.setupUi(Window_3_JobAd_en)
