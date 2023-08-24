@@ -49,7 +49,7 @@ class ChatGPTChat:
                 #print(cs(resp, "green")) # Display AI's response in green
                 messages.append({"role": "system", "content": resp}) # Append AI's response to messages
                 print(messages)
-
+            break
 if __name__ == '__main__':
     chat_gpt = ChatGPTChat(temperature=0.7) 
-    chat_gpt.chat_interface("How do I apply for a Job?")
+    chat_gpt.chat_interface("give me a word?")
