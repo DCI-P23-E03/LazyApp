@@ -15,7 +15,7 @@ class Ui_Window_3_JobAd_en(object):
         self.headline_3.setGeometry(QtCore.QRect(0, 50, 1000, 60))
         self.headline_3.setAutoFillBackground(True)
         self.headline_3.setStyleSheet("color: rgb(255, 255, 255);")
-        self.headline_3.setFrameShape("color: rgb(255, 255, 255);")
+        self.headline_3.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.headline_3.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.headline_3.setLineWidth(0)
         self.headline_3.setObjectName("headline_3")
