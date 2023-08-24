@@ -80,7 +80,14 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'exit_button'):
             current_ui.exit_button.clicked.connect(self.exit)
 
+        # CV browser button
+        if hasattr(current_ui, 'button_CV_browseFile'):  # Start Page 1
+            current_ui.button_CV_browseFile.clicked.connect(self.cv_browseFile)
         
+        # Availabilty-Date
+        if hasattr(current_ui, 'button_availibility_date'):
+            current_ui.button_availibility_date.dateChanged.connect(self.get_date)
+
     # Define function to go to the next window
     def next_window(self):
         self.current_window = (self.current_window + 1) % len(self.ui_windows)
@@ -100,6 +107,16 @@ class MainWindow(QtWidgets.QMainWindow):
     def exit(self):
         sys.exit(app.exec())
 
+    # Define function to browse for CV
+    def cv_browseFile(self):
+        filename = QtWidgets.QFileDialog.getOpenFileName()
+        return filename
+    
+    # Define function to get Availabilty-Date from calendar
+    def get_date(self):
+        date = self.ui_windows[self.current_window].button_availibility_date.date()
+        # returs date after every change - NEEEDS FIXING (return only when next-button is clicked)
+        return date, print(date.toString("dd.MM.yyyy"))
 
 # Define function to run the application
 if __name__ == "__main__":
