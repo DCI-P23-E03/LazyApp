@@ -43,8 +43,8 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'start_button'):  # Start Page 1
             current_ui.start_button.clicked.connect(self.next_window)
         if hasattr(current_ui, 'button_nextToJobAd'): # Input Page 2
-            current_ui.button_nextToJobAd.clicked.connect(self.next_window)
-        if hasattr(current_ui, 'next_button_3') and hasattr(current_ui, 'jobTextEdit'):      # JobAd Page 3
+            current_ui.button_nextToJobAd.clicked.connect(self.next_window_plus_date)
+        if hasattr(current_ui, 'next_button_3') and hasattr(current_ui, 'jobTextEdit'): # JobAd Page 3
             current_ui.next_button_3.clicked.connect(self.next_window_plus_input)
         if hasattr(current_ui, 'next_button_4'): # Output Page 4
             current_ui.next_button_4.clicked.connect(self.next_window_plus_checkboxes)
@@ -80,14 +80,19 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'exit_button'):
             current_ui.exit_button.clicked.connect(self.exit)
 
-        
+        # CV browser button
+        if hasattr(current_ui, 'button_CV_browseFile'):  # Start Page 1
+            current_ui.button_CV_browseFile.clicked.connect(self.cv_browseFile)
+
 
     # Define function to go to the next window
-
     def next_window(self):
         self.current_window = (self.current_window + 1) % len(self.ui_windows)
         self.setup_current_window()
 
+
+
+    # Define function to go to the next window and store input
 
     def next_window_plus_input(self):
         '''stores the content of input field in variable before moving on to the next window'''
@@ -96,6 +101,16 @@ class MainWindow(QtWidgets.QMainWindow):
         print(job_adv)
         self.next_window()
         return job_adv
+
+
+    # Define function to go to the next window and store date
+    def next_window_plus_date(self):
+        '''stores the date when moving on to the next window'''
+        current_ui = self.ui_windows[self.current_window]
+        date = current_ui.button_availibility_date.date()
+        self.next_window()
+        return date, print(date)
+    
 
     # Define function to go to next window plus checkboxes
     def next_window_plus_checkboxes(self):
@@ -113,6 +128,7 @@ class MainWindow(QtWidgets.QMainWindow):
     
         #self.checkBox_Cheat_Sheet.stateChanged.connect(self.updateCheatSheet)
 
+
     # Define function to go to the previous window
     def prev_window(self):
         self.current_window = (self.current_window - 1) % len(self.ui_windows)
@@ -127,6 +143,10 @@ class MainWindow(QtWidgets.QMainWindow):
     def exit(self):
         sys.exit(app.exec())
 
+    # Define function to browse for CV
+    def cv_browseFile(self):
+        filename = QtWidgets.QFileDialog.getOpenFileName()
+        return filename, print(filename)
 
 # Define function to run the application
 if __name__ == "__main__":
