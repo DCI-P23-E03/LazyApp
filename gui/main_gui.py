@@ -47,7 +47,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'next_button_3') and hasattr(current_ui, 'jobTextEdit'): # JobAd Page 3
             current_ui.next_button_3.clicked.connect(self.next_window_plus_input)
         if hasattr(current_ui, 'next_button_4'): # Output Page 4
-            current_ui.next_button_4.clicked.connect(self.next_window)
+            current_ui.next_button_4.clicked.connect(self.next_window_plus_checkboxes)
         if hasattr(current_ui, 'Appl_letter_next_button'): # Appl Page 5
             current_ui.Appl_letter_next_button.clicked.connect(self.next_window)
         if hasattr(current_ui, 'Cheat_sheet_next_button'): # Cheat Sheet Page 6
@@ -91,14 +91,17 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setup_current_window()
 
 
+
     # Define function to go to the next window and store input
+
     def next_window_plus_input(self):
         '''stores the content of input field in variable before moving on to the next window'''
         current_ui = self.ui_windows[self.current_window]
         job_adv = current_ui.jobTextEdit.toPlainText()
         print(job_adv)
-        self.current_window = (self.current_window + 1) % len(self.ui_windows)
-        self.setup_current_window()
+        self.next_window()
+        return job_adv
+
 
     # Define function to go to the next window and store date
     def next_window_plus_date(self):
@@ -108,6 +111,24 @@ class MainWindow(QtWidgets.QMainWindow):
         self.next_window()
         return date, print(date)
     
+
+    # Define function to go to next window plus checkboxes
+    def next_window_plus_checkboxes(self):
+        '''stores the state of checkboxes when clicking the next button'''
+        current_ui = self.ui_windows[self.current_window]
+        application_letter_checked = current_ui.checkBox_Application_letter.isChecked()
+        cheat_sheet_checked = current_ui.checkBox_Cheat_Sheet.isChecked()
+        cv_improvements_checked = current_ui.checkBox_CV_Improvements.isChecked()
+        print(application_letter_checked)
+        print(cheat_sheet_checked)
+        print(cv_improvements_checked)
+        self.next_window()
+        return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
+
+    
+        #self.checkBox_Cheat_Sheet.stateChanged.connect(self.updateCheatSheet)
+
+
     # Define function to go to the previous window
     def prev_window(self):
         self.current_window = (self.current_window - 1) % len(self.ui_windows)
@@ -132,4 +153,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     main_window = MainWindow()
     main_window.show()
+
+
+# collect variables from different parts to run Prompt
     sys.exit(app.exec())
