@@ -103,6 +103,7 @@ class Ui_Window_4_Output(object):
         self.retranslateUi(Window_4_Output)
         QtCore.QMetaObject.connectSlotsByName(Window_4_Output)
 
+
     def retranslateUi(self, Window_4_Output):
         _translate = QtCore.QCoreApplication.translate
         Window_4_Output.setWindowTitle(_translate("MainWindow4_Output", "LazyApp"))
