@@ -10,10 +10,12 @@ from Window_7_cv_pointers import Ui_Window_7_cv_pointers
 from Window_8_Goodbye_en import Ui_Window_8_Goodbye_en
 
 
+# Create class for the main window
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
 
+        # Create a list of all the windows
         self.ui_windows = [
             Ui_Window_1_Start(),
             Ui_Window_2_Input(),
@@ -24,11 +26,16 @@ class MainWindow(QtWidgets.QMainWindow):
             Ui_Window_7_cv_pointers(),
             Ui_Window_8_Goodbye_en()
         ]
+
+        # Set the default value of current window to 0
         self.current_window = 0
 
+        # Setup the current window
         self.setup_current_window()
 
+    # Define function to setup the current window
     def setup_current_window(self):
+        # Set the central widget of the window to the current window
         current_ui = self.ui_windows[self.current_window]
         current_ui.setupUi(self)
 
@@ -74,25 +81,27 @@ class MainWindow(QtWidgets.QMainWindow):
             current_ui.exit_button.clicked.connect(self.exit)
 
         
-
+    # Define function to go to the next window
     def next_window(self):
         self.current_window = (self.current_window + 1) % len(self.ui_windows)
         self.setup_current_window()
 
-
+    # Define function to go to the previous window
     def prev_window(self):
         self.current_window = (self.current_window - 1) % len(self.ui_windows)
         self.setup_current_window()
 
-
+    # Define function to go back to the start
     def back_to_start(self):
         self.current_window = 0
         self.setup_current_window()
 
-
+    # Define function to exit the application
     def exit(self):
         sys.exit(app.exec())
 
+
+# Define function to run the application
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     main_window = MainWindow()
