@@ -8,6 +8,7 @@ from Window_5_Appl_letter import Ui_Window_5_Application_Letter
 from Window_6_Cheat_Sheet import Ui_Window_6_Cheat_Sheet
 from Window_7_cv_pointers import Ui_Window_7_cv_pointers
 from Window_8_Goodbye_en import Ui_Window_8_Goodbye_en
+import PDFquery
 
 
 # Create class for the main window
@@ -145,13 +146,17 @@ class MainWindow(QtWidgets.QMainWindow):
     # Define function to browse for CV
     def cv_browseFile(self):
         filename = QtWidgets.QFileDialog.getOpenFileName()
-        return filename, print(filename)
+        return filename #, print(filename)
 
 # Define function to run the application
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     main_window = MainWindow()
     main_window.show()
+
+   
+   
+
 
 
 # collect variables from different parts to run Prompt
