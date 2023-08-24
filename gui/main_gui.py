@@ -37,8 +37,8 @@ class MainWindow(QtWidgets.QMainWindow):
             current_ui.start_button.clicked.connect(self.next_window)
         if hasattr(current_ui, 'button_nextToJobAd'): # Input Page 2
             current_ui.button_nextToJobAd.clicked.connect(self.next_window)
-        if hasattr(current_ui, 'next_button_3'):      # JobAd Page 3
-            current_ui.next_button_3.clicked.connect(self.next_window)
+        if hasattr(current_ui, 'next_button_3') and hasattr(current_ui, 'jobTextEdit'):      # JobAd Page 3
+            current_ui.next_button_3.clicked.connect(self.next_window_plus_input)
         if hasattr(current_ui, 'next_button_4'): # Output Page 4
             current_ui.next_button_4.clicked.connect(self.next_window)
         if hasattr(current_ui, 'Appl_letter_next_button'): # Appl Page 5
@@ -65,7 +65,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'start_button_2'): # Output Page 8
             current_ui.start_button_2.clicked.connect(self.prev_window)
 
-        # back to the start for second application    
+        # back to the start for second application
         if hasattr(current_ui, 'start_button_2'):
             current_ui.start_button_2.clicked.connect(self.back_to_start)
 
@@ -74,8 +74,15 @@ class MainWindow(QtWidgets.QMainWindow):
             current_ui.exit_button.clicked.connect(self.exit)
 
         
-
     def next_window(self):
+        self.current_window = (self.current_window + 1) % len(self.ui_windows)
+        self.setup_current_window()
+
+    def next_window_plus_input(self):
+        '''stores the content of input field in variable before moving on to the next window'''
+        current_ui = self.ui_windows[self.current_window]
+        job_adv = current_ui.jobTextEdit.toPlainText()
+        print(job_adv)
         self.current_window = (self.current_window + 1) % len(self.ui_windows)
         self.setup_current_window()
 
