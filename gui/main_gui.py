@@ -65,7 +65,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'start_button_2'): # Output Page 8
             current_ui.start_button_2.clicked.connect(self.prev_window)
 
-        # back to the start for second application    
+        # back to the start for second application
         if hasattr(current_ui, 'start_button_2'):
             current_ui.start_button_2.clicked.connect(self.back_to_start)
 
