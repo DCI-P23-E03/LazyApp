@@ -109,7 +109,6 @@ class MainWindow(QtWidgets.QMainWindow):
         print(cv_improvements_checked)
         self.next_window()
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
-
     
         #self.checkBox_Cheat_Sheet.stateChanged.connect(self.updateCheatSheet)
 
