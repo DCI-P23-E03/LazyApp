@@ -37,11 +37,13 @@ class Ui_Window_2_Input(object):
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
+        self.button_nextToJobAd = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.button_nextToJobAd.setGeometry(QtCore.QRect(650, 705, 200, 50))
         self.button_nextToJobAd.setFont(font)
         self.button_nextToJobAd.setStyleSheet("color: rgb(255, 255, 255);")
         self.button_nextToJobAd.setObjectName("button_nextToJobAd")
         # adding functionality to button
-        self.button_nextToJobAd.clicked.connect(self.next_to_jobad_clicked)
+        #self.button_nextToJobAd.clicked.connect(self.next_to_jobad_clicked)
 
         # BACK BUTTON
         self.button_backToWelcomeWindow = QtWidgets.QPushButton(parent=self.centralwidget)
@@ -67,8 +69,7 @@ class Ui_Window_2_Input(object):
         # TEXT EDIT ANNUAL SALARY
         self.textEdit_annuaSalary = QtWidgets.QTextEdit(parent=self.centralwidget)
         self.textEdit_annuaSalary.setGeometry(QtCore.QRect(340, 340, 341, 31))
-        self.textEdit_annuaSalary.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"")
+        self.textEdit_annuaSalary.setStyleSheet("background-color: rgb(255, 255, 255);\n""")
         self.textEdit_annuaSalary.setObjectName("textEdit_annuaSalary")
         
         # LABEL AI BEHAVIOUR
@@ -106,16 +107,13 @@ class Ui_Window_2_Input(object):
         font.setBold(True)
         self.button_CV_browseFile.setFont(font)
         self.button_CV_browseFile.setObjectName("button_CV_browseFile")
-        # Adding functionality to button_CV_browseFile
-        #self.button_CV_browseFile.clicked.connect(self.cv_browseFile)
 
-        # DATE EDIT AVAILABILITY
+        # DATE EDIT AVAILABILITY and set date to today
         self.button_availibility_date = QtWidgets.QDateEdit(parent=self.centralwidget)
         self.button_availibility_date.setGeometry(QtCore.QRect(520, 260, 121, 26))
-        self.button_availibility_date.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.button_availibility_date.setStyleSheet("color: rgb(220, 138, 221); background-color: rgb(255, 255, 255);")
         self.button_availibility_date.setObjectName("button_availibility_date")
-        # Adding functionality to button_availibility_date
-        #self.button_availibility_date.dateChanged.connect(self.get_date)
+        self.button_availibility_date.setDate(QtCore.QDate.currentDate()) # set date to today
 
         # LABEL AI BEHAVIOUR CREATIVE
         self.label_AiBehaviour_creative = QtWidgets.QLabel(parent=self.centralwidget)
@@ -154,7 +152,7 @@ class Ui_Window_2_Input(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">FIRST THINGS FIRST</span></p></body></html>"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">First things first</span></p></body></html>"))
         self.button_nextToJobAd.setText(_translate("Window_2_Input", "NEXT ->"))
         self.button_backToWelcomeWindow.setText(_translate("Window_2_Input", "<- BACK"))
         self.label_wordAmount_251.setText(_translate("Window_2_Input", "400"))
@@ -188,17 +186,6 @@ class Ui_Window_2_Input(object):
         self.ui.setupUi(self.window)
         #Window_2_Input.hide()
         self.window.show()
-
-    """# Define function to browse for CV
-    def cv_browseFile(self):
-        filename = QtWidgets.QFileDialog.getOpenFileName()
-        print(filename[0])"""
-
-    """# Define function to get Availabilty-Date from calendar
-    def get_date(self):
-        date = self.button_availibility_date.date()
-        # returs date after every change - NEEEDS FIXING (return only when next-button is clicked)
-        return date, print(date.toString("dd.MM.yyyy"))"""
 
 if __name__ == "__main__":
     import sys
