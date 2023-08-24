@@ -27,18 +27,14 @@ class Ui_Window_2_Input(object):
         self.text_FirstThingFirst.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.text_FirstThingFirst.setLineWidth(0)
         self.text_FirstThingFirst.setObjectName("text_FirstThingFirst")
-        self.button_nextToJobAd = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.button_nextToJobAd.setGeometry(QtCore.QRect(650, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
+        self.button_nextToJobAd = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.button_nextToJobAd.setGeometry(QtCore.QRect(650, 705, 200, 50))
         self.button_nextToJobAd.setFont(font)
         self.button_nextToJobAd.setStyleSheet("color: rgb(255, 255, 255);")
         self.button_nextToJobAd.setObjectName("button_nextToJobAd")
-
-        # add functionality to button
-        #self.button_nextToJobAd.clicked.connect(self.next_to_jobad_clicked)
-
         self.button_backToWelcomeWindow = QtWidgets.QPushButton(parent=self.centralwidget)
         self.button_backToWelcomeWindow.setGeometry(QtCore.QRect(150, 705, 200, 50))
         font = QtGui.QFont()
@@ -47,10 +43,6 @@ class Ui_Window_2_Input(object):
         self.button_backToWelcomeWindow.setFont(font)
         self.button_backToWelcomeWindow.setStyleSheet("color: rgb(255, 255, 255);")
         self.button_backToWelcomeWindow.setObjectName("button_backToWelcomeWindow")
-
-        # add functionality to button
-        self.button_backToWelcomeWindow.clicked.connect(self.back_to_welcome_clicked)
-
         self.label_wordAmount_251 = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_wordAmount_251.setGeometry(QtCore.QRect(600, 420, 31, 17))
         self.label_wordAmount_251.setObjectName("label_wordAmount_251")
@@ -60,8 +52,7 @@ class Ui_Window_2_Input(object):
         self.slider_wordAmount.setObjectName("slider_wordAmount")
         self.textEdit_annuaSalary = QtWidgets.QTextEdit(parent=self.centralwidget)
         self.textEdit_annuaSalary.setGeometry(QtCore.QRect(340, 340, 341, 31))
-        self.textEdit_annuaSalary.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"")
+        self.textEdit_annuaSalary.setStyleSheet("background-color: rgb(255, 255, 255);\n""")
         self.textEdit_annuaSalary.setObjectName("textEdit_annuaSalary")
         self.label_AiBehaviour_rational = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_AiBehaviour_rational.setGeometry(QtCore.QRect(350, 480, 81, 20))
@@ -124,7 +115,7 @@ class Ui_Window_2_Input(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">FIRST THINGS FIRST</span></p></body></html>"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">First things first</span></p></body></html>"))
         self.button_nextToJobAd.setText(_translate("Window_2_Input", "NEXT ->"))
         self.button_backToWelcomeWindow.setText(_translate("Window_2_Input", "<- BACK"))
         self.label_wordAmount_251.setText(_translate("Window_2_Input", "400"))
