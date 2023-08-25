@@ -49,16 +49,19 @@ class Ui_Window_2_Input(object):
         self.label_wordAmount_251 = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_wordAmount_251.setGeometry(QtCore.QRect(600, 420, 31, 17))
         self.label_wordAmount_251.setObjectName("label_wordAmount_251")
+        self.label_wordAmount_251.setStyleSheet("color: rgb(255, 255, 255);")
         
-        # SLIDER WORD AMOUNT values 250-400 in stepsof 50
+        # SLIDER WORD AMOUNT values 250-400 in stepsof 25
         self.slider_wordAmount = QtWidgets.QSlider(parent=self.centralwidget)
         self.slider_wordAmount.setGeometry(QtCore.QRect(430, 420, 160, 16))
         self.slider_wordAmount.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.slider_wordAmount.setObjectName("slider_wordAmount")
+        self.slider_wordAmount.setStyleSheet("color: rgb(255, 255, 255);")
         self.slider_wordAmount.setMinimum(250)
         self.slider_wordAmount.setMaximum(400)
         self.slider_wordAmount.setSingleStep(25)
-        self.slider_wordAmount.setValue(325)
+        self.slider_wordAmount.setValue(350)
+        
         
         # TEXT EDIT ANNUAL SALARY
         self.textEdit_annuaSalary = QtWidgets.QTextEdit(parent=self.centralwidget)
@@ -70,6 +73,7 @@ class Ui_Window_2_Input(object):
         self.label_AiBehaviour_rational = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_AiBehaviour_rational.setGeometry(QtCore.QRect(350, 480, 81, 20))
         self.label_AiBehaviour_rational.setObjectName("label_AiBehaviour_rational")
+        self.label_AiBehaviour_rational.setStyleSheet("color: rgb(255, 255, 255);")
         
         # LABEL WORD AMOUNT
         self.label_wordAmount_250 = QtWidgets.QLabel(parent=self.centralwidget)
@@ -78,6 +82,10 @@ class Ui_Window_2_Input(object):
         self.label_wordAmount = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_wordAmount.setGeometry(QtCore.QRect(480, 400, 61, 20))
         self.label_wordAmount.setObjectName("label_wordAmount")
+        self.label_wordAmount_250.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_wordAmount.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_wordAmount.setToolTip("This determines the length  of your application letter.")
+    
         
         # SLIDER AI BEHAVIOUR
         self.slider_AiBehaviour = QtWidgets.QSlider(parent=self.centralwidget)
@@ -87,12 +95,15 @@ class Ui_Window_2_Input(object):
         self.label_AiBehaviour = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_AiBehaviour.setGeometry(QtCore.QRect(460, 460, 101, 20))
         self.label_AiBehaviour.setObjectName("label_AiBehaviour")
+        self.label_AiBehaviour.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_AiBehaviour.setToolTip("This determines how creative or how rational your application letter will be.")
         self.slider_AiBehaviour.setMinimum(10)
         self.slider_AiBehaviour.setMaximum(90)
         self.slider_AiBehaviour.setSingleStep(10)
         self.slider_AiBehaviour.setValue(50)
+        self.slider_AiBehaviour.setStyleSheet("color: rgb(255, 255, 255);")
 
-        # CV BROSWER BUTTON
+        # CV BROWSER BUTTON
         self.button_CV_browseFile = QtWidgets.QPushButton(parent=self.centralwidget)
         self.button_CV_browseFile.setGeometry(QtCore.QRect(420, 200, 181, 31))
         font = QtGui.QFont()
@@ -100,6 +111,7 @@ class Ui_Window_2_Input(object):
         font.setBold(True)
         self.button_CV_browseFile.setFont(font)
         self.button_CV_browseFile.setObjectName("button_CV_browseFile")
+        self.button_CV_browseFile.setStyleSheet("color: rgb(255, 255, 255);")
 
         # DATE EDIT AVAILABILITY and set date to today
         self.button_availibility_date = QtWidgets.QDateEdit(parent=self.centralwidget)
@@ -107,11 +119,13 @@ class Ui_Window_2_Input(object):
         self.button_availibility_date.setStyleSheet("color: rgb(220, 138, 221); background-color: rgb(255, 255, 255);")
         self.button_availibility_date.setObjectName("button_availibility_date")
         self.button_availibility_date.setDate(QtCore.QDate.currentDate()) # set date to today
+    
 
         # LABEL AI BEHAVIOUR CREATIVE
         self.label_AiBehaviour_creative = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_AiBehaviour_creative.setGeometry(QtCore.QRect(600, 480, 71, 17))
         self.label_AiBehaviour_creative.setObjectName("label_AiBehaviour_creative")
+        self.label_AiBehaviour_creative.setStyleSheet("color: rgb(255, 255, 255);")
         
         # LABEL AVAILABILITY
         self.label_availabilty = QtWidgets.QLabel(parent=self.centralwidget)
@@ -120,16 +134,19 @@ class Ui_Window_2_Input(object):
         font.setBold(True)
         self.label_availabilty.setFont(font)
         self.label_availabilty.setObjectName("label_availabilty")
+        self.label_availabilty.setStyleSheet("color: rgb(255, 255, 255);")
         
         # RADIO BUTTON PART TIME
         self.radioButton_partTime = QtWidgets.QRadioButton(parent=self.centralwidget)
         self.radioButton_partTime.setGeometry(QtCore.QRect(520, 290, 112, 23))
         self.radioButton_partTime.setObjectName("radioButton_partTime")
+        self.radioButton_partTime.setStyleSheet("color: rgb(255, 255, 255);")
 
         # RADIO BUTTON FULL TIME
         self.radioButton_fullTime = QtWidgets.QRadioButton(parent=self.centralwidget)
         self.radioButton_fullTime.setGeometry(QtCore.QRect(400, 290, 112, 23))
         self.radioButton_fullTime.setObjectName("radioButton_fullTime")
+        self.radioButton_fullTime.setStyleSheet("color: rgb(255, 255, 255);")
         
         Window_2_Input.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=Window_2_Input)
