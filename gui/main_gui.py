@@ -153,29 +153,28 @@ class MainWindow(QtWidgets.QMainWindow):
         self.next_window()
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
     
-        #self.checkBox_Cheat_Sheet.stateChanged.connect(self.updateCheatSheet)
+        
 
     # Define function to check Radio Buttons for Availibility of Part-Time and Full-Time
     def updateAvailibility(self):
         '''stores the state of radio buttons when clicking the next button'''
-        availibility = None
+        global availability
+        availability = ""
         current_ui = self.ui_windows[self.current_window]
         if current_ui.radioButton_fullTime.isChecked():
             print("Full-Time")
-            availibility = "Full-Time"
-            return availibility
+            availability = "full-Time"
+            return availability
         elif current_ui.radioButton_partTime.isChecked():
-            print("Part-Time")
-            availibility = "Part-Time"
-            return availibility
-        else:
-            print("None")
-            availibility = "None"
-            return availibility
+            print("part-time")
+            availability = "part-time"
+            return availability
+        return False
 
     # Define function to check Word Amount
     def updateWordAmount(self):
         current_ui = self.ui_windows[self.current_window]
+        global word_amount
         word_amount = current_ui.slider_wordAmount.value()
         # round to nearest 50 words
         word_amount = round(word_amount/25)*25

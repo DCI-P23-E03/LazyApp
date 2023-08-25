@@ -146,8 +146,4 @@ if __name__ == "__main__":
     ui = Ui_Window_8_Goodbye_en()
     ui.setupUi(Window_8_Goodbye_en)
     Window_8_Goodbye_en.show()
-<<<<<<< HEAD
     sys.exit(app.exec())
-=======
-    sys.exit(app.exec())
->>>>>>> 0d59cb4 (adding functionality to export buttons)

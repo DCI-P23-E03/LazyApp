@@ -81,8 +81,4 @@ if __name__ == "__main__":
     ui.setupUi(Window_1_Start)
     Window_1_Start.show()
 
-<<<<<<< HEAD
     sys.exit(app.exec())
-=======
-    sys.exit(app.exec())
->>>>>>> 0d59cb4 (adding functionality to export buttons)
