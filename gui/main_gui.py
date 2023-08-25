@@ -8,7 +8,8 @@ from Window_5_Appl_letter import Ui_Window_5_Application_Letter
 from Window_6_Cheat_Sheet import Ui_Window_6_Cheat_Sheet
 from Window_7_cv_pointers import Ui_Window_7_cv_pointers
 from Window_8_Goodbye_en import Ui_Window_8_Goodbye_en
-import PDFquery
+from PyQt6.QtGui import QTextDocument
+from PyQt6.QtPrintSupport import QPrinter
 
 
 # Create class for the main window
@@ -91,12 +92,27 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'radioButton_partTime'):
             current_ui.radioButton_partTime.clicked.connect(self.updateAvailibility)
 
+
         # Word Amount
         if hasattr(current_ui, 'slider_wordAmount'):
             current_ui.slider_wordAmount.valueChanged.connect(self.updateWordAmount)
 
         if hasattr(current_ui, 'slider_AiBehaviour'):
             current_ui.slider_AiBehaviour.valueChanged.connect(self.update_Ai_Beahviour)
+
+        # export application letter to pdf button
+        if hasattr(current_ui, 'Appl_letter_export_button'):
+            current_ui.Appl_letter_export_button.clicked.connect(self.export_application_letter_to_pdf)
+
+        # export cheat sheet to pdf button
+        if hasattr(current_ui, 'Cheat_Sheet_export_button'):
+            current_ui.Cheat_Sheet_export_button.clicked.connect(self.export_cheat_sheet_to_pdf)
+
+        # export cv pointers to pdf button
+        if hasattr(current_ui, 'cv_pointers_export_button'):
+            current_ui.cv_pointers_export_button.clicked.connect(self.export_cv_pointers_to_pdf)
+
+
 
     # Define function to go to the next window
     def next_window(self):
@@ -179,6 +195,68 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 
+
+
+    # Define function to export application letter to pdf
+    def export_application_letter_to_pdf(self):
+        current_ui = self.ui_windows[self.current_window]
+        if hasattr(current_ui, 'Appl_letter_export_button'):
+            content = current_ui.Appl_letter_space.toPlainText()
+        #opening a file dialog to prompt the user to choose a location to save the PDF file
+        if content:
+            filePath, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Save Application Letter as PDF", "", "PDF Files (*.pdf);;All Files (*)")
+            if filePath:
+                if not filePath.lower().endswith('.pdf'):
+                    filePath += '.pdf'
+                doc = QTextDocument()
+                doc.setPlainText(content)
+                printer = QPrinter()
+                printer.setOutputFormat(QPrinter.OutputFormat.PdfFormat)
+                printer.setOutputFileName(filePath)
+                doc.print(printer)
+                print("Application letter exported as PDF.")
+
+
+    # Define function to export cheat sheet to pdf
+    def export_cheat_sheet_to_pdf(self):
+        current_ui = self.ui_windows[self.current_window]
+        if hasattr(current_ui, 'Cheat_Sheet_export_button'):
+            content = current_ui.Cheat_Sheet_space.toPlainText()
+        #opening a file dialog to prompt the user to choose a location to save the PDF file
+        if content:
+            filePath, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Save Cheat sheet as PDF", "", "PDF Files (*.pdf);;All Files (*)")
+            if filePath:
+                if not filePath.lower().endswith('.pdf'):
+                    filePath += '.pdf'
+                doc = QTextDocument()
+                doc.setPlainText(content)
+                printer = QPrinter()
+                printer.setOutputFormat(QPrinter.OutputFormat.PdfFormat)
+                printer.setOutputFileName(filePath)
+                doc.print(printer)
+                print("Cheat sheet exported as PDF.")
+
+
+    # Define function to export cv pointers to pdf
+    def export_cv_pointers_to_pdf(self):
+        current_ui = self.ui_windows[self.current_window]
+        if hasattr(current_ui, 'cv_pointers_export_button'):
+            content = current_ui.cv_pointers_space.toPlainText()
+        #opening a file dialog to prompt the user to choose a location to save the PDF file
+        if content:
+            filePath, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Save cv pointers as PDF", "", "PDF Files (*.pdf);;All Files (*)")
+            if filePath:
+                if not filePath.lower().endswith('.pdf'):
+                    filePath += '.pdf'
+                doc = QTextDocument()
+                doc.setPlainText(content)
+                printer = QPrinter()
+                printer.setOutputFormat(QPrinter.OutputFormat.PdfFormat)
+                printer.setOutputFileName(filePath)
+                doc.print(printer)
+                print("cv pointers exported as PDF.")
+
+
     # Define function to go to the previous window
     def prev_window(self):
         self.current_window = (self.current_window - 1) % len(self.ui_windows)
@@ -205,9 +283,6 @@ if __name__ == "__main__":
     main_window.show()
 
    
-   
-
-
 
 # collect variables from different parts to run Prompt
     sys.exit(app.exec())
