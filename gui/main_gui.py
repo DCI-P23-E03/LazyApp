@@ -45,7 +45,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'start_button'):  # Start Page 1
             current_ui.start_button.clicked.connect(self.next_window)
         if hasattr(current_ui, 'button_nextToJobAd'): # Input Page 2
-            current_ui.button_nextToJobAd.clicked.connect(self.next_window_plus_date)
+            current_ui.button_nextToJobAd.clicked.connect(self.next_window_plus_inputPage)
         if hasattr(current_ui, 'next_button_3') and hasattr(current_ui, 'jobTextEdit'): # JobAd Page 3
             current_ui.next_button_3.clicked.connect(self.next_window_plus_input)
         if hasattr(current_ui, 'next_button_4'): # Output Page 4
@@ -85,6 +85,20 @@ class MainWindow(QtWidgets.QMainWindow):
         # CV browser button
         if hasattr(current_ui, 'button_CV_browseFile'):  # Start Page 1
             current_ui.button_CV_browseFile.clicked.connect(self.cv_browseFile)
+        
+        # Radio Buttons for Availibility of Part-Time and Full-Time
+        if hasattr(current_ui, 'radioButton_fullTime'):
+            current_ui.radioButton_fullTime.clicked.connect(self.updateAvailibility)
+        if hasattr(current_ui, 'radioButton_partTime'):
+            current_ui.radioButton_partTime.clicked.connect(self.updateAvailibility)
+
+
+        # Word Amount
+        if hasattr(current_ui, 'slider_wordAmount'):
+            current_ui.slider_wordAmount.valueChanged.connect(self.updateWordAmount)
+
+        if hasattr(current_ui, 'slider_AiBehaviour'):
+            current_ui.slider_AiBehaviour.valueChanged.connect(self.update_Ai_Beahviour)
 
         # export application letter to pdf button
         if hasattr(current_ui, 'Appl_letter_export_button'):
@@ -99,15 +113,14 @@ class MainWindow(QtWidgets.QMainWindow):
             current_ui.cv_pointers_export_button.clicked.connect(self.export_cv_pointers_to_pdf)
 
 
+
     # Define function to go to the next window
     def next_window(self):
         self.current_window = (self.current_window + 1) % len(self.ui_windows)
         self.setup_current_window()
-
-
-
+    
+    
     # Define function to go to the next window and store input
-
     def next_window_plus_input(self):
         '''stores the content of input field in variable before moving on to the next window'''
         current_ui = self.ui_windows[self.current_window]
@@ -118,12 +131,13 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
     # Define function to go to the next window and store date
-    def next_window_plus_date(self):
+    def next_window_plus_inputPage(self):
         '''stores the date when moving on to the next window'''
         current_ui = self.ui_windows[self.current_window]
         date = current_ui.button_availibility_date.date()
+        salary = int(current_ui.textEdit_annuaSalary.toPlainText())
         self.next_window()
-        return date, print(date)
+        return date, print(date), salary, print(salary)
     
 
     # Define function to go to next window plus checkboxes
@@ -140,6 +154,45 @@ class MainWindow(QtWidgets.QMainWindow):
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
     
         #self.checkBox_Cheat_Sheet.stateChanged.connect(self.updateCheatSheet)
+
+    # Define function to check Radio Buttons for Availibility of Part-Time and Full-Time
+    def updateAvailibility(self):
+        '''stores the state of radio buttons when clicking the next button'''
+        availibility = None
+        current_ui = self.ui_windows[self.current_window]
+        if current_ui.radioButton_fullTime.isChecked():
+            print("Full-Time")
+            availibility = "Full-Time"
+            return availibility
+        elif current_ui.radioButton_partTime.isChecked():
+            print("Part-Time")
+            availibility = "Part-Time"
+            return availibility
+        else:
+            print("None")
+            availibility = "None"
+            return availibility
+
+    # Define function to check Word Amount
+    def updateWordAmount(self):
+        current_ui = self.ui_windows[self.current_window]
+        word_amount = current_ui.slider_wordAmount.value()
+        # round to nearest 50 words
+        word_amount = round(word_amount/25)*25
+        print(word_amount)
+        return word_amount
+    
+    # Define function to check Ai Behaviour
+    def update_Ai_Beahviour(self):
+        current_ui = self.ui_windows[self.current_window]
+        ai_behaviour = float(current_ui.slider_AiBehaviour.value()/100)
+        #round to nearest 0.1
+        #ai_behaviour = print('%f' % ai_behaviour).rstrip('0').rstrip('.')
+        ai_behaviour = format(round(ai_behaviour/0.1)*0.1, '.1f')
+        # get rid of trailing zeros
+        print(ai_behaviour)
+        return ai_behaviour
+
 
 
 
