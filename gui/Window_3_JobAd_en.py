@@ -79,4 +79,8 @@ if __name__ == "__main__":
     ui = Ui_Window_3_JobAd_en()
     ui.setupUi(Window_3_JobAd_en)
     Window_3_JobAd_en.show()
+<<<<<<< HEAD
     sys.exit(app.exec())
+=======
+    sys.exit(app.exec())
+>>>>>>> 0d59cb4 (adding functionality to export buttons)
