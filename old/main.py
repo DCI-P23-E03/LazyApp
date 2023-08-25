@@ -1,6 +1,6 @@
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
 from user_input import userinput
-from gui.PDFquery import *
+from old.PDFquery import *
 from ai_response_modified import ChatGPTCompletion
 from ai_example2_Class import ChatGPTChat
 from stringcolor import *
