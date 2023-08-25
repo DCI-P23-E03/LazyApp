@@ -42,8 +42,6 @@ class Ui_Window_2_Input(object):
         self.button_nextToJobAd.setFont(font)
         self.button_nextToJobAd.setStyleSheet("color: rgb(255, 255, 255);")
         self.button_nextToJobAd.setObjectName("button_nextToJobAd")
-        # adding functionality to button
-        #self.button_nextToJobAd.clicked.connect(self.next_to_jobad_clicked)
 
         # BACK BUTTON
         self.button_backToWelcomeWindow = QtWidgets.QPushButton(parent=self.centralwidget)
@@ -54,17 +52,21 @@ class Ui_Window_2_Input(object):
         self.button_backToWelcomeWindow.setFont(font)
         self.button_backToWelcomeWindow.setStyleSheet("color: rgb(255, 255, 255);")
         self.button_backToWelcomeWindow.setObjectName("button_backToWelcomeWindow")
-        # adding functionality to button
-        self.button_backToWelcomeWindow.clicked.connect(self.back_to_welcome_clicked)
-
-        # SLIDER WORD AMOUNT
+        
+        # LABEL WORD AMOUNT
         self.label_wordAmount_251 = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_wordAmount_251.setGeometry(QtCore.QRect(600, 420, 31, 17))
         self.label_wordAmount_251.setObjectName("label_wordAmount_251")
+        
+        # SLIDER WORD AMOUNT values 250-400 in stepsof 50
         self.slider_wordAmount = QtWidgets.QSlider(parent=self.centralwidget)
         self.slider_wordAmount.setGeometry(QtCore.QRect(430, 420, 160, 16))
         self.slider_wordAmount.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.slider_wordAmount.setObjectName("slider_wordAmount")
+        self.slider_wordAmount.setMinimum(250)
+        self.slider_wordAmount.setMaximum(400)
+        self.slider_wordAmount.setSingleStep(25)
+        self.slider_wordAmount.setValue(325)
         
         # TEXT EDIT ANNUAL SALARY
         self.textEdit_annuaSalary = QtWidgets.QTextEdit(parent=self.centralwidget)
@@ -76,11 +78,6 @@ class Ui_Window_2_Input(object):
         self.label_AiBehaviour_rational = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_AiBehaviour_rational.setGeometry(QtCore.QRect(350, 480, 81, 20))
         self.label_AiBehaviour_rational.setObjectName("label_AiBehaviour_rational")
-        
-        # RADIO BUTTON FULL TIME
-        self.radioButton_fullTime = QtWidgets.QRadioButton(parent=self.centralwidget)
-        self.radioButton_fullTime.setGeometry(QtCore.QRect(400, 290, 112, 23))
-        self.radioButton_fullTime.setObjectName("radioButton_fullTime")
         
         # LABEL WORD AMOUNT
         self.label_wordAmount_250 = QtWidgets.QLabel(parent=self.centralwidget)
@@ -98,6 +95,10 @@ class Ui_Window_2_Input(object):
         self.label_AiBehaviour = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_AiBehaviour.setGeometry(QtCore.QRect(460, 460, 101, 20))
         self.label_AiBehaviour.setObjectName("label_AiBehaviour")
+        self.slider_AiBehaviour.setMinimum(10)
+        self.slider_AiBehaviour.setMaximum(90)
+        self.slider_AiBehaviour.setSingleStep(10)
+        self.slider_AiBehaviour.setValue(50)
 
         # CV BROSWER BUTTON
         self.button_CV_browseFile = QtWidgets.QPushButton(parent=self.centralwidget)
@@ -132,6 +133,11 @@ class Ui_Window_2_Input(object):
         self.radioButton_partTime = QtWidgets.QRadioButton(parent=self.centralwidget)
         self.radioButton_partTime.setGeometry(QtCore.QRect(520, 290, 112, 23))
         self.radioButton_partTime.setObjectName("radioButton_partTime")
+
+        # RADIO BUTTON FULL TIME
+        self.radioButton_fullTime = QtWidgets.QRadioButton(parent=self.centralwidget)
+        self.radioButton_fullTime.setGeometry(QtCore.QRect(400, 290, 112, 23))
+        self.radioButton_fullTime.setObjectName("radioButton_fullTime")
         
         Window_2_Input.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=Window_2_Input)
@@ -158,7 +164,7 @@ class Ui_Window_2_Input(object):
         self.label_wordAmount_251.setText(_translate("Window_2_Input", "400"))
         self.textEdit_annuaSalary.setHtml(_translate("Window_2_Input", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
+"p, li { white-space: pre-wrap; }\n"    
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#dc8add;\">ANNUAL SALARY</span></p></body></html>"))
         self.label_AiBehaviour_rational.setText(_translate("Window_2_Input", "RATIONAL"))
