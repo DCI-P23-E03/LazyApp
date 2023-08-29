@@ -14,12 +14,11 @@ class LetterPrompt(PromptMixin):
         cv: str,
         job_adv: str,
         salary_expt,
-        language,
         availability,
         hours,
         max_length,
     ):
-        super().__init__(job_adv, language)
+        super().__init__(job_adv, language ="en")
         self.cv = cv
         self.salary_expt = salary_expt
         self.availability = availability
@@ -30,14 +29,14 @@ class LetterPrompt(PromptMixin):
 
     def write_application_letter(self):
         if self.language == "en":
-            return f"""Compile application letter for {self.job_adv}, based on this CV: {self.cv}. Include information on {self.hours}, salaryexpecatations{self.salary_expt}, availability:{self.availability}. The letter should not be longer than {self.max_length} words."""
+            return f"""Compile an application letter for the job ad'{self.job_adv}', based on this CV: '{self.cv}'. Include information on {self.hours} working hours, salaryexpecatations{self.salary_expt} and availability {self.availability}. The letter should not be longer than {self.max_length} words."""
         if self.language == "de":
             return f"""Entwerfe ein Anschreiben für den Job {self.job_adv}, basierend auf diesem CV {self.cv}. Die folgenden Information müssen enthalten sein: {self.hours},Gehaltsvorstellungen:{self.salary_expt},Verfügbarkeit:{self.availability}. Das Anschreiben sollte nicht länger als {self.max_length} Wörter sein."""
 
 
 class CheatSheetPrompt(PromptMixin):
-    def __init__(self, job_adv, language):
-        super().__init__(job_adv, language)
+    def __init__(self, job_adv):
+        super().__init__(job_adv, language = "en")
 
     def write_cheat_sheet(self):
         if self.language == "en":
@@ -53,8 +52,8 @@ class CheatSheetPrompt(PromptMixin):
 
 
 class CvPointersPrompt(PromptMixin):
-    def __init__(self, job_adv, cv, language):
-        super().__init__(job_adv, cv, language)
+    def __init__(self, cv, job_adv):
+        super().__init__(cv, job_adv, language = "en")
 
     def write_cv_pointers(self):
         if self.language == "en":

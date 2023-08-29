@@ -10,6 +10,10 @@ from Window_7_cv_pointers import Ui_Window_7_cv_pointers
 from Window_8_Goodbye_en import Ui_Window_8_Goodbye_en
 from PyQt6.QtGui import QTextDocument
 from PyQt6.QtPrintSupport import QPrinter
+from datetime import datetime
+import PyPDF2
+from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
+from ai_example2_Class import ChatGPTChat
 
 
 # Create class for the main window
@@ -86,19 +90,8 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'button_CV_browseFile'):  # Start Page 1
             current_ui.button_CV_browseFile.clicked.connect(self.cv_browseFile)
         
-        # Radio Buttons for Availibility of Part-Time and Full-Time
-        if hasattr(current_ui, 'radioButton_fullTime'):
-            current_ui.radioButton_fullTime.clicked.connect(self.updateAvailibility)
-        if hasattr(current_ui, 'radioButton_partTime'):
-            current_ui.radioButton_partTime.clicked.connect(self.updateAvailibility)
+       
 
-
-        # Word Amount
-        if hasattr(current_ui, 'slider_wordAmount'):
-            current_ui.slider_wordAmount.valueChanged.connect(self.updateWordAmount)
-
-        if hasattr(current_ui, 'slider_AiBehaviour'):
-            current_ui.slider_AiBehaviour.valueChanged.connect(self.update_Ai_Beahviour)
 
         # export application letter to pdf button
         if hasattr(current_ui, 'Appl_letter_export_button'):
@@ -120,79 +113,125 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setup_current_window()
     
     
-    # Define function to go to the next window and store input
+    # Define function to go to the next window 4 and store input
     def next_window_plus_input(self):
         '''stores the content of input field in variable before moving on to the next window'''
         current_ui = self.ui_windows[self.current_window]
+        global job_adv
         job_adv = current_ui.jobTextEdit.toPlainText()
         print(job_adv)
         self.next_window()
         return job_adv
 
+    # Define function to browse for CV
+    def cv_browseFile(self):
+        filepath = QtWidgets.QFileDialog.getOpenFileName()[0]
+        print(filepath)
+        pdf_file = open(filepath, 'rb') # open PDF file
+
+        # Create a PDF reader object
+        pdf_reader = PyPDF2.PdfReader(pdf_file)
+
+        # Initialize an empty string to store the content
+        global pdf_content
+        pdf_content = ""
+
+        # Loop through each page and extract text
+        for page_num in range(len(pdf_reader.pages)):
+            page = pdf_reader.pages[page_num]
+            pdf_content += page.extract_text()
+
+        # Close the PDF file
+        pdf_file.close()
+        # Print or do something with the extracted content
+        #print(pdf_content)
+        return pdf_content
 
     # Define function to go to the next window and store date
     def next_window_plus_inputPage(self):
         '''stores the date when moving on to the next window'''
         current_ui = self.ui_windows[self.current_window]
+
+        # starting date for new job
+        global date
         date = current_ui.button_availibility_date.date()
-        salary = int(current_ui.textEdit_annuaSalary.toPlainText())
+        if date == datetime.today():
+            date = "immediately"
+        print(date)
+
+        #Salary input, if empty or not filled in set to "appropriate"
+        global salary
+        salary = current_ui.textEdit_annuaSalary.toPlainText()
+        if salary == "ANNUAL SALARY" or salary == "":
+            salary = "appropriate"
+        # print(salary)
+        # stores the state of radio buttons when clicking the next button
+        global hours
+        if current_ui.radioButton_fullTime.isChecked():
+            hours = "full-time"
+        elif current_ui.radioButton_partTime.isChecked():
+            hours = "part-time"
+        # print(availability)
+        global word_amount
+        word_amount = current_ui.slider_wordAmount.value()
+        # round to nearest 50 words
+        word_amount = round(word_amount/25)*25
+        # print(word_amount)
+        global ai_behaviour
+        ai_behaviour = float(current_ui.slider_AiBehaviour.value()/100)
+        # round to nearest 0.1
+        ai_behaviour = format(round(ai_behaviour/0.1)*0.1, '.1f')
+        ai_behaviour = float(ai_behaviour)
+        # get rid of trailing zeros
+        print(ai_behaviour)
         self.next_window()
-        return date, print(date), salary, print(salary)
-    
+
+        return date, salary, hours, word_amount, ai_behaviour
+
 
     # Define function to go to next window plus checkboxes
     def next_window_plus_checkboxes(self):
         '''stores the state of checkboxes when clicking the next button'''
         current_ui = self.ui_windows[self.current_window]
+        global application_letter_checked
         application_letter_checked = current_ui.checkBox_Application_letter.isChecked()
+        global cheat_sheet_checked
         cheat_sheet_checked = current_ui.checkBox_Cheat_Sheet.isChecked()
+        global cv_improvements_checked
         cv_improvements_checked = current_ui.checkBox_CV_Improvements.isChecked()
-        print(application_letter_checked)
-        print(cheat_sheet_checked)
-        print(cv_improvements_checked)
+        # print(application_letter_checked)
+        # print(cheat_sheet_checked)
+        # print(cv_improvements_checked)
+        self.instantiate_prompts()
+        self.instantiate_ai()
         self.next_window()
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
+
+    # instantiate Prompt Classes LetterPrompt, CheatSheetPrompt, CvPointersPrompt
+    def instantiate_prompts(self):
+        global letter
+        letter = ""
+        global cheat_sheet
+        cheat_sheet = ""
+        global cv_pointers
+        cv_pointers =""
+        if application_letter_checked:
+            letter_prompt = LetterPrompt(cv = pdf_content, job_adv = job_adv, salary_expt = salary, availability = date, hours = hours, max_length = word_amount)
+            letter = letter_prompt.write_application_letter()
+        if cheat_sheet_checked:
+            cheat_sheet_prompt = CheatSheetPrompt(job_adv=job_adv)
+            cheat_sheet = cheat_sheet_prompt.write_cheat_sheet()
+        if cv_improvements_checked:
+            cv_pointers_prompt = CvPointersPrompt(job_adv=job_adv, cv= pdf_content)
+            cv_pointers = cv_pointers_prompt.write_cv_pointers()
+        global user_input
+        user_input = letter + cheat_sheet + cv_pointers
+        return user_input
     
-        
-
-    # Define function to check Radio Buttons for Availibility of Part-Time and Full-Time
-    def updateAvailibility(self):
-        '''stores the state of radio buttons when clicking the next button'''
-        global availability
-        availability = ""
-        current_ui = self.ui_windows[self.current_window]
-        if current_ui.radioButton_fullTime.isChecked():
-            print("Full-Time")
-            availability = "full-Time"
-            return availability
-        elif current_ui.radioButton_partTime.isChecked():
-            print("part-time")
-            availability = "part-time"
-            return availability
-        return False
-
-    # Define function to check Word Amount
-    def updateWordAmount(self):
-        current_ui = self.ui_windows[self.current_window]
-        global word_amount
-        word_amount = current_ui.slider_wordAmount.value()
-        # round to nearest 50 words
-        word_amount = round(word_amount/25)*25
-        print(word_amount)
-        return word_amount
-    
-    # Define function to check Ai Behaviour
-    def update_Ai_Beahviour(self):
-        current_ui = self.ui_windows[self.current_window]
-        ai_behaviour = float(current_ui.slider_AiBehaviour.value()/100)
-        #round to nearest 0.1
-        #ai_behaviour = print('%f' % ai_behaviour).rstrip('0').rstrip('.')
-        ai_behaviour = format(round(ai_behaviour/0.1)*0.1, '.1f')
-        # get rid of trailing zeros
-        print(ai_behaviour)
-        return ai_behaviour
-
-
+    # pass prompts to chat gpt
+    def instantiate_ai(self):
+        chat_gpt = ChatGPTChat(temperature = ai_behaviour)
+        chat_gpt.chat_interface(user_input)
 
 
 
@@ -270,10 +309,6 @@ class MainWindow(QtWidgets.QMainWindow):
     def exit(self):
         sys.exit(app.exec())
 
-    # Define function to browse for CV
-    def cv_browseFile(self):
-        filename = QtWidgets.QFileDialog.getOpenFileName()
-        return filename #, print(filename)
 
 # Define function to run the application
 if __name__ == "__main__":

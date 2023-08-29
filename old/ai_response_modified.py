@@ -8,7 +8,7 @@ load_dotenv()
 key = os.getenv("KEY")
 
 class ChatGPTCompletion:
-    def __init__(self, api_key=key, engine="text-davinci-003", max_tokens=150, temperature=0.7, completions=3, best_of=3, presence_penalty=0.5, frequency_penalty=0.5):
+    def __init__(self, api_key=key, engine="text-davinci-003", max_tokens=150, temperature=0.5, completions=3, best_of=3, presence_penalty=0.5, frequency_penalty=0.5):
         self.api_key = api_key
         self.engine = engine # engine is the chatgpt model used, davinci is the smartest, fastest yet most expensive
         self.max_tokens = max_tokens # maximum tokens allowed for response length
@@ -36,7 +36,7 @@ class ChatGPTCompletion:
 
     def chat_interface(self):
         responses = self.get_chatgpt_response(user_input)
-        print("Hier sind deine Bewerbungsunterlagen: ")
+        print("Here is what you wanted: ")
         for response in responses:
             print(response)
 
