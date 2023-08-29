@@ -13,7 +13,7 @@ from PyQt6.QtPrintSupport import QPrinter
 from datetime import datetime
 import PyPDF2
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
-from ai_response_modified import ChatGPTCompletion
+from ai_example2_Class import ChatGPTChat
 
 
 # Create class for the main window
@@ -181,6 +181,7 @@ class MainWindow(QtWidgets.QMainWindow):
         ai_behaviour = float(current_ui.slider_AiBehaviour.value()/100)
         # round to nearest 0.1
         ai_behaviour = format(round(ai_behaviour/0.1)*0.1, '.1f')
+        ai_behaviour = float(ai_behaviour)
         # get rid of trailing zeros
         print(ai_behaviour)
         self.next_window()
@@ -223,11 +224,14 @@ class MainWindow(QtWidgets.QMainWindow):
         if cv_improvements_checked:
             cv_pointers_prompt = CvPointersPrompt(job_adv=job_adv, cv= pdf_content)
             cv_pointers = cv_pointers_prompt.write_cv_pointers()
-        print(letter + cheat_sheet + cv_pointers)
-        return letter + cheat_sheet + cv_pointers
+        global user_input
+        user_input = letter + cheat_sheet + cv_pointers
+        return user_input
     
     # pass prompts to chat gpt
-    def instantiate_ai():
+    def instantiate_ai(self):
+        chat_gpt = ChatGPTChat(temperature = ai_behaviour)
+        chat_gpt.chat_interface(user_input)
 
 
 
