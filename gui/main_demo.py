@@ -203,7 +203,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # print(cheat_sheet_checked)
         # print(cv_improvements_checked)
         self.instantiate_prompts()
-        self.instantiate_ai()
+        #self.instantiate_ai()
         self.next_window()
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
 
