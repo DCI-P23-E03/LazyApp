@@ -9,7 +9,7 @@ load_dotenv()
 key = os.getenv("KEY")
 
 class ChatGPTChat:
-    def __init__(self, api_key=key, model="gpt-3.5-turbo", max_tokens=350, temperature=0.5, completions=1, presence_penalty=0.5, frequency_penalty=0.5):
+    def __init__(self, api_key=key, model="gpt-3.5-turbo", max_tokens=1000, temperature=0.5, completions=1, presence_penalty=0.5, frequency_penalty=0.5):
         self.api_key = api_key
         self.model = model # The ChatGPT model used (gpt-3.5-turbo is an example, can be replaced)
         self.max_tokens = max_tokens # Maximum tokens allowed for response length
