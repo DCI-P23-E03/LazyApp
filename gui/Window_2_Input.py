@@ -1,7 +1,6 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 import Window_1_Start
 import Window_3_JobAd_en
-#from main_gui import cv_browsefile
 
 
 class Ui_Window_2_Input(object):
@@ -118,6 +117,7 @@ class Ui_Window_2_Input(object):
         self.button_availibility_date.setGeometry(QtCore.QRect(520, 260, 121, 26))
         self.button_availibility_date.setStyleSheet("color: rgb(220, 138, 221); background-color: rgb(255, 255, 255);")
         self.button_availibility_date.setObjectName("button_availibility_date")
+        self.button_availibility_date.setCalendarPopup(True)  # Enable calendar popup
         self.button_availibility_date.setDate(QtCore.QDate.currentDate()) # set date to today
     
 

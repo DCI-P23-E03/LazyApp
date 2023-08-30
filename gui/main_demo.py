@@ -133,19 +133,19 @@ class MainWindow(QtWidgets.QMainWindow):
         pdf_reader = PyPDF2.PdfReader(pdf_file)
 
         # Initialize an empty string to store the content
-        global pdf_content
-        pdf_content = ""
+        global cv
+        cv = ""
 
         # Loop through each page and extract text
         for page_num in range(len(pdf_reader.pages)):
             page = pdf_reader.pages[page_num]
-            pdf_content += page.extract_text()
+            cv += page.extract_text()
 
         # Close the PDF file
         pdf_file.close()
         # Print or do something with the extracted content
         #print(pdf_content)
-        return pdf_content
+        return cv
 
     # Define function to go to the next window and store date
     def next_window_plus_inputPage(self):
@@ -171,6 +171,8 @@ class MainWindow(QtWidgets.QMainWindow):
             hours = "full-time"
         elif current_ui.radioButton_partTime.isChecked():
             hours = "part-time"
+        else:
+            hours = "full-time" # default option
         # print(availability)
         global word_amount
         word_amount = current_ui.slider_wordAmount.value()
@@ -185,7 +187,6 @@ class MainWindow(QtWidgets.QMainWindow):
         # get rid of trailing zeros
         print(ai_behaviour)
         self.next_window()
-
         return date, salary, hours, word_amount, ai_behaviour
 
 
@@ -203,7 +204,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # print(cheat_sheet_checked)
         # print(cv_improvements_checked)
         self.instantiate_prompts()
-        self.instantiate_ai()
+        # self.instantiate_ai()
         self.next_window()
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
 
@@ -216,17 +217,18 @@ class MainWindow(QtWidgets.QMainWindow):
         global cv_pointers
         cv_pointers =""
         if application_letter_checked:
-            letter_prompt = LetterPrompt(cv = pdf_content, job_adv = job_adv, salary_expt = salary, availability = date, hours = hours, max_length = word_amount)
-            letter = letter_prompt.write_application_letter()
+            letter_prompt = LetterPrompt(cv = pdf_content, job_adv = job_adv, salary_expt = salary, availability = date, hours = hours, max_length = word_amount, language = "en")
+            letter = letter_prompt.prompt()
         if cheat_sheet_checked:
-            cheat_sheet_prompt = CheatSheetPrompt(job_adv=job_adv)
-            cheat_sheet = cheat_sheet_prompt.write_cheat_sheet()
+            cheat_sheet_prompt = CheatSheetPrompt(job_adv=job_adv, language = "en")
+            cheat_sheet = cheat_sheet_prompt.prompt()
         if cv_improvements_checked:
-            cv_pointers_prompt = CvPointersPrompt(job_adv=job_adv, cv= pdf_content)
-            cv_pointers = cv_pointers_prompt.write_cv_pointers()
+            cv_pointers_prompt = CvPointersPrompt(job_adv, cv= pdf_content, language="en")
+            cv_pointers = cv_pointers_prompt.prompt()
         global user_input
-        user_input = letter + cheat_sheet + cv_pointers
-        return user_input
+        prompts = [letter, cheat_sheet, cv_pointers]
+        print(prompts)
+        return prompts
     
     # pass prompts to chat gpt
     def instantiate_ai(self):
