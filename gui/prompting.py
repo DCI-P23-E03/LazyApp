@@ -1,8 +1,16 @@
+from abc import abstractmethod
+
+
 class PromptMixin:
     # constructor method including all prompt parameter with default values
     def __init__(self, job_adv: str, language: str):
         self.job_adv = job_adv
         self.language = language
+
+
+    @abstractmethod
+    def prompt(self):
+        pass
 
 
 class LetterPrompt(PromptMixin):
@@ -17,8 +25,9 @@ class LetterPrompt(PromptMixin):
         availability,
         hours,
         max_length,
+        language
     ):
-        super().__init__(job_adv, language ="en")
+        super().__init__(job_adv, language)
         self.cv = cv
         self.salary_expt = salary_expt
         self.availability = availability
@@ -27,7 +36,7 @@ class LetterPrompt(PromptMixin):
 
         LetterPrompt.application_counter += 1
 
-    def write_application_letter(self):
+    def prompt(self):
         if self.language == "en":
             return f"""Compile an application letter for the job ad'{self.job_adv}', based on this CV: '{self.cv}'. Include information on {self.hours} working hours, salaryexpecatations{self.salary_expt} and availability {self.availability}. The letter should not be longer than {self.max_length} words."""
         if self.language == "de":
@@ -35,10 +44,10 @@ class LetterPrompt(PromptMixin):
 
 
 class CheatSheetPrompt(PromptMixin):
-    def __init__(self, job_adv):
-        super().__init__(job_adv, language = "en")
+    def __init__(self, job_adv, language):
+        super().__init__(job_adv, language)
 
-    def write_cheat_sheet(self):
+    def prompt(self):
         if self.language == "en":
             return f"Compile a cheatsheet for a job interview for this job {self.job_adv}. Include information on the company and average salaries."
         if self.language == "de":
@@ -52,10 +61,10 @@ class CheatSheetPrompt(PromptMixin):
 
 
 class CvPointersPrompt(PromptMixin):
-    def __init__(self, cv, job_adv):
-        super().__init__(cv, job_adv, language = "en")
+    def __init__(self, cv,  job_adv, language):
+        super().__init__(cv, job_adv, language)
 
-    def write_cv_pointers(self):
+    def prompt(self):
         if self.language == "en":
             return f"Based on {self.job_adv} point out if anything could be improved on {self.cv}."
         if self.language == "de":
@@ -66,3 +75,4 @@ class CvPointersPrompt(PromptMixin):
             return f"Based on the previous point out what could be improved on the CV."
         if self.language == "de":
             return f"""Mache Verbesserungsvorschläge für den Lebenslauf basierend auf den vorherigen Infos."""
+
