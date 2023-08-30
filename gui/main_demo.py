@@ -126,6 +126,8 @@ class MainWindow(QtWidgets.QMainWindow):
     # Define function to browse for CV
     def cv_browseFile(self):
         filepath = QtWidgets.QFileDialog.getOpenFileName()[0]
+        if not filepath:
+            QtWidgets.QMessageBox.warning(self, "Missing Information", "Please select a CV.")
         print(filepath)
         pdf_file = open(filepath, 'rb') # open PDF file
 
