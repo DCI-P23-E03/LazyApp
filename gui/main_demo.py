@@ -219,23 +219,30 @@ class MainWindow(QtWidgets.QMainWindow):
         global cv_pointers
         cv_pointers =""
         if application_letter_checked:
-            letter_prompt = LetterPrompt(cv = pdf_content, job_adv = job_adv, salary_expt = salary, availability = date, hours = hours, max_length = word_amount, language = "en")
+            letter_prompt = LetterPrompt(cv, job_adv , salary_expt = salary, availability = date, hours = hours, max_length = word_amount, language = "en")
             letter = letter_prompt.prompt()
         if cheat_sheet_checked:
-            cheat_sheet_prompt = CheatSheetPrompt(job_adv=job_adv, language = "en")
-            cheat_sheet = cheat_sheet_prompt.prompt()
+            if not application_letter_checked:
+                cheat_sheet_prompt = CheatSheetPrompt(job_adv, language = "en")
+                cheat_sheet = cheat_sheet_prompt.prompt()
+            else:
+                cheat_sheet.follow_up()
         if cv_improvements_checked:
-            cv_pointers_prompt = CvPointersPrompt(job_adv, cv= pdf_content, language="en")
-            cv_pointers = cv_pointers_prompt.prompt()
-        global user_input
-        prompts = [letter, cheat_sheet, cv_pointers]
+            if not application_letter_checked and not cheat_sheet_checked:
+                cv_pointers_prompt = CvPointersPrompt(language="en", job_adv, cv) 
+                cv_pointers = cv_pointers_prompt.prompt()
+            else:
+                cv_pointers.follow_up()
+        global prompts
+        #prompts = [letter, cheat_sheet, cv_pointers]
+        prompts = letter + cheat_sheet + cv_pointers
         print(prompts)
         return prompts
     
     # pass prompts to chat gpt
     def instantiate_ai(self):
         chat_gpt = ChatGPTChat(temperature = ai_behaviour)
-        chat_gpt.chat_interface(user_input)
+        chat_gpt.chat_interface(prompts)
 
 
 

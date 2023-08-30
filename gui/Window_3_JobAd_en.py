@@ -43,7 +43,7 @@ class Ui_Window_3_JobAd_en(object):
         self.jobTextEdit.setGeometry(QtCore.QRect(50, 139, 900, 549))
         self.jobTextEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.jobTextEdit.setOverwriteMode(True)
-        # self.jobTextEdit.setBackgroundVisible(True)
+        self.jobTextEdit.setBackgroundVisible(True)
         self.jobTextEdit.setCenterOnScroll(False)
         self.jobTextEdit.setObjectName("plainTextEdit")
         self.jobTextEdit.canPaste()
