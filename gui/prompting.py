@@ -1,7 +1,7 @@
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 
 
-class PromptMixin:
+class PromptMixin(ABC):
     # constructor method including all prompt parameter with default values
     def __init__(self, job_adv: str, language: str):
         self.job_adv = job_adv
@@ -61,8 +61,9 @@ class CheatSheetPrompt(PromptMixin):
 
 
 class CvPointersPrompt(PromptMixin):
-    def __init__(self, cv,  job_adv, language):
-        super().__init__(cv, job_adv, language)
+    def __init__(self, job_adv, language, cv):
+        super().__init__(job_adv, language)
+        self.cv = cv
 
     def prompt(self):
         if self.language == "en":
