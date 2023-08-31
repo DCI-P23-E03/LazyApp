@@ -243,7 +243,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 cheat_sheet.follow_up()
         if cv_improvements_checked:
             if not application_letter_checked and not cheat_sheet_checked:
-                cv_pointers_prompt = CvPointersPrompt(language="en", job_adv, cv) 
+                cv_pointers_prompt = CvPointersPrompt(job_adv, cv, language="en") 
                 cv_pointers = cv_pointers_prompt.prompt()
             else:
                 cv_pointers.follow_up()
