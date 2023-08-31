@@ -41,7 +41,7 @@ class Ui_Window_3_JobAd_en(object):
         # Input field for Job Advertisement
         self.jobTextEdit = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
         self.jobTextEdit.setGeometry(QtCore.QRect(50, 139, 900, 549))
-        self.jobTextEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.jobTextEdit.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 12pt \"Ubuntu\";\n""\n""color: rgb(220, 138, 221);")
         self.jobTextEdit.setOverwriteMode(True)
         self.jobTextEdit.setBackgroundVisible(True)
         self.jobTextEdit.setCenterOnScroll(False)
