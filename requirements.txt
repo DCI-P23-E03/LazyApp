@@ -1,0 +1,6 @@
+tiktoken==1.0.5
+python-dotenv==0.19.0
+stringcolor==0.3.0
+openai==0.27.0
+pypdf2==1.26.0
+pyqt6==6.2.1
