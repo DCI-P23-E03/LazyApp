@@ -14,7 +14,7 @@ from PyQt6.QtWidgets import QMessageBox
 from datetime import datetime
 import PyPDF2
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
-#from ai_example2_Class import ChatGPTChat
+from ai_example2_Class import ChatGPTChat
 
 
 # Create class for the main window
@@ -249,14 +249,21 @@ class MainWindow(QtWidgets.QMainWindow):
                 cv_pointers = cv_pointers_prompt.follow_up()
         global prompts
         #prompts = [letter, cheat_sheet, cv_pointers]
-        prompts = letter + cheat_sheet + cv_pointers
-        print(prompts)
-        return prompts
+        #prompts = letter + cheat_sheet + cv_pointers
+        #print(prompts)
+        #return prompts
+        return letter, cheat_sheet, cv_pointers
     
     # pass prompts to chat gpt
     def instantiate_ai(self):
         chat_gpt = ChatGPTChat(temperature = ai_behaviour)
-        chat_gpt.chat_interface(prompts)
+        if letter:
+            prompts = letter
+
+            katze = chat_gpt.chat_interface(prompts) 
+        
+        #print(chat_gpt.responses)
+            print(katze)
    
     # Define function to export to pdf for Letter, CV Pointers, Cheat Sheet 
     def export_to_pdf(self):
