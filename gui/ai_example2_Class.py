@@ -39,9 +39,9 @@ class ChatGPTChat:
         system_role = "You are a helpful expert for jobsearch and application. You adapt the wording in regards to the job the user wants to apply for and provide additional information on companies and competitive market salaries." # DEFINE SYSTEM ROLE HERE
         messages = [{"role": "system", "content": system_role}] 
         while True:
-            user_input = user_input
-            if user_input.lower() == 'quit':
-                break
+            #user_input = user_input
+            #if user_input.lower() == 'quit':
+            #    break
             messages.append({"role": "user", "content": user_input}) # Append user's input to messages
             responses = self.get_chatgpt_response(messages) # Get responses from ChatGPT
             print("CHAT GPT: ")
