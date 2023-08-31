@@ -38,9 +38,9 @@ class LetterPrompt(PromptMixin):
 
     def prompt(self):
         if self.language == "en":
-            return f"""Compile an application letter for the job ad'{self.job_adv}', based on this CV: '{self.cv}'. Include information on {self.hours} working hours, salaryexpecatations{self.salary_expt} and availability {self.availability}. The letter should not be longer than {self.max_length} words."""
+            return f"""Compile an application letter for the following job ad'{self.job_adv}', based on this CV '{self.cv}'. Include information on {self.hours} working hours, the annual salary expecatation of {self.salary_expt} € and the earliest possible start date {self.availability}. The letter should not be longer than {self.max_length} words."""
         if self.language == "de":
-            return f"""Entwerfe ein Anschreiben für den Job {self.job_adv}, basierend auf diesem CV {self.cv}. Die folgenden Information müssen enthalten sein: {self.hours},Gehaltsvorstellungen:{self.salary_expt},Verfügbarkeit:{self.availability}. Das Anschreiben sollte nicht länger als {self.max_length} Wörter sein."""
+            return f"""Entwerfe ein Anschreiben für den Job {self.job_adv}, basierend auf diesem CV {self.cv}. Die folgenden Information müssen enthalten sein: {self.hours},Gehaltsvorstellungen (pro Jahr):{self.salary_expt},Verfügbarkeit:{self.availability}. Das Anschreiben sollte nicht länger als {self.max_length} Wörter sein."""
 
 
 class CheatSheetPrompt(PromptMixin):
@@ -49,15 +49,15 @@ class CheatSheetPrompt(PromptMixin):
 
     def prompt(self):
         if self.language == "en":
-            return f"Compile a cheatsheet for a job interview for this job {self.job_adv}. Include information on the company and average salaries."
+            return f"Compile a cheatsheet for a job interview for this job {self.job_adv}. Include information on the company, relevant industry information and average salaries."
         if self.language == "de":
-            return f"""Stelle einen Spickzettel für ein Bewerbungsgespräche für diese Stelle zusammen {self.job_adv}, der relevante Informationen zum Unternehmen, zur Branche und zu den Gehältern in der Branche enthält."""
+            return f"""Stelle einen Spickzettel für ein Bewerbungsgespräch für die folgender Stelle zusammen {self.job_adv}, der relevante Informationen zum Unternehmen, zur Branche und zu den Gehältern in der Branche für die Position enthält."""
 
-    def cheat_sheet_followup(self):
+    def follow_up(self):
         if self.language == "en":
-            return f"Compile a cheatsheet for a job interview for the job. Include information on the company and average salaries."
+            return f"Compile a cheatsheet for a job interview for the job mentioned. Include information on the company and average salaries."
         if self.language == "de":
-            return f"""Stelle einen Spickzettel für ein Bewerbungsgespräch für diese Stelle mit relevanten Infos zum Unternehmen,zur Branche und zu Gehältern."""
+            return f"""Stelle einen Spickzettel für ein Bewerbungsgespräch für die genannte Stelle mit relevanten Infos zum Unternehmen,zur Branche und zu Gehältern."""
 
 
 class CvPointersPrompt(PromptMixin):
@@ -67,13 +67,13 @@ class CvPointersPrompt(PromptMixin):
 
     def prompt(self):
         if self.language == "en":
-            return f"Based on {self.job_adv} point out if anything could be improved on {self.cv}."
+            return f"Based on this job ad{self.job_adv} point out if anything could be improved on {self.cv}. Make sure to include relevant key words."
         if self.language == "de":
-            return f"""Mache Verbesserungsvorschläge für den CV {self.cv} basierend auf der Stellenausschreibung {self.job_adv}."""
+            return f"""Mache Verbesserungsvorschläge für den CV {self.cv} basierend auf der Stellenausschreibung {self.job_adv}. Stelle sicher die relevanten Schlagwörter zu verwenden."""
 
-    def cv_pointers_followup(self):
+    def follow_up(self):
         if self.language == "en":
-            return f"Based on the previous point out what could be improved on the CV."
+            return f"Based on the previous information point out what could be improved on the CV. Make sure relevant Keywords are included."
         if self.language == "de":
-            return f"""Mache Verbesserungsvorschläge für den Lebenslauf basierend auf den vorherigen Infos."""
+            return f"""Mache Verbesserungsvorschläge für den Lebenslauf basierend auf den vorherigen Informationen. Stelle sicher dass relevante Schlagwörter verwendet werden."""
 

@@ -10,10 +10,11 @@ from Window_7_cv_pointers import Ui_Window_7_cv_pointers
 from Window_8_Goodbye_en import Ui_Window_8_Goodbye_en
 from PyQt6.QtGui import QTextDocument
 from PyQt6.QtPrintSupport import QPrinter
+from PyQt6.QtWidgets import QMessageBox
 from datetime import datetime
 import PyPDF2
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
-from ai_example2_Class import ChatGPTChat
+#from ai_example2_Class import ChatGPTChat
 
 
 # Create class for the main window
@@ -95,15 +96,15 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # export application letter to pdf button
         if hasattr(current_ui, 'Appl_letter_export_button'):
-            current_ui.Appl_letter_export_button.clicked.connect(self.export_application_letter_to_pdf)
+            current_ui.Appl_letter_export_button.clicked.connect(self.export_to_pdf)
 
         # export cheat sheet to pdf button
         if hasattr(current_ui, 'Cheat_Sheet_export_button'):
-            current_ui.Cheat_Sheet_export_button.clicked.connect(self.export_cheat_sheet_to_pdf)
+            current_ui.Cheat_Sheet_export_button.clicked.connect(self.export_to_pdf)
 
         # export cv pointers to pdf button
         if hasattr(current_ui, 'cv_pointers_export_button'):
-            current_ui.cv_pointers_export_button.clicked.connect(self.export_cv_pointers_to_pdf)
+            current_ui.cv_pointers_export_button.clicked.connect(self.export_to_pdf)
 
 
 
@@ -126,6 +127,8 @@ class MainWindow(QtWidgets.QMainWindow):
     # Define function to browse for CV
     def cv_browseFile(self):
         filepath = QtWidgets.QFileDialog.getOpenFileName()[0]
+        if not filepath:
+            QtWidgets.QMessageBox.warning(self, "Missing Information", "Please select a CV.")
         print(filepath)
         pdf_file = open(filepath, 'rb') # open PDF file
 
@@ -151,6 +154,11 @@ class MainWindow(QtWidgets.QMainWindow):
     def next_window_plus_inputPage(self):
         '''stores the date when moving on to the next window'''
         current_ui = self.ui_windows[self.current_window]
+        #showing a pop up window if user did not fill the required info
+        if current_ui.button_availibility_date.date() == datetime.today()  or not current_ui.radioButton_fullTime.isChecked() and not current_ui.radioButton_partTime.isChecked():
+            QMessageBox.warning(self, "Warning", "Please fill in all the required information.")
+        else:
+            self.next_window
 
         # starting date for new job
         global date
@@ -187,13 +195,21 @@ class MainWindow(QtWidgets.QMainWindow):
         # get rid of trailing zeros
         print(ai_behaviour)
         self.next_window()
-        return date, salary, hours, word_amount, ai_behaviour
 
+        return date, salary, hours, word_amount, ai_behaviour
+      
 
     # Define function to go to next window plus checkboxes
     def next_window_plus_checkboxes(self):
         '''stores the state of checkboxes when clicking the next button'''
         current_ui = self.ui_windows[self.current_window]
+        #showing a pop up window if any of the checkboxes is not checked
+        if not current_ui.checkBox_Application_letter.isChecked() and not current_ui.checkBox_Cheat_Sheet.isChecked() and not current_ui.checkBox_CV_Improvements.isChecked():
+            QMessageBox.warning(self, "Warning", "Please select at least one option.")
+        
+        else:
+            self.next_window
+        
         global application_letter_checked
         application_letter_checked = current_ui.checkBox_Application_letter.isChecked()
         global cheat_sheet_checked
@@ -217,54 +233,43 @@ class MainWindow(QtWidgets.QMainWindow):
         global cv_pointers
         cv_pointers =""
         if application_letter_checked:
-            letter_prompt = LetterPrompt(cv = cv, job_adv = job_adv, salary_expt = salary, availability = date, hours = hours, max_length = word_amount, language = "en")
+            letter_prompt = LetterPrompt(cv, job_adv , salary_expt = salary, availability = date, hours = hours, max_length = word_amount, language = "en")
             letter = letter_prompt.prompt()
         if cheat_sheet_checked:
-            cheat_sheet_prompt = CheatSheetPrompt(job_adv=job_adv, language = "en")
-            cheat_sheet = cheat_sheet_prompt.prompt()
+            cheat_sheet_prompt = CheatSheetPrompt(job_adv, language="en")
+            if not application_letter_checked:
+                cheat_sheet = cheat_sheet_prompt.prompt()
+            else:
+                cheat_sheet = cheat_sheet_prompt.follow_up()
         if cv_improvements_checked:
-            cv_pointers_prompt = CvPointersPrompt(job_adv, cv= cv, language="en")
-            cv_pointers = cv_pointers_prompt.prompt()
+            cv_pointers_prompt = CvPointersPrompt(job_adv, cv, language="en") 
+            if not application_letter_checked and not cheat_sheet_checked:
+                cv_pointers = cv_pointers_prompt.prompt()
+            else:
+                cv_pointers = cv_pointers_prompt.follow_up()
         global prompts
+        #prompts = [letter, cheat_sheet, cv_pointers]
         prompts = letter + cheat_sheet + cv_pointers
-        #print(prompts)
+        print(prompts)
         return prompts
     
     # pass prompts to chat gpt
     def instantiate_ai(self):
         chat_gpt = ChatGPTChat(temperature = ai_behaviour)
         chat_gpt.chat_interface(prompts)
-
-
-
-    # Define function to export application letter to pdf
-    def export_application_letter_to_pdf(self):
+   
+    # Define function to export to pdf for Letter, CV Pointers, Cheat Sheet 
+    def export_to_pdf(self):
         current_ui = self.ui_windows[self.current_window]
         if hasattr(current_ui, 'Appl_letter_export_button'):
             content = current_ui.Appl_letter_space.toPlainText()
-        #opening a file dialog to prompt the user to choose a location to save the PDF file
-        if content:
-            filePath, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Save Application Letter as PDF", "", "PDF Files (*.pdf);;All Files (*)")
-            if filePath:
-                if not filePath.lower().endswith('.pdf'):
-                    filePath += '.pdf'
-                doc = QTextDocument()
-                doc.setPlainText(content)
-                printer = QPrinter()
-                printer.setOutputFormat(QPrinter.OutputFormat.PdfFormat)
-                printer.setOutputFileName(filePath)
-                doc.print(printer)
-                print("Application letter exported as PDF.")
-
-
-    # Define function to export cheat sheet to pdf
-    def export_cheat_sheet_to_pdf(self):
-        current_ui = self.ui_windows[self.current_window]
-        if hasattr(current_ui, 'Cheat_Sheet_export_button'):
+        if hasattr(current_ui, 'cv_pointers_export_button'):
+            content = current_ui.cv_pointers_space.toPlainText()
+        elif hasattr(current_ui, 'Cheat_Sheet_export_button'):
             content = current_ui.Cheat_Sheet_space.toPlainText()
         #opening a file dialog to prompt the user to choose a location to save the PDF file
         if content:
-            filePath, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Save Cheat sheet as PDF", "", "PDF Files (*.pdf);;All Files (*)")
+            filePath, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Save as PDF", "", "PDF Files (*.pdf);;All Files (*)")
             if filePath:
                 if not filePath.lower().endswith('.pdf'):
                     filePath += '.pdf'
@@ -274,27 +279,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 printer.setOutputFormat(QPrinter.OutputFormat.PdfFormat)
                 printer.setOutputFileName(filePath)
                 doc.print(printer)
-                print("Cheat sheet exported as PDF.")
-
-
-    # Define function to export cv pointers to pdf
-    def export_cv_pointers_to_pdf(self):
-        current_ui = self.ui_windows[self.current_window]
-        if hasattr(current_ui, 'cv_pointers_export_button'):
-            content = current_ui.cv_pointers_space.toPlainText()
-        #opening a file dialog to prompt the user to choose a location to save the PDF file
-        if content:
-            filePath, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Save cv pointers as PDF", "", "PDF Files (*.pdf);;All Files (*)")
-            if filePath:
-                if not filePath.lower().endswith('.pdf'):
-                    filePath += '.pdf'
-                doc = QTextDocument()
-                doc.setPlainText(content)
-                printer = QPrinter()
-                printer.setOutputFormat(QPrinter.OutputFormat.PdfFormat)
-                printer.setOutputFileName(filePath)
-                doc.print(printer)
-                print("cv pointers exported as PDF.")
+                print("Exported as PDF.")
 
 
     # Define function to go to the previous window
@@ -317,8 +302,4 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     main_window = MainWindow()
     main_window.show()
-
-   
-
-# collect variables from different parts to run Prompt
     sys.exit(app.exec())
