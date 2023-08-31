@@ -10,10 +10,11 @@ from Window_7_cv_pointers import Ui_Window_7_cv_pointers
 from Window_8_Goodbye_en import Ui_Window_8_Goodbye_en
 from PyQt6.QtGui import QTextDocument
 from PyQt6.QtPrintSupport import QPrinter
+from PyQt6.QtWidgets import QMessageBox
 from datetime import datetime
 import PyPDF2
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
-from ai_example2_Class import ChatGPTChat
+#from ai_example2_Class import ChatGPTChat
 
 
 # Create class for the main window
@@ -153,6 +154,11 @@ class MainWindow(QtWidgets.QMainWindow):
     def next_window_plus_inputPage(self):
         '''stores the date when moving on to the next window'''
         current_ui = self.ui_windows[self.current_window]
+        #showing a pop up window if user did not fill the required info
+        if current_ui.button_availibility_date.date() == datetime.today()  or not current_ui.radioButton_fullTime.isChecked() and not current_ui.radioButton_partTime.isChecked():
+            QMessageBox.warning(self, "Warning", "Please fill in all the required information.")
+        else:
+            self.next_window
 
         # starting date for new job
         global date
@@ -189,13 +195,21 @@ class MainWindow(QtWidgets.QMainWindow):
         # get rid of trailing zeros
         print(ai_behaviour)
         self.next_window()
-        return date, salary, hours, word_amount, ai_behaviour
 
+        return date, salary, hours, word_amount, ai_behaviour
+      
 
     # Define function to go to next window plus checkboxes
     def next_window_plus_checkboxes(self):
         '''stores the state of checkboxes when clicking the next button'''
         current_ui = self.ui_windows[self.current_window]
+        #showing a pop up window if any of the checkboxes is not checked
+        if not current_ui.checkBox_Application_letter.isChecked() and not current_ui.checkBox_Cheat_Sheet.isChecked() and not current_ui.checkBox_CV_Improvements.isChecked():
+            QMessageBox.warning(self, "Warning", "Please select at least one option.")
+        
+        else:
+            self.next_window
+        
         global application_letter_checked
         application_letter_checked = current_ui.checkBox_Application_letter.isChecked()
         global cheat_sheet_checked
@@ -326,8 +340,4 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     main_window = MainWindow()
     main_window.show()
-
-   
-
-# collect variables from different parts to run Prompt
     sys.exit(app.exec())
