@@ -65,7 +65,7 @@ class Ui_Window_2_Input(object):
         # TEXT EDIT ANNUAL SALARY
         self.textEdit_annuaSalary = QtWidgets.QTextEdit(parent=self.centralwidget)
         self.textEdit_annuaSalary.setGeometry(QtCore.QRect(340, 340, 341, 31))
-        self.textEdit_annuaSalary.setStyleSheet("background-color: rgb(255, 255, 255);\n""")
+        self.textEdit_annuaSalary.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 12pt \"Ubuntu\";\n""\n""color: rgb(220, 138, 221);")
         self.textEdit_annuaSalary.setObjectName("textEdit_annuaSalary")
         
         # LABEL AI BEHAVIOUR
