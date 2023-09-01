@@ -8,6 +8,13 @@ from Window_5_Appl_letter import Ui_Window_5_Application_Letter
 from Window_6_Cheat_Sheet import Ui_Window_6_Cheat_Sheet
 from Window_7_cv_pointers import Ui_Window_7_cv_pointers
 from Window_8_Goodbye_en import Ui_Window_8_Goodbye_en
+from Window_9_Input_de import Ui_Window_9_Input_de
+from Window_10_JobAd_de import Ui_Window_10_JobAd_de
+from Window_11_Output_de import Ui_Window_11_Output_de
+from Window_12_Appl_letter_de import Ui_Window_12_Application_Letter_de
+from Window_13_Cheat_Sheet_de import Ui_Window_13_Cheat_Sheet_de
+from Window_14_cv_pointers_de import Ui_Window_14_cv_pointers_de
+from Window_15_Goodbye_de import Ui_Window_15_Goodbye_de
 from PyQt6.QtGui import QTextDocument
 from PyQt6.QtPrintSupport import QPrinter
 from PyQt6.QtWidgets import QMessageBox
@@ -31,7 +38,14 @@ class MainWindow(QtWidgets.QMainWindow):
             Ui_Window_5_Application_Letter(),
             Ui_Window_6_Cheat_Sheet(),
             Ui_Window_7_cv_pointers(),
-            Ui_Window_8_Goodbye_en()
+            Ui_Window_8_Goodbye_en(),
+            Ui_Window_9_Input_de(),
+            Ui_Window_10_JobAd_de(),
+            Ui_Window_11_Output_de(),
+            Ui_Window_12_Application_Letter_de(),
+            Ui_Window_13_Cheat_Sheet_de(),
+            Ui_Window_14_cv_pointers_de(),
+            Ui_Window_15_Goodbye_de()
         ]
 
         # Set the default value of current window to 0
@@ -47,15 +61,13 @@ class MainWindow(QtWidgets.QMainWindow):
         current_ui.setupUi(self)
 
         # next buttons
-        if hasattr(current_ui, 'start_button'):  # Start Page 1
-            current_ui.start_button.clicked.connect(self.next_window)
-        if hasattr(current_ui, 'button_nextToJobAd'): # Input Page 2
+        if hasattr(current_ui, 'button_nextToJobAd'): # Input Page 2, Page 9
             current_ui.button_nextToJobAd.clicked.connect(self.next_window_plus_inputPage)
         if hasattr(current_ui, 'next_button_3') and hasattr(current_ui, 'jobTextEdit'): # JobAd Page 3
             current_ui.next_button_3.clicked.connect(self.next_window_plus_input)
-        if hasattr(current_ui, 'next_button_4'): # Output Page 4
+        if hasattr(current_ui, 'next_button_4'): # Output Page 4, Page 11
             current_ui.next_button_4.clicked.connect(self.next_window_plus_checkboxes)
-        if hasattr(current_ui, 'next_button'): # Page 5, 6, 7
+        if hasattr(current_ui, 'next_button'): # Page 1, 5, 6, 7, 12, 13, 14
             current_ui.next_button.clicked.connect(self.next_window)
 
 
@@ -82,33 +94,37 @@ class MainWindow(QtWidgets.QMainWindow):
             current_ui.export_button.clicked.connect(self.export_to_pdf)
         
         # display gpt output
-        if current_ui == self.ui_windows[4] and letter_resp:
+        if (current_ui == self.ui_windows[4] or current_ui == self.ui_windows[11]) and letter_resp:
             current_ui.Appl_letter_space.setPlainText(letter_resp)
-        if current_ui == self.ui_windows[5] and cheat_resp:
+        if (current_ui == self.ui_windows[5] or current_ui == self.ui_windows[12]) and cheat_resp:
             current_ui.Cheat_Sheet_space.setPlainText(cheat_resp)
-        if current_ui == self.ui_windows[6] and cv_improv_resp:
+        if (current_ui == self.ui_windows[6] or current_ui == self.ui_windows[13]) and cv_improv_resp:
             current_ui.cv_pointers_space.setPlainText(cv_improv_resp)
 
     # Define function to go to the next window (including jumps)
     def next_window(self):
         current_ui = self.ui_windows[self.current_window]
         n = 1
-
+        # getting the language information from first window
+        if current_ui == self.ui_windows[0]:
+            language = self.get_language()
+            if language == "de":
+                n = 8
         # starting at Checkbox Window - move over to right page
-        if current_ui == self.ui_windows[3]:
+        if current_ui == self.ui_windows[3] or current_ui == self.ui_windows[10]:
             if not application_letter_checked and cheat_sheet_checked:
                 n = 2
             elif not application_letter_checked and not cheat_sheet_checked:
                 n = 3
         # starting at Application letter window - move over to CV Improvements or end
-        if current_ui == self.ui_windows[4]:
+        if current_ui == self.ui_windows[4] or current_ui == self.ui_windows[11]:
             if not cheat_sheet_checked and cv_improvements_checked:
                 n = 2
             elif not cheat_sheet_checked and not cv_improvements_checked:
                 n = 3
         # start at Cheat Sheet window move over cv improvements to end        
-        if current_ui == self.ui_windows[5] and not cv_improvements_checked:
-            n = 2
+        if (current_ui == self.ui_windows[5] or current_ui == self.ui_windows[12]) and not cv_improvements_checked:
+                n = 2
         # if all boxes are checked n =1 and program moves one by one
         self.current_window = (self.current_window + n) % len(self.ui_windows)
         self.setup_current_window()
@@ -123,6 +139,17 @@ class MainWindow(QtWidgets.QMainWindow):
         print(job_adv)
         self.next_window()
         return job_adv
+
+
+    # Define function to get language information from start page
+    def get_language(self):
+        '''grabs the language information from the start page'''
+        current_ui = self.ui_windows[self.current_window]
+        global language
+        language = "en"
+        if current_ui.language_deutsch.isChecked():
+            language = "de"
+        return language
 
     # Define function to browse for CV
     def cv_browseFile(self):
@@ -148,32 +175,49 @@ class MainWindow(QtWidgets.QMainWindow):
         # print(pdf_content)
         return cv
 
+
     # Define function to go to the next window and store date
     def next_window_plus_inputPage(self):
         '''stores the date when moving on to the next window'''
         current_ui = self.ui_windows[self.current_window]
+
         # starting date for new job
         global date
         date = current_ui.button_availibility_date.date()
         if date == datetime.today():
-            date = "immediately"
-        print(date)
-
+            if language == "de":
+                date = "sofort"
+            else: 
+                date = "immediately"
+        
         # Salary input, if empty or not filled in set to "appropriate"
         global salary
         salary = current_ui.textEdit_annuaSalary.toPlainText()
-        if salary == "ANNUAL SALARY" or salary == "":
-            salary = "appropriate"
+        if salary == "ANNUAL SALARY" or salary == "" or salary == "JAHRESGEHALT":
+            if language == "de":
+                salary = "angemessen"
+            else:
+                salary = "appropriate"
         # print(salary)
+
         # stores the state of radio buttons when clicking the next button
         global hours
         if current_ui.radioButton_fullTime.isChecked():
-            hours = "full-time"
+            if language == "de":
+                hours = "Vollzeit"
+            else:
+                hours = "full-time"
         elif current_ui.radioButton_partTime.isChecked():
-            hours = "part-time"
+            if language == "de":
+                hours = "Teilzeit"
+            else:
+                hours = "part-time"
         else:
-            hours = "full-time" # default option
-        # print(availability)
+            if language == "de":
+                hours = "Vollzeit"
+            else:
+                hours = "full-time" # default option
+                
         global word_amount
         word_amount = current_ui.slider_wordAmount.value()
         # round to nearest 50 words
@@ -209,7 +253,10 @@ class MainWindow(QtWidgets.QMainWindow):
         # print(cheat_sheet_checked)
         # print(cv_improvements_checked)
         if not application_letter_checked and not cheat_sheet_checked and not cv_improvements_checked:
-            QMessageBox.warning(self, "Warning", "Please select at least one option.")
+            if language == "de":
+                QMessageBox.warning(self, "Achtung", "Wähle mindestens eine option.")
+            else:
+                QMessageBox.warning(self, "Warning", "Please select at least one option.")
         else:
             # create prompts
             self.instantiate_prompts()
@@ -228,16 +275,16 @@ class MainWindow(QtWidgets.QMainWindow):
         global cv_pointers
         cv_pointers = ""
         if application_letter_checked:
-            letter_prompt = LetterPrompt(cv, job_adv , salary_expt = salary, availability = date, hours = hours, max_length = word_amount, language = "en")
+            letter_prompt = LetterPrompt(cv, job_adv , salary_expt = salary, availability = date, hours = hours, max_length = word_amount, language = language)
             letter = letter_prompt.prompt()
         if cheat_sheet_checked:
-            cheat_sheet_prompt = CheatSheetPrompt(job_adv, language="en")
+            cheat_sheet_prompt = CheatSheetPrompt(job_adv, language)
             # if not application_letter_checked:
             cheat_sheet = cheat_sheet_prompt.prompt()
             # else:
             #  cheat_sheet = cheat_sheet_prompt.follow_up()
         if cv_improvements_checked:
-            cv_pointers_prompt = CvPointersPrompt(job_adv, "en", cv)
+            cv_pointers_prompt = CvPointersPrompt(job_adv, language, cv)
             #if not application_letter_checked and not cheat_sheet_checked:
             cv_pointers = cv_pointers_prompt.prompt()
             #else:
@@ -267,11 +314,11 @@ class MainWindow(QtWidgets.QMainWindow):
     # Define function to export to pdf for Letter, CV Pointers, Cheat Sheet 
     def export_to_pdf(self):
         current_ui = self.ui_windows[self.current_window]
-        if current_ui == self.ui_windows[4]:
+        if current_ui == self.ui_windows[4] or current_ui == self.ui_windows[11]:
             content = current_ui.Appl_letter_space.toPlainText()
-        if current_ui == self.ui_windows[5]:
+        if current_ui == self.ui_windows[5] or current_ui == self.ui_windows[12]:
             content = current_ui.cv_pointers_space.toPlainText()
-        if current_ui == self.ui_windows[6]:
+        if current_ui == self.ui_windows[6] or current_ui == self.ui_windows[13]:
             content = current_ui.Cheat_Sheet_space.toPlainText()
         # opening a file dialog to prompt the user to choose a location to save the PDF file
         if content:
@@ -292,12 +339,14 @@ class MainWindow(QtWidgets.QMainWindow):
     def prev_window(self):
         n = 1
         # going back from CV Pointers
-        if self.current_window == 6:
+        if self.current_window == 8:
+            n = 8
+        if self.current_window == 6 or self.current_window == 13:
             if not cheat_sheet_checked and not application_letter_checked:
                 n = 3
             elif not cheat_sheet_checked:
                 n = 2
-        if self.current_window == 5:
+        if self.current_window == 5 or self.current_window == 12:
             if not application_letter_checked:
                 n = 2     
         self.current_window = (self.current_window - n) % len(self.ui_windows)
