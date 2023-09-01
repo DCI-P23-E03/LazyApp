@@ -1,12 +1,12 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Window_5_Application_Letter(object):
-    def setupUi(self, Window_5_Application_Letter):
-        Window_5_Application_Letter.setObjectName("Window_5_Application_Letter")
-        Window_5_Application_Letter.resize(1000, 800)
-        Window_5_Application_Letter.setStyleSheet("background-color: rgb(220, 138, 221);")
-        self.centralwidget = QtWidgets.QWidget(parent=Window_5_Application_Letter)
+class Ui_Window_12_Application_Letter_de(object):
+    def setupUi(self, Window_12_Application_Letter_de):
+        Window_12_Application_Letter_de.setObjectName("Window_12_Application_Letter_de")
+        Window_12_Application_Letter_de.resize(1000, 800)
+        Window_12_Application_Letter_de.setStyleSheet("background-color: rgb(67,110,238);")
+        self.centralwidget = QtWidgets.QWidget(parent=Window_12_Application_Letter_de)
         self.centralwidget.setObjectName("centralwidget")
         self.Appl_letter_title = QtWidgets.QTextBrowser(parent=self.centralwidget)
         self.Appl_letter_title.setGeometry(QtCore.QRect(0, 50, 1000, 60))
@@ -46,42 +46,41 @@ class Ui_Window_5_Application_Letter(object):
         font.setPointSize(16)
         font.setBold(True)
         self.export_button.setFont(font)
-        self.export_button.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"color: rgb(255, 137, 243);")
+        self.export_button.setStyleSheet("background-color: rgb(255, 255, 255);\n""color: rgb(67,110,238);")
         self.export_button.setObjectName("export_button")
-        Window_5_Application_Letter.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=Window_5_Application_Letter)
+        Window_12_Application_Letter_de.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(parent=Window_12_Application_Letter_de)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 22))
         self.menubar.setObjectName("menubar")
-        Window_5_Application_Letter.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=Window_5_Application_Letter)
+        Window_12_Application_Letter_de.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(parent=Window_12_Application_Letter_de)
         self.statusbar.setObjectName("statusbar")
-        Window_5_Application_Letter.setStatusBar(self.statusbar)
+        Window_12_Application_Letter_de.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Window_5_Application_Letter)
-        QtCore.QMetaObject.connectSlotsByName(Window_5_Application_Letter)
+        self.retranslateUi(Window_12_Application_Letter_de)
+        QtCore.QMetaObject.connectSlotsByName(Window_12_Application_Letter_de)
 
-    def retranslateUi(self, Window_5_Application_Letter):
+    def retranslateUi(self, Window_12_Application_Letter_de):
         _translate = QtCore.QCoreApplication.translate
-        Window_5_Application_Letter.setWindowTitle(_translate("Window_5_Application_Letter", "LazyApp"))
-        self.Appl_letter_title.setHtml(_translate("Window_5_Application_Letter", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        Window_12_Application_Letter_de.setWindowTitle(_translate("Window_12_Application_Letter_de", "LazyApp"))
+        self.Appl_letter_title.setHtml(_translate("Window_12_Application_Letter_de", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700;\">Application letter</span></p></body></html>"))
-        self.next_button.setText(_translate("Window_5_Application_Letter", "NEXT ->"))
-        self.back_button.setText(_translate("Window_5_Application_Letter", "<- BACK"))
-        self.export_button.setText(_translate("Window_5_Application_Letter", " EXPORT TO PDF"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700;\">Anschreiben</span></p></body></html>"))
+        self.next_button.setText(_translate("Window_12_Application_Letter_de", "VOR ->"))
+        self.back_button.setText(_translate("Window_12_Application_Letter_de", "<- ZURÜCK"))
+        self.export_button.setText(_translate("Window_12_Application_Letter_de", "PDF EXPORTIEREN"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Window_5_Application_Letter = QtWidgets.QMainWindow()
-    ui = Ui_Window_5_Application_Letter()
-    ui.setupUi(Window_5_Application_Letter)
-    Window_5_Application_Letter.show()
+    Window_12_Application_Letter_de = QtWidgets.QMainWindow()
+    ui = Ui_Window_12_Application_Letter_de()
+    ui.setupUi(Window_12_Application_Letter_de)
+    Window_12_Application_Letter_de.show()
     sys.exit(app.exec())
