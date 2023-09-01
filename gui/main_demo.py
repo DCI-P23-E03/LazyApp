@@ -274,7 +274,7 @@ class MainWindow(QtWidgets.QMainWindow):
       
         # print(chat_gpt.responses)
             print(katzchen for katzchen in katze)
-            Ui_Window_5_Application_Letter.Appl_letter_space.setPlainText(katze)
+            ui_windows[4].Appl_letter_space.setPlainText(katze)
  
     # Define function to export to pdf for Letter, CV Pointers, Cheat Sheet 
     def export_to_pdf(self):
