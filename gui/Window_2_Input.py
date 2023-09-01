@@ -35,14 +35,14 @@ class Ui_Window_2_Input(object):
         self.button_nextToJobAd.setObjectName("button_nextToJobAd")
 
         # BACK BUTTON
-        self.button_backToWelcomeWindow = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.button_backToWelcomeWindow.setGeometry(QtCore.QRect(150, 705, 200, 50))
+        self.back_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.back_button.setGeometry(QtCore.QRect(150, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        self.button_backToWelcomeWindow.setFont(font)
-        self.button_backToWelcomeWindow.setStyleSheet("color: rgb(255, 255, 255);")
-        self.button_backToWelcomeWindow.setObjectName("button_backToWelcomeWindow")
+        self.back_button.setFont(font)
+        self.back_button.setStyleSheet("color: rgb(255, 255, 255);")
+        self.back_button.setObjectName("back_button")
         
         # LABEL WORD AMOUNT
         self.label_wordAmount_251 = QtWidgets.QLabel(parent=self.centralwidget)
@@ -169,7 +169,7 @@ class Ui_Window_2_Input(object):
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">First things first</span></p></body></html>"))
         self.button_nextToJobAd.setText(_translate("Window_2_Input", "NEXT ->"))
-        self.button_backToWelcomeWindow.setText(_translate("Window_2_Input", "<- BACK"))
+        self.back_button.setText(_translate("Window_2_Input", "<- BACK"))
         self.label_wordAmount_251.setText(_translate("Window_2_Input", "400"))
         self.textEdit_annuaSalary.setHtml(_translate("Window_2_Input", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
