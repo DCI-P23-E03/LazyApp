@@ -19,6 +19,21 @@ class Ui_Window_1_Start(object):
         self.welcoming_text_1.setLineWidth(0)
         self.welcoming_text_1.setStyleSheet("color: rgb(255, 255, 255);")
         self.welcoming_text_1.setObjectName("welcoming_text_1")
+
+
+        # RADIO BUTTON PART TIME
+        self.language_english = QtWidgets.QRadioButton(parent=self.centralwidget)
+        self.language_english.setGeometry(QtCore.QRect(540, 370, 112, 23))
+        self.language_english.setObjectName("language_english")
+        self.language_english.setStyleSheet("color: rgb(255, 255, 255);")
+
+        # RADIO BUTTON FULL TIME
+        self.language_deutsch = QtWidgets.QRadioButton(parent=self.centralwidget)
+        self.language_deutsch.setGeometry(QtCore.QRect(410, 370, 112, 23))
+        self.language_deutsch.setObjectName("language_deutsch")
+        self.language_deutsch.setStyleSheet("color: rgb(255, 255, 255);")
+
+
         self.start_button = QtWidgets.QPushButton(parent=self.centralwidget)
         self.start_button.setGeometry(QtCore.QRect(410, 440, 200, 50))
         font = QtGui.QFont()
@@ -58,6 +73,8 @@ class Ui_Window_1_Start(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">to the laziest way of applying for a new job!</span></p></body></html>"))
+        self.language_deutsch.setText(_translate("Window_1_Start", "deutsch"))
+        self.language_english.setText(_translate("Window_1_Start", "english"))
         self.start_button.setText(_translate("Window_1_Start", "START"))
         self.start_button.setStyleSheet("color: rgb(255, 255, 255);")
         self.welcoming_text_2.setHtml(_translate("Window_1_Start", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

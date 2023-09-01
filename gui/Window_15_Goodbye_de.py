@@ -1,12 +1,12 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Window_8_Goodbye_en(object):
-    def setupUi(self, Window_8_Goodbye_en):
-        Window_8_Goodbye_en.setObjectName("Window_8_Goodbye_en")
-        Window_8_Goodbye_en.resize(1000, 800)
-        Window_8_Goodbye_en.setStyleSheet("background-color: rgb(220, 138, 221);")
-        self.centralwidget = QtWidgets.QWidget(parent=Window_8_Goodbye_en)
+class Ui_Window_15_Goodbye_de(object):
+    def setupUi(self, Window_15_Goodbye_de):
+        Window_15_Goodbye_de.setObjectName("Window_15_Goodbye_de")
+        Window_15_Goodbye_de.resize(1000, 800)
+        Window_15_Goodbye_de.setStyleSheet("background-color: rgb(67,110,238);")
+        self.centralwidget = QtWidgets.QWidget(parent=Window_15_Goodbye_de)
         self.centralwidget.setObjectName("centralwidget")
         self.goodbye_text_1 = QtWidgets.QTextBrowser(parent=self.centralwidget)
         self.goodbye_text_1.setGeometry(QtCore.QRect(0, 270, 1001, 51))
@@ -103,40 +103,40 @@ class Ui_Window_8_Goodbye_en(object):
         self.start_button_2.setFont(font)
         self.start_button_2.setStyleSheet("color: rgb(255, 255, 255);")
         self.start_button_2.setObjectName("start_button_2")
-        Window_8_Goodbye_en.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=Window_8_Goodbye_en)
+        Window_15_Goodbye_de.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(parent=Window_15_Goodbye_de)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 22))
         self.menubar.setObjectName("menubar")
-        Window_8_Goodbye_en.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=Window_8_Goodbye_en)
+        Window_15_Goodbye_de.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(parent=Window_15_Goodbye_de)
         self.statusbar.setObjectName("statusbar")
-        Window_8_Goodbye_en.setStatusBar(self.statusbar)
+        Window_15_Goodbye_de.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Window_8_Goodbye_en)
-        QtCore.QMetaObject.connectSlotsByName(Window_8_Goodbye_en)
+        self.retranslateUi(Window_15_Goodbye_de)
+        QtCore.QMetaObject.connectSlotsByName(Window_15_Goodbye_de)
 
-    def retranslateUi(self, Window_8_Goodbye_en):
+    def retranslateUi(self, Window_15_Goodbye_de):
         _translate = QtCore.QCoreApplication.translate
-        Window_8_Goodbye_en.setWindowTitle(_translate("Window_8_Goodbye_en", "LazyApp"))
-        self.goodbye_text_1.setHtml(_translate("Window_8_Goodbye_en", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        Window_15_Goodbye_de.setWindowTitle(_translate("Window_15_Goodbye_de", "LazyApp"))
+        self.goodbye_text_1.setHtml(_translate("Window_15_Goodbye_de", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; color:#ffffff;\">Best of luck and thanks for being lazy with us.</span></p></body></html>"))
-        self.exit_button.setText(_translate("Window_8_Goodbye_en", "EXIT"))
-        self.goodbye_text__2.setHtml(_translate("Window_8_Goodbye_en", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; color:#ffffff;\">Viel Glück und danke, dass du mit uns faul warst.</span></p></body></html>"))
+        self.exit_button.setText(_translate("Window_15_Goodbye_de", "FERTIG"))
+        self.goodbye_text__2.setHtml(_translate("Window_15_Goodbye_de", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:72pt; font-weight:704; color:#ffffff;\">GOODBYE!</span></p></body></html>"))
-        self.start_button_2.setText(_translate("Window_8_Goodbye_en", "START AGAIN"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:72pt; font-weight:704; color:#ffffff;\">TSCHÖÖ!</span></p></body></html>"))
+        self.start_button_2.setText(_translate("Window_15_Goodbye_de", "NOCHMAL"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Window_8_Goodbye_en = QtWidgets.QMainWindow()
-    ui = Ui_Window_8_Goodbye_en()
-    ui.setupUi(Window_8_Goodbye_en)
-    Window_8_Goodbye_en.show()
+    Window_15_Goodbye_de = QtWidgets.QMainWindow()
+    ui = Ui_Window_15_Goodbye_de()
+    ui.setupUi(Window_15_Goodbye_de)
+    Window_15_Goodbye_de.show()
     sys.exit(app.exec())

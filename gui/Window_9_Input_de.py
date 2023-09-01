@@ -1,13 +1,12 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-
-class Ui_Window_2_Input(object):
-
-    def setupUi(self, Window_2_Input):
-        Window_2_Input.setObjectName("Window_2_Input")
-        Window_2_Input.resize(1000, 800)
-        Window_2_Input.setStyleSheet("background-color: rgb(220, 138, 221);")
-        self.centralwidget = QtWidgets.QWidget(parent=Window_2_Input)
+class Ui_Window_9_Input_de(object):
+    
+    def setupUi(self, Window_9_Input_de):
+        Window_9_Input_de.setObjectName("Window_9_Input_de")
+        Window_9_Input_de.resize(1000, 800)
+        Window_9_Input_de.setStyleSheet("background-color: rgb(67,110,238);")
+        self.centralwidget = QtWidgets.QWidget(parent=Window_9_Input_de)
         self.centralwidget.setObjectName("centralwidget")
 
         # LABEL FIRST THINGS FIRST
@@ -19,7 +18,7 @@ class Ui_Window_2_Input(object):
         self.text_FirstThingFirst.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.text_FirstThingFirst.setLineWidth(0)
         self.text_FirstThingFirst.setObjectName("text_FirstThingFirst")
-
+        
         # NEXT BUTTON
         self.button_nextToJobAd = QtWidgets.QPushButton(parent=self.centralwidget)
         self.button_nextToJobAd.setGeometry(QtCore.QRect(650, 705, 200, 50))
@@ -63,12 +62,13 @@ class Ui_Window_2_Input(object):
         # TEXT EDIT ANNUAL SALARY
         self.textEdit_annuaSalary = QtWidgets.QTextEdit(parent=self.centralwidget)
         self.textEdit_annuaSalary.setGeometry(QtCore.QRect(340, 340, 341, 31))
-        self.textEdit_annuaSalary.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 12pt \"Ubuntu\";\n""\n""color: rgb(220, 138, 221);")
+        self.textEdit_annuaSalary.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 12pt \"Ubuntu\";\n""\n""color: rgb(67,110,238);")
         self.textEdit_annuaSalary.setObjectName("textEdit_annuaSalary")
+        self.textEdit_annuaSalary.setToolTip("Trage hier das Gehalt deiner Träume ein.")
         
         # LABEL AI BEHAVIOUR
         self.label_AiBehaviour_rational = QtWidgets.QLabel(parent=self.centralwidget)
-        self.label_AiBehaviour_rational.setGeometry(QtCore.QRect(350, 480, 81, 20))
+        self.label_AiBehaviour_rational.setGeometry(QtCore.QRect(360, 480, 81, 20))
         self.label_AiBehaviour_rational.setObjectName("label_AiBehaviour_rational")
         self.label_AiBehaviour_rational.setStyleSheet("color: rgb(255, 255, 255);")
         
@@ -81,7 +81,7 @@ class Ui_Window_2_Input(object):
         self.label_wordAmount.setObjectName("label_wordAmount")
         self.label_wordAmount_250.setStyleSheet("color: rgb(255, 255, 255);")
         self.label_wordAmount.setStyleSheet("color: rgb(255, 255, 255);")
-        self.label_wordAmount.setToolTip("This determines the length  of your application letter.")
+        self.label_wordAmount.setToolTip("Bestimmt die Länge des Anschreibens.")
     
         
         # SLIDER AI BEHAVIOUR
@@ -93,7 +93,7 @@ class Ui_Window_2_Input(object):
         self.label_AiBehaviour.setGeometry(QtCore.QRect(460, 460, 101, 20))
         self.label_AiBehaviour.setObjectName("label_AiBehaviour")
         self.label_AiBehaviour.setStyleSheet("color: rgb(255, 255, 255);")
-        self.label_AiBehaviour.setToolTip("This determines how creative or how rational your application letter will be.")
+        self.label_AiBehaviour.setToolTip("Bestimmt wie kreativ oder rational die AI agiert.")
         self.slider_AiBehaviour.setMinimum(10)
         self.slider_AiBehaviour.setMaximum(90)
         self.slider_AiBehaviour.setSingleStep(10)
@@ -112,8 +112,8 @@ class Ui_Window_2_Input(object):
 
         # DATE EDIT AVAILABILITY and set date to today
         self.button_availibility_date = QtWidgets.QDateEdit(parent=self.centralwidget)
-        self.button_availibility_date.setGeometry(QtCore.QRect(520, 260, 121, 26))
-        self.button_availibility_date.setStyleSheet("color: rgb(220, 138, 221); background-color: rgb(255, 255, 255);")
+        self.button_availibility_date.setGeometry(QtCore.QRect(550, 260, 121, 26))
+        self.button_availibility_date.setStyleSheet("color: rgb(67,110,238); background-color: rgb(255, 255, 255);")
         self.button_availibility_date.setObjectName("button_availibility_date")
         self.button_availibility_date.setCalendarPopup(True)  # Enable calendar popup
         self.button_availibility_date.setDate(QtCore.QDate.currentDate()) # set date to today
@@ -127,7 +127,7 @@ class Ui_Window_2_Input(object):
         
         # LABEL AVAILABILITY
         self.label_availabilty = QtWidgets.QLabel(parent=self.centralwidget)
-        self.label_availabilty.setGeometry(QtCore.QRect(400, 260, 111, 20))
+        self.label_availabilty.setGeometry(QtCore.QRect(350, 260, 200, 20))
         font = QtGui.QFont()
         font.setBold(True)
         self.label_availabilty.setFont(font)
@@ -146,50 +146,51 @@ class Ui_Window_2_Input(object):
         self.radioButton_fullTime.setObjectName("radioButton_fullTime")
         self.radioButton_fullTime.setStyleSheet("color: rgb(255, 255, 255);")
         
-        Window_2_Input.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=Window_2_Input)
+        Window_9_Input_de.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(parent=Window_9_Input_de)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 22))
         self.menubar.setObjectName("menubar")
-        Window_2_Input.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=Window_2_Input)
+        Window_9_Input_de.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(parent=Window_9_Input_de)
         self.statusbar.setObjectName("statusbar")
-        Window_2_Input.setStatusBar(self.statusbar)
+        Window_9_Input_de.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Window_2_Input)
-        QtCore.QMetaObject.connectSlotsByName(Window_2_Input)
+        self.retranslateUi(Window_9_Input_de)
+        QtCore.QMetaObject.connectSlotsByName(Window_9_Input_de)
 
-    def retranslateUi(self, Window_2_Input):
+    def retranslateUi(self, Window_9_Input_de):
         _translate = QtCore.QCoreApplication.translate
-        Window_2_Input.setWindowTitle(_translate("Window_2_Input", "LazyApp"))
-        self.text_FirstThingFirst.setHtml(_translate("Window_2_Input", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        Window_9_Input_de.setWindowTitle(_translate("Window_9_Input_de", "LazyApp"))
+        self.text_FirstThingFirst.setHtml(_translate("Window_9_Input_de", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">First things first</span></p></body></html>"))
-        self.button_nextToJobAd.setText(_translate("Window_2_Input", "NEXT ->"))
-        self.back_button.setText(_translate("Window_2_Input", "<- BACK"))
-        self.label_wordAmount_251.setText(_translate("Window_2_Input", "400"))
-        self.textEdit_annuaSalary.setHtml(_translate("Window_2_Input", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">Alles der Reihe nach:</span></p></body></html>"))
+        self.button_nextToJobAd.setText(_translate("Window_9_Input_de", "VOR ->"))
+        self.back_button.setText(_translate("Window_9_Input_de", "<- ZURÜCK"))
+        self.label_wordAmount_251.setText(_translate("Window_9_Input_de", "400"))
+        self.textEdit_annuaSalary.setHtml(_translate("Window_9_Input_de", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"    
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#dc8add;\">ANNUAL SALARY</span></p></body></html>"))
-        self.label_AiBehaviour_rational.setText(_translate("Window_2_Input", "RATIONAL"))
-        self.radioButton_fullTime.setText(_translate("Window_2_Input", "FULL-TIME"))
-        self.label_wordAmount_250.setText(_translate("Window_2_Input", "250"))
-        self.label_wordAmount.setText(_translate("Window_2_Input", "WORDS"))
-        self.label_AiBehaviour.setText(_translate("Window_2_Input", "AI BEHAVIOUR"))
-        self.button_CV_browseFile.setText(_translate("Window_2_Input", "CV"))
-        self.label_AiBehaviour_creative.setText(_translate("Window_2_Input", "CREATIVE"))
-        self.label_availabilty.setText(_translate("Window_2_Input", "AVAILABILITY"))
-        self.radioButton_partTime.setText(_translate("Window_2_Input", "PART-TIME"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#436eee;\">JAHRESGEHALT</span></p></body></html>"))
+        self.label_AiBehaviour_rational.setText(_translate("Window_9_Input_de", "RATIONAL"))
+        self.radioButton_fullTime.setText(_translate("Window_9_Input_de", "VOLLZEIT"))
+        self.label_wordAmount_250.setText(_translate("Window_9_Input_de", "250"))
+        self.label_wordAmount.setText(_translate("Window_9_Input_de", "WÖRTER"))
+        self.label_AiBehaviour.setText(_translate("Window_9_Input_de", "KI VERHALTEN"))
+        self.button_CV_browseFile.setText(_translate("Window_9_Input_de", "CV"))
+        self.label_AiBehaviour_creative.setText(_translate("Window_9_Input_de", "KREATIV"))
+        self.label_availabilty.setText(_translate("Window_9_Input_de", "VERFÜGBARKEIT"))
+        self.radioButton_partTime.setText(_translate("Window_9_Input_de", "TEILZEIT"))
+
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Window_2_Input = QtWidgets.QMainWindow()
-    ui = Ui_Window_2_Input()
-    ui.setupUi(Window_2_Input)
-    Window_2_Input.show()
+    Window_9_Input_de = QtWidgets.QMainWindow()
+    ui = Ui_Window_9_Input_de()
+    ui.setupUi(Window_9_Input_de)
+    Window_9_Input_de.show()
     sys.exit(app.exec())
