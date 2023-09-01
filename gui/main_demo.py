@@ -127,9 +127,7 @@ class MainWindow(QtWidgets.QMainWindow):
     # Define function to browse for CV
     def cv_browseFile(self):
         filepath = QtWidgets.QFileDialog.getOpenFileName()[0]
-        if not filepath:
-            QtWidgets.QMessageBox.warning(self, "Missing Information", "Please select a CV.")
-        print(filepath)
+        # print(filepath)
         pdf_file = open(filepath, 'rb') # open PDF file
 
         # Create a PDF reader object
@@ -147,19 +145,13 @@ class MainWindow(QtWidgets.QMainWindow):
         # Close the PDF file
         pdf_file.close()
         # Print or do something with the extracted content
-        #print(pdf_content)
+        # print(pdf_content)
         return cv
 
     # Define function to go to the next window and store date
     def next_window_plus_inputPage(self):
         '''stores the date when moving on to the next window'''
         current_ui = self.ui_windows[self.current_window]
-        # showing a pop up window if user did not fill the required info
-        if current_ui.button_availibility_date.date() == datetime.today()  or not current_ui.radioButton_fullTime.isChecked() and not current_ui.radioButton_partTime.isChecked():
-            QMessageBox.warning(self, "Warning", "Please fill in all the required information.")
-        else:
-            self.next_window()
-
         # starting date for new job
         global date
         date = current_ui.button_availibility_date.date()
@@ -194,6 +186,10 @@ class MainWindow(QtWidgets.QMainWindow):
         ai_behaviour = float(ai_behaviour)
         # get rid of trailing zeros
         print(ai_behaviour)
+       ## if not cv:
+        ##    print("noCV")
+        ##    QtWidgets.QMessageBox.warning(self, "Missing Information", "Please select a CV.")
+        
         self.next_window()
 
         return date, salary, hours, word_amount, ai_behaviour
