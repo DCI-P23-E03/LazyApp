@@ -81,6 +81,13 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'export_button'):
             current_ui.export_button.clicked.connect(self.export_to_pdf)
         
+        # display gpt output
+        if current_ui == self.ui_windows[4] and letter_resp:
+            current_ui.Appl_letter_space.setPlainText(letter_resp)
+        if current_ui == self.ui_windows[5] and cheat_resp:
+            current_ui.Cheat_Sheet_space.setPlainText(cheat_resp)
+        if current_ui == self.ui_windows[6] and cv_improv_resp:
+            current_ui.cv_pointers_space.setPlainText(cv_improv_resp)
 
     # Define function to go to the next window (including jumps)
     def next_window(self):
@@ -205,15 +212,15 @@ class MainWindow(QtWidgets.QMainWindow):
         # print(application_letter_checked)
         # print(cheat_sheet_checked)
         # print(cv_improvements_checked)
-        # create prompts
-        self.instantiate_prompts()
-        # instantiate AI
-        # self.instantiate_ai()
-    
-        # move to next window
         if not application_letter_checked and not cheat_sheet_checked and not cv_improvements_checked:
             QMessageBox.warning(self, "Warning", "Please select at least one option.")
-        self.next_window()
+        else:
+            # create prompts
+            self.instantiate_prompts()
+            # let prompts run
+            self.instantiate_ai()
+            # move to next window
+            self.next_window()
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
 
     # instantiate Prompt Classes LetterPrompt, CheatSheetPrompt, CvPointersPrompt
@@ -229,30 +236,37 @@ class MainWindow(QtWidgets.QMainWindow):
             letter = letter_prompt.prompt()
         if cheat_sheet_checked:
             cheat_sheet_prompt = CheatSheetPrompt(job_adv, language="en")
-            if not application_letter_checked:
-                cheat_sheet = cheat_sheet_prompt.prompt()
-            else:
-                cheat_sheet = cheat_sheet_prompt.follow_up()
+            # if not application_letter_checked:
+            cheat_sheet = cheat_sheet_prompt.prompt()
+            # else:
+            #  cheat_sheet = cheat_sheet_prompt.follow_up()
         if cv_improvements_checked:
             cv_pointers_prompt = CvPointersPrompt(job_adv, "en", cv)
-            if not application_letter_checked and not cheat_sheet_checked:
-                cv_pointers = cv_pointers_prompt.prompt()
-            else:
-                cv_pointers = cv_pointers_prompt.follow_up()
+            #if not application_letter_checked and not cheat_sheet_checked:
+            cv_pointers = cv_pointers_prompt.prompt()
+            #else:
+               # cv_pointers = cv_pointers_prompt.follow_up()
         return letter, cheat_sheet, cv_pointers
 
 
     # pass prompts to chat gpt
     def instantiate_ai(self):
         chat_gpt = ChatGPTChat(temperature = ai_behaviour)
+        global letter_resp
+        letter_resp = ""
+        global cheat_resp
+        cheat_resp = ""
+        global cv_improv_resp
+        cv_improv_resp = ""
         if letter:
-            prompts = letter
-            prompts = "Bist du eine hübsche kleine Katze?"
-            katze = chat_gpt.chat_interface(prompts)
-      
-        # print(chat_gpt.responses)
-            print(katzchen for katzchen in katze)
-            ui_windows[4].Appl_letter_space.setPlainText(katze)
+            letter_resp = "".join(chat_gpt.chat_interface(letter))
+        if cheat_sheet:
+            cheat_resp = "".join(chat_gpt.chat_interface(cheat_sheet))
+        if cv_pointers:
+            cv_improv_resp = "".join(chat_gpt.chat_interface(cv_pointers))
+
+        return letter_resp, cheat_resp, cv_improv_resp
+
 
     # Define function to export to pdf for Letter, CV Pointers, Cheat Sheet 
     def export_to_pdf(self):
