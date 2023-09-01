@@ -151,7 +151,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def next_window_plus_inputPage(self):
         '''stores the date when moving on to the next window'''
         current_ui = self.ui_windows[self.current_window]
-        #showing a pop up window if user did not fill the required info
+        # showing a pop up window if user did not fill the required info
         if current_ui.button_availibility_date.date() == datetime.today()  or not current_ui.radioButton_fullTime.isChecked() and not current_ui.radioButton_partTime.isChecked():
             QMessageBox.warning(self, "Warning", "Please fill in all the required information.")
         else:
@@ -164,7 +164,7 @@ class MainWindow(QtWidgets.QMainWindow):
             date = "immediately"
         print(date)
 
-        #Salary input, if empty or not filled in set to "appropriate"
+        # Salary input, if empty or not filled in set to "appropriate"
         global salary
         salary = current_ui.textEdit_annuaSalary.toPlainText()
         if salary == "ANNUAL SALARY" or salary == "":
@@ -257,7 +257,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 cv_pointers = cv_pointers_prompt.prompt()
             else:
                 cv_pointers = cv_pointers_prompt.follow_up()
-        global prompts
+        #global prompts
         #prompts = [letter, cheat_sheet, cv_pointers]
         #prompts = letter + cheat_sheet + cv_pointers
         #print(prompts)
@@ -269,12 +269,13 @@ class MainWindow(QtWidgets.QMainWindow):
         chat_gpt = ChatGPTChat(temperature = ai_behaviour)
         if letter:
             prompts = letter
-
-            katze = chat_gpt.chat_interface(prompts) 
-        
-        #print(chat_gpt.responses)
-            print(katze)
-   
+            prompts = "Bist du eine hübsche kleine Katze?"
+            katze = chat_gpt.chat_interface(prompts)
+      
+        # print(chat_gpt.responses)
+            print(katzchen for katzchen in katze)
+            Ui_Window_5_Application_Letter.Appl_letter_space.setPlainText(katze)
+ 
     # Define function to export to pdf for Letter, CV Pointers, Cheat Sheet 
     def export_to_pdf(self):
         current_ui = self.ui_windows[self.current_window]
