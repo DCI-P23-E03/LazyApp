@@ -24,14 +24,14 @@ class Ui_Window_5_Application_Letter(object):
         self.Appl_letter_title.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.Appl_letter_title.setLineWidth(0)
         self.Appl_letter_title.setObjectName("Appl_letter_title")
-        self.Appl_letter_next_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.Appl_letter_next_button.setGeometry(QtCore.QRect(650, 705, 200, 50))
+        self.next_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.next_button.setGeometry(QtCore.QRect(650, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        self.Appl_letter_next_button.setFont(font)
-        self.Appl_letter_next_button.setStyleSheet("color: rgb(255, 255, 255);")
-        self.Appl_letter_next_button.setObjectName("Appl_letter_next_button")
+        self.next_button.setFont(font)
+        self.next_button.setStyleSheet("color: rgb(255, 255, 255);")
+        self.next_button.setObjectName("next_button")
         self.Appl_letter_space = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
         self.Appl_letter_space.setGeometry(QtCore.QRect(50, 139, 900, 491))
         self.Appl_letter_space.setStyleSheet("background-color: rgb(252, 240, 251);")
@@ -48,15 +48,15 @@ class Ui_Window_5_Application_Letter(object):
         self.Appl_letter_back_button.setFont(font)
         self.Appl_letter_back_button.setStyleSheet("color: rgb(255, 255, 255);")
         self.Appl_letter_back_button.setObjectName("Appl_letter_back_button")
-        self.Appl_letter_export_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.Appl_letter_export_button.setGeometry(QtCore.QRect(400, 650, 200, 50))
+        self.export_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.export_button.setGeometry(QtCore.QRect(400, 650, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        self.Appl_letter_export_button.setFont(font)
-        self.Appl_letter_export_button.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.export_button.setFont(font)
+        self.export_button.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(255, 137, 243);")
-        self.Appl_letter_export_button.setObjectName("Appl_letter_export_button")
+        self.export_button.setObjectName("export_button")
         Window_5_Application_Letter.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=Window_5_Application_Letter)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 22))
@@ -80,9 +80,9 @@ class Ui_Window_5_Application_Letter(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700;\">Application letter</span></p></body></html>"))
-        self.Appl_letter_next_button.setText(_translate("Window_5_Application_Letter", "NEXT ->"))
+        self.next_button.setText(_translate("Window_5_Application_Letter", "NEXT ->"))
         self.Appl_letter_back_button.setText(_translate("Window_5_Application_Letter", "<- BACK"))
-        self.Appl_letter_export_button.setText(_translate("Window_5_Application_Letter", " EXPORT TO PDF"))
+        self.export_button.setText(_translate("Window_5_Application_Letter", " EXPORT TO PDF"))
 
 
 if __name__ == "__main__":
