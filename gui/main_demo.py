@@ -55,12 +55,8 @@ class MainWindow(QtWidgets.QMainWindow):
             current_ui.next_button_3.clicked.connect(self.next_window_plus_input)
         if hasattr(current_ui, 'next_button_4'): # Output Page 4
             current_ui.next_button_4.clicked.connect(self.next_window_plus_checkboxes)
-        if hasattr(current_ui, 'Appl_letter_next_button'): # Appl Page 5
-            current_ui.Appl_letter_next_button.clicked.connect(self.next_window)
-        if hasattr(current_ui, 'Cheat_sheet_next_button'): # Cheat Sheet Page 6
-            current_ui.Cheat_sheet_next_button.clicked.connect(self.next_window)
-        if hasattr(current_ui, 'cv_pointers_next_button'): # CV Pointers Page 7
-            current_ui.cv_pointers_next_button.clicked.connect(self.next_window)
+        if hasattr(current_ui, 'next_button'): # Page 5, 6, 7
+            current_ui.next_button.clicked.connect(self.next_window)
 
 
         # back buttons
@@ -91,29 +87,30 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'button_CV_browseFile'):  # Start Page 1
             current_ui.button_CV_browseFile.clicked.connect(self.cv_browseFile)
         
-       
 
+        # export application letter, cheat sheet and cv improvements to pdf button
+        if hasattr(current_ui, 'export_button'):
+            current_ui.export_button.clicked.connect(self.export_to_pdf)
+        
 
-        # export application letter to pdf button
-        if hasattr(current_ui, 'Appl_letter_export_button'):
-            current_ui.Appl_letter_export_button.clicked.connect(self.export_to_pdf)
-
-        # export cheat sheet to pdf button
-        if hasattr(current_ui, 'Cheat_Sheet_export_button'):
-            current_ui.Cheat_Sheet_export_button.clicked.connect(self.export_to_pdf)
-
-        # export cv pointers to pdf button
-        if hasattr(current_ui, 'cv_pointers_export_button'):
-            current_ui.cv_pointers_export_button.clicked.connect(self.export_to_pdf)
-
-
-
-    # Define function to go to the next window
+    # Define function to go to the next window (including jumps)
     def next_window(self):
-        self.current_window = (self.current_window + 1) % len(self.ui_windows)
+        current_ui = self.ui_windows[self.current_window]
+        n = 1
+        # starting at Application letter window - move over to CV Improvements or end
+        if current_ui == self.ui_windows[4]:
+            if not cheat_sheet_checked and cv_improvements_checked:
+                n = 2
+            elif not cheat_sheet_checked and not cv_improvements_checked:
+                n = 3
+        # start at Cheat Sheet window move over cv improvements to end        
+        if current_ui == self.ui_windows[5] and not cv_improvements_checked:
+            n = 2
+        # if all boxes are checked n =1 and program moves one by one
+        self.current_window = (self.current_window + n) % len(self.ui_windows)
         self.setup_current_window()
-    
-    
+
+
     # Define function to go to the next window 4 and store input
     def next_window_plus_input(self):
         '''stores the content of input field in variable before moving on to the next window'''
@@ -202,14 +199,7 @@ class MainWindow(QtWidgets.QMainWindow):
     # Define function to go to next window plus checkboxes
     def next_window_plus_checkboxes(self):
         '''stores the state of checkboxes when clicking the next button'''
-        current_ui = self.ui_windows[self.current_window]
-        #showing a pop up window if any of the checkboxes is not checked
-        if not current_ui.checkBox_Application_letter.isChecked() and not current_ui.checkBox_Cheat_Sheet.isChecked() and not current_ui.checkBox_CV_Improvements.isChecked():
-            QMessageBox.warning(self, "Warning", "Please select at least one option.")
-        
-        else:
-            self.next_window
-        
+        current_ui = self.ui_windows[self.current_window]  
         global application_letter_checked
         application_letter_checked = current_ui.checkBox_Application_letter.isChecked()
         global cheat_sheet_checked
@@ -219,9 +209,29 @@ class MainWindow(QtWidgets.QMainWindow):
         # print(application_letter_checked)
         # print(cheat_sheet_checked)
         # print(cv_improvements_checked)
+
+        # create prompts
         self.instantiate_prompts()
+
         self.instantiate_ai()
-        self.next_window()
+        self.next_window() # ???
+
+
+        # pass prompts to ai
+        # self.instantiate_ai()
+
+        # check that at least one option is checked and if application letter is not checked move to other page  
+        if not application_letter_checked and not cheat_sheet_checked and not cv_improvements_checked:
+            QMessageBox.warning(self, "Warning", "Please select at least one option.")
+        if application_letter_checked:
+            self.next_window()
+        elif not application_letter_checked and cheat_sheet_checked:
+            self.current_window = (self.current_window + 2) % len(self.ui_windows)
+            self.setup_current_window()
+        elif not application_letter_checked and not cheat_sheet_checked:
+            self.current_window = (self.current_window + 3) % len(self.ui_windows)
+            self.setup_current_window()
+
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
 
     # instantiate Prompt Classes LetterPrompt, CheatSheetPrompt, CvPointersPrompt
@@ -231,7 +241,7 @@ class MainWindow(QtWidgets.QMainWindow):
         global cheat_sheet
         cheat_sheet = ""
         global cv_pointers
-        cv_pointers =""
+        cv_pointers = ""
         if application_letter_checked:
             letter_prompt = LetterPrompt(cv, job_adv , salary_expt = salary, availability = date, hours = hours, max_length = word_amount, language = "en")
             letter = letter_prompt.prompt()
@@ -242,7 +252,7 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 cheat_sheet = cheat_sheet_prompt.follow_up()
         if cv_improvements_checked:
-            cv_pointers_prompt = CvPointersPrompt(job_adv, cv, language="en") 
+            cv_pointers_prompt = CvPointersPrompt(job_adv, "en", cv)
             if not application_letter_checked and not cheat_sheet_checked:
                 cv_pointers = cv_pointers_prompt.prompt()
             else:
@@ -268,13 +278,13 @@ class MainWindow(QtWidgets.QMainWindow):
     # Define function to export to pdf for Letter, CV Pointers, Cheat Sheet 
     def export_to_pdf(self):
         current_ui = self.ui_windows[self.current_window]
-        if hasattr(current_ui, 'Appl_letter_export_button'):
+        if current_ui == self.ui_windows[4]:
             content = current_ui.Appl_letter_space.toPlainText()
-        if hasattr(current_ui, 'cv_pointers_export_button'):
+        if current_ui == self.ui_windows[5]:
             content = current_ui.cv_pointers_space.toPlainText()
-        elif hasattr(current_ui, 'Cheat_Sheet_export_button'):
+        if current_ui == self.ui_windows[6]:
             content = current_ui.Cheat_Sheet_space.toPlainText()
-        #opening a file dialog to prompt the user to choose a location to save the PDF file
+        # opening a file dialog to prompt the user to choose a location to save the PDF file
         if content:
             filePath, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Save as PDF", "", "PDF Files (*.pdf);;All Files (*)")
             if filePath:

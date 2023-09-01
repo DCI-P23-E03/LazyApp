@@ -24,14 +24,14 @@ class Ui_Window_7_cv_pointers(object):
         self.cv_pointers_title.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
         self.cv_pointers_title.setLineWidth(0)
         self.cv_pointers_title.setObjectName("cv_pointers_title")
-        self.cv_pointers_next_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.cv_pointers_next_button.setGeometry(QtCore.QRect(650, 705, 200, 50))
+        self.next_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.next_button.setGeometry(QtCore.QRect(650, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        self.cv_pointers_next_button.setFont(font)
-        self.cv_pointers_next_button.setStyleSheet("color: rgb(255, 255, 255);")
-        self.cv_pointers_next_button.setObjectName("cv_pointers_next_button")
+        self.next_button.setFont(font)
+        self.next_button.setStyleSheet("color: rgb(255, 255, 255);")
+        self.next_button.setObjectName("next_button")
         self.cv_pointers_space = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
         self.cv_pointers_space.setGeometry(QtCore.QRect(50, 139, 900, 491))
         self.cv_pointers_space.setStyleSheet("background-color: rgb(252, 240, 251);")
@@ -48,15 +48,15 @@ class Ui_Window_7_cv_pointers(object):
         self.cv_pointers_back_button.setFont(font)
         self.cv_pointers_back_button.setStyleSheet("color: rgb(255, 255, 255);")
         self.cv_pointers_back_button.setObjectName("cv_pointers_back_button")
-        self.cv_pointers_export_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.cv_pointers_export_button.setGeometry(QtCore.QRect(400, 650, 200, 50))
+        self.export_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.export_button.setGeometry(QtCore.QRect(400, 650, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        self.cv_pointers_export_button.setFont(font)
-        self.cv_pointers_export_button.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.export_button.setFont(font)
+        self.export_button.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(255, 137, 243);")
-        self.cv_pointers_export_button.setObjectName("cv_pointers_export_button")
+        self.export_button.setObjectName("export_button")
         Window_7_cv_pointers.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=Window_7_cv_pointers)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 22))
@@ -79,10 +79,10 @@ class Ui_Window_7_cv_pointers(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700;\">CV pointers</span></p></body></html>"))
-        self.cv_pointers_next_button.setText(_translate("Window_7_cv_pointers", "NEXT ->"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700;\">CV Improvements</span></p></body></html>"))
+        self.next_button.setText(_translate("Window_7_cv_pointers", "NEXT ->"))
         self.cv_pointers_back_button.setText(_translate("Window_7_cv_pointers", "<- BACK"))
-        self.cv_pointers_export_button.setText(_translate("Window_7_cv_pointers", " EXPORT TO PDF"))
+        self.export_button.setText(_translate("Window_7_cv_pointers", " EXPORT TO PDF"))
 
 
 if __name__ == "__main__":

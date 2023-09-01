@@ -38,8 +38,8 @@ class ChatGPTChat:
     def count_tokens(self, text):
             enc = tiktoken.encoding_for_model("gpt-3.5-turbo")
             tokens = len(enc.encode(text))
-            tokens_left = 4096 - tokens
-            return tokens, tokens_left, print("Tokens used:", tokens, " ; " "Tokens left:", tokens_left)
+            token_usage_costs = tokens / 1000 * 0.015
+            return tokens, token_usage_costs, print("Tokens used:", tokens, " ; " "Your Costs are :", token_usage_costs, " Euro")
 
     def chat_interface(self, user_input):
         # Display welcome message
