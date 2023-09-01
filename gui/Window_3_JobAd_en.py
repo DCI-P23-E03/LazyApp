@@ -29,14 +29,14 @@ class Ui_Window_3_JobAd_en(object):
         self.next_button_3.setFont(font)
         self.next_button_3.setStyleSheet("color: rgb(255, 255, 255);")
         self.next_button_3.setObjectName("next_button_3")
-        self.back_button_3 = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.back_button_3.setGeometry(QtCore.QRect(150, 705, 200, 50))
+        self.back_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.back_button.setGeometry(QtCore.QRect(150, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        self.back_button_3.setFont(font)
-        self.back_button_3.setStyleSheet("color: rgb(255, 255, 255);")
-        self.back_button_3.setObjectName("back_button_3")
+        self.back_button.setFont(font)
+        self.back_button.setStyleSheet("color: rgb(255, 255, 255);")
+        self.back_button.setObjectName("back_button")
 
         # Input field for Job Advertisement
         self.jobTextEdit = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
@@ -66,7 +66,7 @@ class Ui_Window_3_JobAd_en(object):
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">Which job do you want to apply for?</span></p></body></html>"))
         self.next_button_3.setText(_translate("Window_3_JobAd_en", "NEXT ->"))
         self.jobTextEdit.setPlainText(_translate("Window_3_JobAd_en", "Please copy and paste the advertising for your dream job here."))
-        self.back_button_3.setText(_translate("Window_3_JobAd_en", "<- BACK"))
+        self.back_button.setText(_translate("Window_3_JobAd_en", "<- BACK"))
 
     
 

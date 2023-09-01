@@ -28,14 +28,14 @@ class Ui_Window_4_Output(object):
         self.next_button_4.setFont(font)
         self.next_button_4.setStyleSheet("color: rgb(255, 255, 255);")
         self.next_button_4.setObjectName("next_button_4")
-        self.back_button_4 = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.back_button_4.setGeometry(QtCore.QRect(150, 705, 200, 50))
+        self.back_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.back_button.setGeometry(QtCore.QRect(150, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        self.back_button_4.setFont(font)
-        self.back_button_4.setStyleSheet(("color: rgb(255, 255, 255);"))
-        self.back_button_4.setObjectName("back_button_4")
+        self.back_button.setFont(font)
+        self.back_button.setStyleSheet(("color: rgb(255, 255, 255);"))
+        self.back_button.setObjectName("back_button")
 
         # set explanations - Application Letter
         self.textBrowser_Application_Letter = QtWidgets.QTextBrowser(parent=self.centralwidget)
@@ -117,7 +117,7 @@ class Ui_Window_4_Output(object):
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700; font-color: white\">What do you need today?</span></p></body></html>"))
 
         self.next_button_4.setText(_translate("MainWindow4_Output", "NEXT ->"))
-        self.back_button_4.setText(_translate("MainWindow4_Output", "<- BACK"))
+        self.back_button.setText(_translate("MainWindow4_Output", "<- BACK"))
         self.textBrowser_Application_Letter.setHtml(_translate("MainWindow4_Output", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

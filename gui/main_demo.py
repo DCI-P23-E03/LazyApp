@@ -60,20 +60,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
         # back buttons
-        if hasattr(current_ui, 'button_backToWelcomeWindow'):  # Input page
-            current_ui.button_backToWelcomeWindow.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'back_button_3'):  # Job Ad page
-            current_ui.back_button_3.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'back_button_4'): # Output Page 4
-            current_ui.back_button_4.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'Appl_letter_back_button'): #Output Page 5
-            current_ui.Appl_letter_back_button.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'Cheat_Sheet_back_button'): # Ouput Page 6
-            current_ui.Cheat_Sheet_back_button.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'cv_pointers_back_button'): # Output Page 7
-            current_ui.cv_pointers_back_button.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'start_button_2'): # Output Page 8
-            current_ui.start_button_2.clicked.connect(self.prev_window)
+        if hasattr(current_ui, 'back_button'):  # Input page
+            current_ui.back_button.clicked.connect(self.prev_window)
+        
 
         # back to the start for second application
         if hasattr(current_ui, 'start_button_2'):
@@ -97,6 +86,13 @@ class MainWindow(QtWidgets.QMainWindow):
     def next_window(self):
         current_ui = self.ui_windows[self.current_window]
         n = 1
+
+        # starting at Checkbox Window - move over to right page
+        if current_ui == self.ui_windows[3]:
+            if not application_letter_checked and cheat_sheet_checked:
+                n = 2
+            elif not application_letter_checked and not cheat_sheet_checked:
+                n = 3
         # starting at Application letter window - move over to CV Improvements or end
         if current_ui == self.ui_windows[4]:
             if not cheat_sheet_checked and cv_improvements_checked:
@@ -155,7 +151,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if current_ui.button_availibility_date.date() == datetime.today()  or not current_ui.radioButton_fullTime.isChecked() and not current_ui.radioButton_partTime.isChecked():
             QMessageBox.warning(self, "Warning", "Please fill in all the required information.")
         else:
-            self.next_window
+            self.next_window()
 
         # starting date for new job
         global date
@@ -199,7 +195,7 @@ class MainWindow(QtWidgets.QMainWindow):
     # Define function to go to next window plus checkboxes
     def next_window_plus_checkboxes(self):
         '''stores the state of checkboxes when clicking the next button'''
-        current_ui = self.ui_windows[self.current_window]  
+        current_ui = self.ui_windows[self.current_window] 
         global application_letter_checked
         application_letter_checked = current_ui.checkBox_Application_letter.isChecked()
         global cheat_sheet_checked
@@ -209,29 +205,15 @@ class MainWindow(QtWidgets.QMainWindow):
         # print(application_letter_checked)
         # print(cheat_sheet_checked)
         # print(cv_improvements_checked)
-
         # create prompts
         self.instantiate_prompts()
-
-        self.instantiate_ai()
-        self.next_window() # ???
-
-
-        # pass prompts to ai
+        # instantiate AI
         # self.instantiate_ai()
-
-        # check that at least one option is checked and if application letter is not checked move to other page  
+    
+        # move to next window
         if not application_letter_checked and not cheat_sheet_checked and not cv_improvements_checked:
             QMessageBox.warning(self, "Warning", "Please select at least one option.")
-        if application_letter_checked:
-            self.next_window()
-        elif not application_letter_checked and cheat_sheet_checked:
-            self.current_window = (self.current_window + 2) % len(self.ui_windows)
-            self.setup_current_window()
-        elif not application_letter_checked and not cheat_sheet_checked:
-            self.current_window = (self.current_window + 3) % len(self.ui_windows)
-            self.setup_current_window()
-
+        self.next_window()
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
 
     # instantiate Prompt Classes LetterPrompt, CheatSheetPrompt, CvPointersPrompt
@@ -257,13 +239,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 cv_pointers = cv_pointers_prompt.prompt()
             else:
                 cv_pointers = cv_pointers_prompt.follow_up()
-        #global prompts
-        #prompts = [letter, cheat_sheet, cv_pointers]
-        #prompts = letter + cheat_sheet + cv_pointers
-        #print(prompts)
-        #return prompts
         return letter, cheat_sheet, cv_pointers
-    
+
+
     # pass prompts to chat gpt
     def instantiate_ai(self):
         chat_gpt = ChatGPTChat(temperature = ai_behaviour)
@@ -275,7 +253,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # print(chat_gpt.responses)
             print(katzchen for katzchen in katze)
             ui_windows[4].Appl_letter_space.setPlainText(katze)
- 
+
     # Define function to export to pdf for Letter, CV Pointers, Cheat Sheet 
     def export_to_pdf(self):
         current_ui = self.ui_windows[self.current_window]
@@ -302,8 +280,19 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # Define function to go to the previous window
     def prev_window(self):
-        self.current_window = (self.current_window - 1) % len(self.ui_windows)
+        n = 1
+        # going back from CV Pointers
+        if self.current_window == 6:
+            if not cheat_sheet_checked and not application_letter_checked:
+                n = 3
+            elif not cheat_sheet_checked:
+                n = 2
+        if self.current_window == 5:
+            if not application_letter_checked:
+                n = 2     
+        self.current_window = (self.current_window - n) % len(self.ui_windows)
         self.setup_current_window()
+
 
     # Define function to go back to the start
     def back_to_start(self):

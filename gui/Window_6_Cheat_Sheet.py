@@ -40,14 +40,14 @@ class Ui_Window_6_Cheat_Sheet(object):
         self.Cheat_Sheet_space.setBackgroundVisible(False)
         self.Cheat_Sheet_space.setCenterOnScroll(False)
         self.Cheat_Sheet_space.setObjectName("Cheat_Sheet_space")
-        self.Cheat_Sheet_back_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.Cheat_Sheet_back_button.setGeometry(QtCore.QRect(150, 705, 200, 50))
+        self.back_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.back_button.setGeometry(QtCore.QRect(150, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        self.Cheat_Sheet_back_button.setFont(font)
-        self.Cheat_Sheet_back_button.setStyleSheet("color: rgb(255, 255, 255);")
-        self.Cheat_Sheet_back_button.setObjectName("Cheat_Sheet_back_button")
+        self.back_button.setFont(font)
+        self.back_button.setStyleSheet("color: rgb(255, 255, 255);")
+        self.back_button.setObjectName("back_button")
         self.export_button = QtWidgets.QPushButton(parent=self.centralwidget)
         self.export_button.setGeometry(QtCore.QRect(400, 650, 200, 50))
         font = QtGui.QFont()
@@ -81,7 +81,7 @@ class Ui_Window_6_Cheat_Sheet(object):
 "</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700;\">Cheat Sheet</span></p></body></html>"))
         self.next_button.setText(_translate("Window_6_Cheat_Sheet", "NEXT ->"))
-        self.Cheat_Sheet_back_button.setText(_translate("Window_6_Cheat_Sheet", "<- BACK"))
+        self.back_button.setText(_translate("Window_6_Cheat_Sheet", "<- BACK"))
         self.export_button.setText(_translate("Window_6_Cheat_Sheet", " EXPORT TO PDF"))
 
 

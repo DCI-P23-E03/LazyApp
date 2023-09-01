@@ -40,14 +40,14 @@ class Ui_Window_7_cv_pointers(object):
         self.cv_pointers_space.setBackgroundVisible(False)
         self.cv_pointers_space.setCenterOnScroll(False)
         self.cv_pointers_space.setObjectName("cv_pointers_space")
-        self.cv_pointers_back_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.cv_pointers_back_button.setGeometry(QtCore.QRect(150, 705, 200, 50))
+        self.back_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.back_button.setGeometry(QtCore.QRect(150, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        self.cv_pointers_back_button.setFont(font)
-        self.cv_pointers_back_button.setStyleSheet("color: rgb(255, 255, 255);")
-        self.cv_pointers_back_button.setObjectName("cv_pointers_back_button")
+        self.back_button.setFont(font)
+        self.back_button.setStyleSheet("color: rgb(255, 255, 255);")
+        self.back_button.setObjectName("back_button")
         self.export_button = QtWidgets.QPushButton(parent=self.centralwidget)
         self.export_button.setGeometry(QtCore.QRect(400, 650, 200, 50))
         font = QtGui.QFont()
@@ -81,7 +81,7 @@ class Ui_Window_7_cv_pointers(object):
 "</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700;\">CV Improvements</span></p></body></html>"))
         self.next_button.setText(_translate("Window_7_cv_pointers", "NEXT ->"))
-        self.cv_pointers_back_button.setText(_translate("Window_7_cv_pointers", "<- BACK"))
+        self.back_button.setText(_translate("Window_7_cv_pointers", "<- BACK"))
         self.export_button.setText(_translate("Window_7_cv_pointers", " EXPORT TO PDF"))
 
 
