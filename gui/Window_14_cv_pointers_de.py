@@ -1,12 +1,12 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Window_7_cv_pointers(object):
-    def setupUi(self, Window_7_cv_pointers):
-        Window_7_cv_pointers.setObjectName("Window_7_cv_pointers")
-        Window_7_cv_pointers.resize(1000, 800)
-        Window_7_cv_pointers.setStyleSheet("background-color: rgb(220, 138, 221);")
-        self.centralwidget = QtWidgets.QWidget(parent=Window_7_cv_pointers)
+class Ui_Window_14_cv_pointers_de(object):
+    def setupUi(self, Window_14_cv_pointers_de):
+        Window_14_cv_pointers_de.setObjectName("Window_14_cv_pointers_de")
+        Window_14_cv_pointers_de.resize(1000, 800)
+        Window_14_cv_pointers_de.setStyleSheet("background-color: rgb(67,110,238);")
+        self.centralwidget = QtWidgets.QWidget(parent=Window_14_cv_pointers_de)
         self.centralwidget.setObjectName("centralwidget")
         self.cv_pointers_title = QtWidgets.QTextBrowser(parent=self.centralwidget)
         self.cv_pointers_title.setGeometry(QtCore.QRect(0, 50, 1000, 60))
@@ -47,41 +47,41 @@ class Ui_Window_7_cv_pointers(object):
         font.setBold(True)
         self.export_button.setFont(font)
         self.export_button.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"color: rgb(255, 137, 243);")
+"color: rgb(67,110,238);")
         self.export_button.setObjectName("export_button")
-        Window_7_cv_pointers.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=Window_7_cv_pointers)
+        Window_14_cv_pointers_de.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(parent=Window_14_cv_pointers_de)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 22))
         self.menubar.setObjectName("menubar")
-        Window_7_cv_pointers.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=Window_7_cv_pointers)
+        Window_14_cv_pointers_de.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(parent=Window_14_cv_pointers_de)
         self.statusbar.setObjectName("statusbar")
-        Window_7_cv_pointers.setStatusBar(self.statusbar)
+        Window_14_cv_pointers_de.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Window_7_cv_pointers)
-        QtCore.QMetaObject.connectSlotsByName(Window_7_cv_pointers)
+        self.retranslateUi(Window_14_cv_pointers_de)
+        QtCore.QMetaObject.connectSlotsByName(Window_14_cv_pointers_de)
 
-    def retranslateUi(self, Window_7_cv_pointers):
+    def retranslateUi(self, Window_14_cv_pointers_de):
         _translate = QtCore.QCoreApplication.translate
-        Window_7_cv_pointers.setWindowTitle(_translate("Window_7_cv_pointers", "LazyApp"))
-        self.cv_pointers_title.setHtml(_translate("Window_7_cv_pointers", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        Window_14_cv_pointers_de.setWindowTitle(_translate("Window_14_cv_pointers_de", "LazyApp"))
+        self.cv_pointers_title.setHtml(_translate("Window_14_cv_pointers_de", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700;\">CV Improvements</span></p></body></html>"))
-        self.next_button.setText(_translate("Window_7_cv_pointers", "NEXT ->"))
-        self.back_button.setText(_translate("Window_7_cv_pointers", "<- BACK"))
-        self.export_button.setText(_translate("Window_7_cv_pointers", " EXPORT TO PDF"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700;\">CV Verbesserungen</span></p></body></html>"))
+        self.next_button.setText(_translate("Window_14_cv_pointers_de", "VOR ->"))
+        self.back_button.setText(_translate("Window_14_cv_pointers_de", "<- ZURÜCK"))
+        self.export_button.setText(_translate("Window_14_cv_pointers_de", "PDF EXPORTIEREN"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Window_7_cv_pointers = QtWidgets.QMainWindow()
-    ui = Ui_Window_7_cv_pointers()
-    ui.setupUi(Window_7_cv_pointers)
-    Window_7_cv_pointers.show()
+    Window_14_cv_pointers_de = QtWidgets.QMainWindow()
+    ui = Ui_Window_14_cv_pointers_de()
+    ui.setupUi(Window_14_cv_pointers_de)
+    Window_14_cv_pointers_de.show()
     sys.exit(app.exec())

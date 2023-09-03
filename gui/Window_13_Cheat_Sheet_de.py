@@ -1,12 +1,12 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Window_6_Cheat_Sheet(object):
-    def setupUi(self, Window_6_Cheat_Sheet):
-        Window_6_Cheat_Sheet.setObjectName("Window_6_Cheat_Sheet")
-        Window_6_Cheat_Sheet.resize(1000, 800)
-        Window_6_Cheat_Sheet.setStyleSheet("background-color: rgb(220, 138, 221);")
-        self.centralwidget = QtWidgets.QWidget(parent=Window_6_Cheat_Sheet)
+class Ui_Window_13_Cheat_Sheet_de(object):
+    def setupUi(self, Window_13_Cheat_Sheet_de):
+        Window_13_Cheat_Sheet_de.setObjectName("Window_13_Cheat_Sheet_de")
+        Window_13_Cheat_Sheet_de.resize(1000, 800)
+        Window_13_Cheat_Sheet_de.setStyleSheet("background-color: rgb(67,110,238);")
+        self.centralwidget = QtWidgets.QWidget(parent=Window_13_Cheat_Sheet_de)
         self.centralwidget.setObjectName("centralwidget")
         self.Cheat_Sheet_title = QtWidgets.QTextBrowser(parent=self.centralwidget)
         self.Cheat_Sheet_title.setGeometry(QtCore.QRect(0, 50, 1000, 60))
@@ -47,41 +47,41 @@ class Ui_Window_6_Cheat_Sheet(object):
         font.setBold(True)
         self.export_button.setFont(font)
         self.export_button.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"color: rgb(255, 137, 243);")
+"color: rgb(67,110,238);")
         self.export_button.setObjectName("export_button")
-        Window_6_Cheat_Sheet.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=Window_6_Cheat_Sheet)
+        Window_13_Cheat_Sheet_de.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(parent=Window_13_Cheat_Sheet_de)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1000, 22))
         self.menubar.setObjectName("menubar")
-        Window_6_Cheat_Sheet.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=Window_6_Cheat_Sheet)
+        Window_13_Cheat_Sheet_de.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(parent=Window_13_Cheat_Sheet_de)
         self.statusbar.setObjectName("statusbar")
-        Window_6_Cheat_Sheet.setStatusBar(self.statusbar)
+        Window_13_Cheat_Sheet_de.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Window_6_Cheat_Sheet)
-        QtCore.QMetaObject.connectSlotsByName(Window_6_Cheat_Sheet)
+        self.retranslateUi(Window_13_Cheat_Sheet_de)
+        QtCore.QMetaObject.connectSlotsByName(Window_13_Cheat_Sheet_de)
 
-    def retranslateUi(self, Window_6_Cheat_Sheet):
+    def retranslateUi(self, Window_13_Cheat_Sheet_de):
         _translate = QtCore.QCoreApplication.translate
-        Window_6_Cheat_Sheet.setWindowTitle(_translate("Window_6_Cheat_Sheet", "LazyApp"))
-        self.Cheat_Sheet_title.setHtml(_translate("Window_6_Cheat_Sheet", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        Window_13_Cheat_Sheet_de.setWindowTitle(_translate("Window_13_Cheat_Sheet_de", "LazyApp"))
+        self.Cheat_Sheet_title.setHtml(_translate("Window_13_Cheat_Sheet_de", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:\'Segoe UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700;\">Cheat Sheet</span></p></body></html>"))
-        self.next_button.setText(_translate("Window_6_Cheat_Sheet", "NEXT ->"))
-        self.back_button.setText(_translate("Window_6_Cheat_Sheet", "<- BACK"))
-        self.export_button.setText(_translate("Window_6_Cheat_Sheet", " EXPORT TO PDF"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; font-weight:700;\">Spickzettel</span></p></body></html>"))
+        self.next_button.setText(_translate("Window_13_Cheat_Sheet_de", "VOR ->"))
+        self.back_button.setText(_translate("Window_13_Cheat_Sheet_de", "<- ZURÜCK"))
+        self.export_button.setText(_translate("Window_13_Cheat_Sheet_de", "PDF EXPORTIEREN"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Window_6_Cheat_Sheet = QtWidgets.QMainWindow()
-    ui = Ui_Window_6_Cheat_Sheet()
-    ui.setupUi(Window_6_Cheat_Sheet)
-    Window_6_Cheat_Sheet.show()
+    Window_13_Cheat_Sheet_de = QtWidgets.QMainWindow()
+    ui = Ui_Window_13_Cheat_Sheet_de()
+    ui.setupUi(Window_13_Cheat_Sheet_de)
+    Window_13_Cheat_Sheet_de.show()
     sys.exit(app.exec())

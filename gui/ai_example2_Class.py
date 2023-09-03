@@ -48,19 +48,28 @@ class ChatGPTChat:
         system_role = "You are a helpful expert for jobsearch and application. You adapt the wording in regards to the job the user wants to apply for and provide additional information on companies and competitive market salaries." # DEFINE SYSTEM ROLE HERE
         global messages
         messages = [{"role": "system", "content": system_role}] 
-        while True:
-            user_input = user_input
-            if user_input.lower() == 'quit':
-                break
-            messages.append({"role": "user", "content": user_input}) # Append user's input to messages
-            responses = self.get_chatgpt_response(messages) # Get responses from ChatGPT
-            print("CHAT GPT: ")
-            for resp in responses:
-                print(cs(resp, "green")) # Display AI's response in green
-                messages.append({"role": "assistant", "content": resp}) # Append AI's response to messages
-            self.count_tokens(str(messages)) # Count tokens
-            break
+        #for prompt in user_input:
+            #if application_letter_checked
+            
+            #user_input = user_input
+            #if user_input.lower() == 'quit':
+            #    break
+        messages.append({"role": "user", "content": user_input})
+            
+             # Append user's input to messages
+            
+        responses = self.get_chatgpt_response(messages)
+            
+             # Get responses from ChatGPT
+        print("CHAT GPT: ")
+        print(responses)
+            #for resp in responses:
+            #    print(cs(resp, "green")) # Display AI's #response in green
+            #    messages.append({"role": "assistant", #"content": resp}) # Append AI's response to messages
+        self.count_tokens(str(messages)) # Count tokens
+            #break
+        return responses
 
 if __name__ == '__main__':
     chat_gpt = ChatGPTChat() 
-    chat_gpt.chat_interface()
+    chat_gpt.chat_interface(["what year is it now","","what is the capital of germany"])

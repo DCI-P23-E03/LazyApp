@@ -14,7 +14,7 @@ from PyQt6.QtWidgets import QMessageBox
 from datetime import datetime
 import PyPDF2
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
-#from ai_example2_Class import ChatGPTChat
+from ai_example2_Class import ChatGPTChat
 
 
 # Create class for the main window
@@ -55,29 +55,14 @@ class MainWindow(QtWidgets.QMainWindow):
             current_ui.next_button_3.clicked.connect(self.next_window_plus_input)
         if hasattr(current_ui, 'next_button_4'): # Output Page 4
             current_ui.next_button_4.clicked.connect(self.next_window_plus_checkboxes)
-        if hasattr(current_ui, 'Appl_letter_next_button'): # Appl Page 5
-            current_ui.Appl_letter_next_button.clicked.connect(self.next_window)
-        if hasattr(current_ui, 'Cheat_sheet_next_button'): # Cheat Sheet Page 6
-            current_ui.Cheat_sheet_next_button.clicked.connect(self.next_window)
-        if hasattr(current_ui, 'cv_pointers_next_button'): # CV Pointers Page 7
-            current_ui.cv_pointers_next_button.clicked.connect(self.next_window)
+        if hasattr(current_ui, 'next_button'): # Page 5, 6, 7
+            current_ui.next_button.clicked.connect(self.next_window)
 
 
         # back buttons
-        if hasattr(current_ui, 'button_backToWelcomeWindow'):  # Input page
-            current_ui.button_backToWelcomeWindow.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'back_button_3'):  # Job Ad page
-            current_ui.back_button_3.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'back_button_4'): # Output Page 4
-            current_ui.back_button_4.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'Appl_letter_back_button'): #Output Page 5
-            current_ui.Appl_letter_back_button.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'Cheat_Sheet_back_button'): # Ouput Page 6
-            current_ui.Cheat_Sheet_back_button.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'cv_pointers_back_button'): # Output Page 7
-            current_ui.cv_pointers_back_button.clicked.connect(self.prev_window)
-        if hasattr(current_ui, 'start_button_2'): # Output Page 8
-            current_ui.start_button_2.clicked.connect(self.prev_window)
+        if hasattr(current_ui, 'back_button'):  # Input page
+            current_ui.back_button.clicked.connect(self.prev_window)
+        
 
         # back to the start for second application
         if hasattr(current_ui, 'start_button_2'):
@@ -91,29 +76,44 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'button_CV_browseFile'):  # Start Page 1
             current_ui.button_CV_browseFile.clicked.connect(self.cv_browseFile)
         
-       
 
+        # export application letter, cheat sheet and cv improvements to pdf button
+        if hasattr(current_ui, 'export_button'):
+            current_ui.export_button.clicked.connect(self.export_to_pdf)
+        
+        # display gpt output
+        if current_ui == self.ui_windows[4] and letter_resp:
+            current_ui.Appl_letter_space.setPlainText(letter_resp)
+        if current_ui == self.ui_windows[5] and cheat_resp:
+            current_ui.Cheat_Sheet_space.setPlainText(cheat_resp)
+        if current_ui == self.ui_windows[6] and cv_improv_resp:
+            current_ui.cv_pointers_space.setPlainText(cv_improv_resp)
 
-        # export application letter to pdf button
-        if hasattr(current_ui, 'Appl_letter_export_button'):
-            current_ui.Appl_letter_export_button.clicked.connect(self.export_to_pdf)
-
-        # export cheat sheet to pdf button
-        if hasattr(current_ui, 'Cheat_Sheet_export_button'):
-            current_ui.Cheat_Sheet_export_button.clicked.connect(self.export_to_pdf)
-
-        # export cv pointers to pdf button
-        if hasattr(current_ui, 'cv_pointers_export_button'):
-            current_ui.cv_pointers_export_button.clicked.connect(self.export_to_pdf)
-
-
-
-    # Define function to go to the next window
+    # Define function to go to the next window (including jumps)
     def next_window(self):
-        self.current_window = (self.current_window + 1) % len(self.ui_windows)
+        current_ui = self.ui_windows[self.current_window]
+        n = 1
+
+        # starting at Checkbox Window - move over to right page
+        if current_ui == self.ui_windows[3]:
+            if not application_letter_checked and cheat_sheet_checked:
+                n = 2
+            elif not application_letter_checked and not cheat_sheet_checked:
+                n = 3
+        # starting at Application letter window - move over to CV Improvements or end
+        if current_ui == self.ui_windows[4]:
+            if not cheat_sheet_checked and cv_improvements_checked:
+                n = 2
+            elif not cheat_sheet_checked and not cv_improvements_checked:
+                n = 3
+        # start at Cheat Sheet window move over cv improvements to end        
+        if current_ui == self.ui_windows[5] and not cv_improvements_checked:
+            n = 2
+        # if all boxes are checked n =1 and program moves one by one
+        self.current_window = (self.current_window + n) % len(self.ui_windows)
         self.setup_current_window()
-    
-    
+
+
     # Define function to go to the next window 4 and store input
     def next_window_plus_input(self):
         '''stores the content of input field in variable before moving on to the next window'''
@@ -127,9 +127,7 @@ class MainWindow(QtWidgets.QMainWindow):
     # Define function to browse for CV
     def cv_browseFile(self):
         filepath = QtWidgets.QFileDialog.getOpenFileName()[0]
-        if not filepath:
-            QtWidgets.QMessageBox.warning(self, "Missing Information", "Please select a CV.")
-        print(filepath)
+        # print(filepath)
         pdf_file = open(filepath, 'rb') # open PDF file
 
         # Create a PDF reader object
@@ -147,19 +145,13 @@ class MainWindow(QtWidgets.QMainWindow):
         # Close the PDF file
         pdf_file.close()
         # Print or do something with the extracted content
-        #print(pdf_content)
+        # print(pdf_content)
         return cv
 
     # Define function to go to the next window and store date
     def next_window_plus_inputPage(self):
         '''stores the date when moving on to the next window'''
         current_ui = self.ui_windows[self.current_window]
-        #showing a pop up window if user did not fill the required info
-        if current_ui.button_availibility_date.date() == datetime.today()  or not current_ui.radioButton_fullTime.isChecked() and not current_ui.radioButton_partTime.isChecked():
-            QMessageBox.warning(self, "Warning", "Please fill in all the required information.")
-        else:
-            self.next_window
-
         # starting date for new job
         global date
         date = current_ui.button_availibility_date.date()
@@ -167,7 +159,7 @@ class MainWindow(QtWidgets.QMainWindow):
             date = "immediately"
         print(date)
 
-        #Salary input, if empty or not filled in set to "appropriate"
+        # Salary input, if empty or not filled in set to "appropriate"
         global salary
         salary = current_ui.textEdit_annuaSalary.toPlainText()
         if salary == "ANNUAL SALARY" or salary == "":
@@ -194,6 +186,10 @@ class MainWindow(QtWidgets.QMainWindow):
         ai_behaviour = float(ai_behaviour)
         # get rid of trailing zeros
         print(ai_behaviour)
+       ## if not cv:
+        ##    print("noCV")
+        ##    QtWidgets.QMessageBox.warning(self, "Missing Information", "Please select a CV.")
+        
         self.next_window()
 
         return date, salary, hours, word_amount, ai_behaviour
@@ -202,14 +198,7 @@ class MainWindow(QtWidgets.QMainWindow):
     # Define function to go to next window plus checkboxes
     def next_window_plus_checkboxes(self):
         '''stores the state of checkboxes when clicking the next button'''
-        current_ui = self.ui_windows[self.current_window]
-        #showing a pop up window if any of the checkboxes is not checked
-        if not current_ui.checkBox_Application_letter.isChecked() and not current_ui.checkBox_Cheat_Sheet.isChecked() and not current_ui.checkBox_CV_Improvements.isChecked():
-            QMessageBox.warning(self, "Warning", "Please select at least one option.")
-        
-        else:
-            self.next_window
-        
+        current_ui = self.ui_windows[self.current_window] 
         global application_letter_checked
         application_letter_checked = current_ui.checkBox_Application_letter.isChecked()
         global cheat_sheet_checked
@@ -219,9 +208,15 @@ class MainWindow(QtWidgets.QMainWindow):
         # print(application_letter_checked)
         # print(cheat_sheet_checked)
         # print(cv_improvements_checked)
-        self.instantiate_prompts()
-        # self.instantiate_ai()
-        self.next_window()
+        if not application_letter_checked and not cheat_sheet_checked and not cv_improvements_checked:
+            QMessageBox.warning(self, "Warning", "Please select at least one option.")
+        else:
+            # create prompts
+            self.instantiate_prompts()
+            # let prompts run
+            self.instantiate_ai()
+            # move to next window
+            self.next_window()
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
 
     # instantiate Prompt Classes LetterPrompt, CheatSheetPrompt, CvPointersPrompt
@@ -231,43 +226,54 @@ class MainWindow(QtWidgets.QMainWindow):
         global cheat_sheet
         cheat_sheet = ""
         global cv_pointers
-        cv_pointers =""
+        cv_pointers = ""
         if application_letter_checked:
             letter_prompt = LetterPrompt(cv, job_adv , salary_expt = salary, availability = date, hours = hours, max_length = word_amount, language = "en")
             letter = letter_prompt.prompt()
         if cheat_sheet_checked:
             cheat_sheet_prompt = CheatSheetPrompt(job_adv, language="en")
-            if not application_letter_checked:
-                cheat_sheet = cheat_sheet_prompt.prompt()
-            else:
-                cheat_sheet = cheat_sheet_prompt.follow_up()
+            # if not application_letter_checked:
+            cheat_sheet = cheat_sheet_prompt.prompt()
+            # else:
+            #  cheat_sheet = cheat_sheet_prompt.follow_up()
         if cv_improvements_checked:
-            cv_pointers_prompt = CvPointersPrompt(job_adv, cv, language="en") 
-            if not application_letter_checked and not cheat_sheet_checked:
-                cv_pointers = cv_pointers_prompt.prompt()
-            else:
-                cv_pointers = cv_pointers_prompt.follow_up()
-        global prompts
-        #prompts = [letter, cheat_sheet, cv_pointers]
-        prompts = letter + cheat_sheet + cv_pointers
-        print(prompts)
-        return prompts
-    
+            cv_pointers_prompt = CvPointersPrompt(job_adv, "en", cv)
+            #if not application_letter_checked and not cheat_sheet_checked:
+            cv_pointers = cv_pointers_prompt.prompt()
+            #else:
+               # cv_pointers = cv_pointers_prompt.follow_up()
+        return letter, cheat_sheet, cv_pointers
+
+
     # pass prompts to chat gpt
     def instantiate_ai(self):
         chat_gpt = ChatGPTChat(temperature = ai_behaviour)
-        chat_gpt.chat_interface(prompts)
-   
+        global letter_resp
+        letter_resp = ""
+        global cheat_resp
+        cheat_resp = ""
+        global cv_improv_resp
+        cv_improv_resp = ""
+        if letter:
+            letter_resp = "".join(chat_gpt.chat_interface(letter))
+        if cheat_sheet:
+            cheat_resp = "".join(chat_gpt.chat_interface(cheat_sheet))
+        if cv_pointers:
+            cv_improv_resp = "".join(chat_gpt.chat_interface(cv_pointers))
+
+        return letter_resp, cheat_resp, cv_improv_resp
+
+
     # Define function to export to pdf for Letter, CV Pointers, Cheat Sheet 
     def export_to_pdf(self):
         current_ui = self.ui_windows[self.current_window]
-        if hasattr(current_ui, 'Appl_letter_export_button'):
+        if current_ui == self.ui_windows[4]:
             content = current_ui.Appl_letter_space.toPlainText()
-        if hasattr(current_ui, 'cv_pointers_export_button'):
+        if current_ui == self.ui_windows[5]:
             content = current_ui.cv_pointers_space.toPlainText()
-        elif hasattr(current_ui, 'Cheat_Sheet_export_button'):
+        if current_ui == self.ui_windows[6]:
             content = current_ui.Cheat_Sheet_space.toPlainText()
-        #opening a file dialog to prompt the user to choose a location to save the PDF file
+        # opening a file dialog to prompt the user to choose a location to save the PDF file
         if content:
             filePath, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Save as PDF", "", "PDF Files (*.pdf);;All Files (*)")
             if filePath:
@@ -284,8 +290,19 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # Define function to go to the previous window
     def prev_window(self):
-        self.current_window = (self.current_window - 1) % len(self.ui_windows)
+        n = 1
+        # going back from CV Pointers
+        if self.current_window == 6:
+            if not cheat_sheet_checked and not application_letter_checked:
+                n = 3
+            elif not cheat_sheet_checked:
+                n = 2
+        if self.current_window == 5:
+            if not application_letter_checked:
+                n = 2     
+        self.current_window = (self.current_window - n) % len(self.ui_windows)
         self.setup_current_window()
+
 
     # Define function to go back to the start
     def back_to_start(self):
