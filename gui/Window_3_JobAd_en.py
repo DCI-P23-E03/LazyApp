@@ -21,14 +21,14 @@ class Ui_Window_3_JobAd_en(object):
         self.headline_3.setObjectName("headline_3")
 
 
-        self.next_button_3 = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.next_button_3.setGeometry(QtCore.QRect(650, 705, 200, 50))
+        self.next_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.next_button.setGeometry(QtCore.QRect(650, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        self.next_button_3.setFont(font)
-        self.next_button_3.setStyleSheet("color: rgb(255, 255, 255);")
-        self.next_button_3.setObjectName("next_button_3")
+        self.next_button.setFont(font)
+        self.next_button.setStyleSheet("color: rgb(255, 255, 255);")
+        self.next_button.setObjectName("next_button")
         self.back_button = QtWidgets.QPushButton(parent=self.centralwidget)
         self.back_button.setGeometry(QtCore.QRect(150, 705, 200, 50))
         font = QtGui.QFont()
@@ -64,7 +64,7 @@ class Ui_Window_3_JobAd_en(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt;\">Which job do you want to apply for?</span></p></body></html>"))
-        self.next_button_3.setText(_translate("Window_3_JobAd_en", "NEXT ->"))
+        self.next_button.setText(_translate("Window_3_JobAd_en", "NEXT ->"))
         self.jobTextEdit.setPlainText(_translate("Window_3_JobAd_en", "Please copy and paste the advertising for your dream job here."))
         self.back_button.setText(_translate("Window_3_JobAd_en", "<- BACK"))
 

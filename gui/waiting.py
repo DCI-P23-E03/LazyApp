@@ -2,7 +2,7 @@ import sys
 from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtGui import QMovie
 
-class LoadingGif:
+class LoadingGif(object):
 
     def mainUI(self, FrontWindow):
         FrontWindow.setObjectName("FTwindow")

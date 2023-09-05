@@ -65,11 +65,9 @@ class MainWindow(QtWidgets.QMainWindow):
         # next buttons
         if hasattr(current_ui, 'button_nextToJobAd'): # Input Page 2, Page 9
             current_ui.button_nextToJobAd.clicked.connect(self.next_window_plus_inputPage)
-        if hasattr(current_ui, 'next_button_3') and hasattr(current_ui, 'jobTextEdit'): # JobAd Page 3
-            current_ui.next_button_3.clicked.connect(self.next_window_plus_input)
         if hasattr(current_ui, 'next_button_4'): # Output Page 4, Page 11
             current_ui.next_button_4.clicked.connect(self.next_window_plus_checkboxes)
-        if hasattr(current_ui, 'next_button'): # Page 1, 5, 6, 7, 12, 13, 14
+        if hasattr(current_ui, 'next_button'): # Page 1,3,5, 6, 7, 12, 13, 14
             current_ui.next_button.clicked.connect(self.next_window)
 
 
@@ -112,6 +110,11 @@ class MainWindow(QtWidgets.QMainWindow):
             language = self.get_language()
             if language == "de":
                 n = 8
+        # getting the job_adv from the window
+        if hasattr(current_ui, 'jobTextEdit'):
+            global job_adv
+            job_adv = current_ui.jobTextEdit.toPlainText()
+            # print(job_adv)
         # starting at Checkbox Window - move over to right page
         if current_ui == self.ui_windows[3] or current_ui == self.ui_windows[10]:
             if not application_letter_checked and cheat_sheet_checked:
@@ -130,17 +133,6 @@ class MainWindow(QtWidgets.QMainWindow):
         # if all boxes are checked n =1 and program moves one by one
         self.current_window = (self.current_window + n) % len(self.ui_windows)
         self.setup_current_window()
-
-
-    # Define function to go to the next window 4 and store input
-    def next_window_plus_input(self):
-        '''stores the content of input field in variable before moving on to the next window'''
-        current_ui = self.ui_windows[self.current_window]
-        global job_adv
-        job_adv = current_ui.jobTextEdit.toPlainText()
-        print(job_adv)
-        self.next_window()
-        return job_adv
 
 
     # Define function to get language information from start page
@@ -265,7 +257,7 @@ class MainWindow(QtWidgets.QMainWindow):
             waitingwindow = QtWidgets.QMainWindow()
             waiting.mainUI(waitingwindow)
             waitingwindow.show()
-           waiting.startAnimation()
+            waiting.startAnimation()
 
 
             # create prompts
