@@ -1,5 +1,5 @@
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
-from user_input import userinput
+from old.user_input import userinput
 from old.PDFquery import *
 from ai_response_modified import ChatGPTCompletion
 from ai_example2_Class import ChatGPTChat
