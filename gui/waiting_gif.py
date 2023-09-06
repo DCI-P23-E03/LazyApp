@@ -4,7 +4,7 @@ from PyQt6.QtGui import QMovie
 
 class LoadingGif(object):
 
-    def mainUI(self, FrontWindow):
+    def setupUi(self, FrontWindow):
         FrontWindow.setObjectName("FTwindow")
         FrontWindow.resize(550 , 300)
         self.centralwidget = QtWidgets.QWidget(FrontWindow)
@@ -23,10 +23,10 @@ class LoadingGif(object):
         FrontWindow.setCentralWidget(self.centralwidget)
 
         # Loading the GIF
-        self.movie = QMovie("gui/loading_cat.gif")
+        self.movie = QMovie("loading_cat.gif")
         self.label.setMovie(self.movie)
 
-        #self.startAnimation()
+        self.startAnimation()
 
     # Start Animation
     def startAnimation(self):
@@ -36,11 +36,21 @@ class LoadingGif(object):
     def stopAnimation(self):
         self.movie.stop()
 
+
+def waiting_window():
+            waitingwindow = QtWidgets.QMainWindow()
+            waiting = LoadingGif()
+            waiting.setupUi(waitingwindow)
+            waitingwindow.show()
+            waiting.startAnimation()
+            print("AI is working on your request.")
+        
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     window = QtWidgets.QMainWindow()
     demo = LoadingGif()
-    demo.mainUI(window)
+    demo.setupUi(window)
     window.show()
 
     # Start the animation after the window is visible

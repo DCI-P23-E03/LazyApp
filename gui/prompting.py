@@ -38,9 +38,9 @@ class LetterPrompt(PromptMixin):
 
     def prompt(self):
         if self.language == "en":
-            return f"""Compile an application letter for the following job ad'{self.job_adv}', based on this CV '{self.cv}'. Include the information on {self.hours} working hours and the earliest possible start date {self.availability}.If given include the annual salary expecatation of {self.salary_expt} €, else call it "competitive". The letter should not be longer than {self.max_length} words."""
+            return f"""Compile an application letter for the following job ad'{self.job_adv}', based on this CV '{self.cv}'. Include the information on {self.hours} working hours and the earliest possible start date {self.availability}.If given include the annual salary expecatation of {self.salary_expt} €, else call it "competitive". The letter should not be longer than {self.max_length} words. Ensure correct spelling and spacing. Translate where needed."""
         if self.language == "de":
-            return f"""Entwerfe ein Anschreiben für den Job {self.job_adv}, basierend auf diesem CV {self.cv}. Die folgenden Information müssen enthalten sein: {self.hours},Gehaltsvorstellungen (pro Jahr):{self.salary_expt},Verfügbarkeit:{self.availability}. Das Anschreiben sollte nicht länger als {self.max_length} Wörter sein."""
+            return f"""Entwerfe ein Anschreiben für den Job {self.job_adv}, basierend auf diesem CV {self.cv}. Die folgenden Information müssen enthalten sein: {self.hours},Gehaltsvorstellungen (pro Jahr):{self.salary_expt},Verfügbarkeit:{self.availability}. Das Anschreiben sollte nicht länger als {self.max_length} Wörter sein. Stelle eine korrekte Rechtschreibung sicher und vermeide unnötige Leerzeichen. Übersetze Begriffe wenn nötig."""
 
 
 class CheatSheetPrompt(PromptMixin):

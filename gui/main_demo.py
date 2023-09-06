@@ -1,7 +1,6 @@
 import sys
 import PyPDF2
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtGui import QMovie
 from Window_1_Start import Ui_Window_1_Start
 from Window_2_Input import Ui_Window_2_Input
 from Window_3_JobAd_en import Ui_Window_3_JobAd_en
@@ -17,13 +16,17 @@ from Window_12_Appl_letter_de import Ui_Window_12_Application_Letter_de
 from Window_13_Cheat_Sheet_de import Ui_Window_13_Cheat_Sheet_de
 from Window_14_cv_pointers_de import Ui_Window_14_cv_pointers_de
 from Window_15_Goodbye_de import Ui_Window_15_Goodbye_de
-from waiting import LoadingGif
 from PyQt6.QtGui import QTextDocument
 from PyQt6.QtPrintSupport import QPrinter
 from PyQt6.QtWidgets import QMessageBox
 from datetime import datetime
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
 from ai_example2_Class import ChatGPTChat
+from waiting_gif import LoadingGif, waiting_window
+from PyQt6.QtGui import QMovie, QPixmap
+
+
+
 
 # Create class for the main window
 class MainWindow(QtWidgets.QMainWindow):
@@ -92,13 +95,22 @@ class MainWindow(QtWidgets.QMainWindow):
         if hasattr(current_ui, 'export_button'):
             current_ui.export_button.clicked.connect(self.export_to_pdf)
         
-        # display gpt output
+        # display gpt output and cost
         if (current_ui == self.ui_windows[4] or current_ui == self.ui_windows[11]) and letter_resp:
             current_ui.Appl_letter_space.setPlainText(letter_resp)
         if (current_ui == self.ui_windows[5] or current_ui == self.ui_windows[12]) and cheat_resp:
             current_ui.Cheat_Sheet_space.setPlainText(cheat_resp)
         if (current_ui == self.ui_windows[6] or current_ui == self.ui_windows[13]) and cv_improv_resp:
             current_ui.cv_pointers_space.setPlainText(cv_improv_resp)
+        if (current_ui == self.ui_windows[7] or current_ui == self.ui_windows[14]):
+            total_cost = letter_cost+cheat_cost+cv_improv_cost
+            if language == "de":
+                show_cost = f"Kosten für deine Bewerbung {total_cost}€"
+            else:
+                show_cost = f"Costs for your application {total_cost}€"
+            #print(show_cost)    
+            current_ui.goodbye_text__3.setPlainText(show_cost)
+        
 
     # Define function to go to the next window (including jumps)
     def next_window(self):
@@ -146,26 +158,34 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # Define function to browse for CV
     def cv_browseFile(self):
+        global filepath
         filepath = QtWidgets.QFileDialog.getOpenFileName()[0]
         # print(filepath)
-        pdf_file = open(filepath, 'rb') # open PDF file
+        try:
+            pdf_file = open(filepath, 'rb') # open PDF file
 
-        # Create a PDF reader object
-        pdf_reader = PyPDF2.PdfReader(pdf_file)
+            # Create a PDF reader object
+            pdf_reader = PyPDF2.PdfReader(pdf_file)
 
-        # Initialize an empty string to store the content
-        global cv
-        cv = ""
+            # Initialize an empty string to store the content
+            global cv
+            cv = ""
 
-        # Loop through each page and extract text
-        for page_num in range(len(pdf_reader.pages)):
-            page = pdf_reader.pages[page_num]
-            cv += page.extract_text()
+            # Loop through each page and extract text
+            for page_num in range(len(pdf_reader.pages)):
+                page = pdf_reader.pages[page_num]
+                cv += page.extract_text()
 
-        # Close the PDF file
-        pdf_file.close()
-        # Print or do something with the extracted content
-        # print(pdf_content)
+            # Close the PDF file
+            pdf_file.close()
+            # Print or do something with the extracted content
+            # print(pdf_content)
+        except FileNotFoundError:
+            if language == "de":
+                QMessageBox.warning(self, "Achtung", "Bitte lade einen CV hoch.")
+            else:
+                QMessageBox.warning(self, "Warning", "Please upload a CV.")
+
         return cv
 
 
@@ -221,16 +241,18 @@ class MainWindow(QtWidgets.QMainWindow):
         # round to nearest 0.1
         ai_behaviour = format(round(ai_behaviour/0.1)*0.1, '.1f')
         ai_behaviour = float(ai_behaviour)
-        # get rid of trailing zeros
-        print(ai_behaviour)
-       ## if not cv:
-        ##    print("noCV")
-        ##    QtWidgets.QMessageBox.warning(self, "Missing Information", "Please select a CV.")
-        
-        self.next_window()
 
-        return date, salary, hours, word_amount, ai_behaviour
-      
+        try:
+            print(cv)
+        except NameError:
+            if language == "de":
+                QMessageBox.warning(self, "Achtung", "Bitte lade einen CV hoch.")
+            else:
+                QMessageBox.warning(self, "Warning", "Please upload a CV.")
+        else:
+            self.next_window()
+
+        return date, salary, hours, word_amount, ai_behaviour   
 
     # Define function to go to next window plus checkboxes
     def next_window_plus_checkboxes(self):
@@ -252,25 +274,30 @@ class MainWindow(QtWidgets.QMainWindow):
                 QMessageBox.warning(self, "Warning", "Please select at least one option.")
         else:
             # start waiting Widgets # gif is not shown here!!!
-            waiting = LoadingGif()
-            waitingwindow = QtWidgets.QMainWindow()
-            waiting.mainUI(waitingwindow)
-            waitingwindow.show()
-            waiting.startAnimation()
-
+            
+            #open waiting window
+           # waitingwindow = QtWidgets.QMessageBox()
+            #waiting = LoadingGif()
+            #waiting.setupUi(waitingwindow)
+            #waitingwindow.show()
+            #waiting.startAnimation()
+            print("AI is working on your request.")
+            self.msg_wait()
 
             # create prompts
             self.instantiate_prompts()
 
             # let prompts run
             self.instantiate_ai()
-
-            # close waiting window after ai process is complete
-            waitingwindow.close()
+            
+            msg.close()
 
             # move to next window
             self.next_window()
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
+    
+    
+
 
     # instantiate Prompt Classes LetterPrompt, CheatSheetPrompt, CvPointersPrompt
     def instantiate_prompts(self):
@@ -307,20 +334,51 @@ class MainWindow(QtWidgets.QMainWindow):
         cheat_resp = ""
         global cv_improv_resp
         cv_improv_resp = ""
-
-
+        global letter_cost
+        letter_cost = 0
+        global cheat_cost
+        cheat_cost = 0
+        global cv_improv_cost
+        cv_improv_cost = 0
         # run prompts
         if letter:
-            letter_resp = "".join(chat_gpt.chat_interface(letter))
+            letter_cost, letter_resp = chat_gpt.chat_interface(letter)
+            letter_resp = "".join(letter_resp)
         if cheat_sheet:
-            cheat_resp = "".join(chat_gpt.chat_interface(cheat_sheet))
+            cheat_cost, cheat_resp = chat_gpt.chat_interface(cheat_sheet)
+            cheat_resp = "".join(cheat_resp)
         if cv_pointers:
-            cv_improv_resp = "".join(chat_gpt.chat_interface(cv_pointers))
+            cv_improv_cost, cv_improv_resp = chat_gpt.chat_interface(cv_pointers)
+            cv_improv_resp = "".join(cv_improv_resp)
 
 
-        return letter_resp, cheat_resp, cv_improv_resp
+        return letter_resp, cheat_resp, cv_improv_resp, letter_cost, cheat_cost, cv_improv_cost
+
+    # waiting window
+    def msg_wait (self):
+        global msg
+        msg = QMessageBox()
+
+        #create Label
+        msg.setIconPixmap(QPixmap("loading_cat.gif").scaledToWidth(550))
+        #msg.setText("Keep calm and watch the kitty.")
+        msg.setWindowTitle("Just a minute...")
+        msg.setModal(False)
+        msg.show()
+        movie = QtWidgets.QMessageBox()
+        movie.setMovie(QMovie('loading_cat.gif'))
+        movie.movie().start()
 
 
+       # icon_label = QtWidgets.QLabel()
+        #movie = 
+       # # avoid garbage collector
+       # setattr(msg, 'icon_label', movie)
+        #icon_label.setMovie(movie)
+       # movie.start()
+        # msg.setStandardButtons(QMessageBox.Ok)
+       # return msg
+    
     # Define function to export to pdf for Letter, CV Pointers, Cheat Sheet 
     def export_to_pdf(self):
         current_ui = self.ui_windows[self.current_window]

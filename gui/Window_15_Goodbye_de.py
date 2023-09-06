@@ -1,6 +1,4 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-from ai_example2_Class import total_costs
-
 
 class Ui_Window_15_Goodbye_de(object):
     def setupUi(self, Window_15_Goodbye_de):
@@ -33,14 +31,10 @@ class Ui_Window_15_Goodbye_de(object):
         self.goodbye_text__2.setObjectName("goodbye_text__2")
         self.start_button_2 = QtWidgets.QPushButton(parent=self.centralwidget)
         self.start_button_2.setGeometry(QtCore.QRect(411, 522, 200, 50))
-        self.start_button_2 = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.start_button_2.setGeometry(QtCore.QRect(411, 522, 200, 50))
-        self.goodbye_text__3 = QtWidgets.QTextBrowser(parent=self.centralwidget)
-        self.goodbye_text__3.setGeometry(QtCore.QRect(0, 660, 1001, 121))
-        self.goodbye_text__3.setAutoFillBackground(True)
-        self.goodbye_text__3.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.goodbye_text__3.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
-        self.goodbye_text__3.setLineWidth(0)
+        self.goodbye_text__3 = QtWidgets.QTextEdit(parent=self.centralwidget)
+        self.goodbye_text__3.setGeometry(QtCore.QRect(0, 660, 200, 50))
+        self.goodbye_text__3.setStyleSheet("background-color: rgb(252, 240, 251);")
+        self.goodbye_text__3.setPlainText("")
         self.goodbye_text__3.setObjectName("goodbye_text__3")
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
@@ -140,11 +134,7 @@ class Ui_Window_15_Goodbye_de(object):
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:72pt; font-weight:704; color:#ffffff;\">TSCHÖÖ!</span></p></body></html>"))
         self.start_button_2.setText(_translate("Window_15_Goodbye_de", "NOCHMAL"))
-        self.goodbye_text__3.setHtml(_translate("Window_8_Goodbye_en", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-f"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt; color:#324990;\">Die Gesamtkosten für Deine Bewerbung betragen {total_costs}€!</span></p></body></html>"))
+        
 
 if __name__ == "__main__":
     import sys
