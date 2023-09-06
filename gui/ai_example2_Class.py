@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 import tiktoken
 
+total_costs = 0.0000
 
 load_dotenv()
 
@@ -39,8 +40,15 @@ class ChatGPTChat:
             enc = tiktoken.encoding_for_model("gpt-3.5-turbo")
             tokens = len(enc.encode(text))
             token_usage_costs = tokens / 1000 * 0.015
-            return tokens, token_usage_costs, print("Tokens used:", tokens, " ; " "Your Costs are :", token_usage_costs, " Euro")
-
+            global total_costs
+            if total_costs == 0.0000:
+                total_costs = float(token_usage_costs)
+            elif total_costs != 0.0000:
+                total_costs = float(total_costs + token_usage_costs)
+            else: 
+                print("Error")
+            return total_costs, print(f"Total costs: {total_costs}€, Tokens: {tokens}, token usage costs: {token_usage_costs}€")
+    
     def chat_interface(self, user_input):
         # Display welcome message
         print(cs("Welcome to ChatGPT!", "blue"))
@@ -66,6 +74,7 @@ class ChatGPTChat:
             #for resp in responses:
             #    print(cs(resp, "green")) # Display AI's #response in green
             #    messages.append({"role": "assistant", #"content": resp}) # Append AI's response to messages
+        
         self.count_tokens(str(messages)) # Count tokens
             #break
         return responses

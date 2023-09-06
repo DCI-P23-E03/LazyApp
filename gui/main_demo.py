@@ -26,7 +26,6 @@ from ai_example2_Class import ChatGPTChat
 from waiting_gif import LoadingGif, waiting_window
 
 
-
 # Create class for the main window
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
