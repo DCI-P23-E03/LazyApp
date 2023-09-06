@@ -1,5 +1,7 @@
 import sys
+import PyPDF2
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtGui import QMovie
 from Window_1_Start import Ui_Window_1_Start
 from Window_2_Input import Ui_Window_2_Input
 from Window_3_JobAd_en import Ui_Window_3_JobAd_en
@@ -15,11 +17,11 @@ from Window_12_Appl_letter_de import Ui_Window_12_Application_Letter_de
 from Window_13_Cheat_Sheet_de import Ui_Window_13_Cheat_Sheet_de
 from Window_14_cv_pointers_de import Ui_Window_14_cv_pointers_de
 from Window_15_Goodbye_de import Ui_Window_15_Goodbye_de
+from waiting import LoadingGif
 from PyQt6.QtGui import QTextDocument
 from PyQt6.QtPrintSupport import QPrinter
 from PyQt6.QtWidgets import QMessageBox
 from datetime import datetime
-import PyPDF2
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
 from ai_example2_Class import ChatGPTChat
 
@@ -62,11 +64,9 @@ class MainWindow(QtWidgets.QMainWindow):
         # next buttons
         if hasattr(current_ui, 'button_nextToJobAd'): # Input Page 2, Page 9
             current_ui.button_nextToJobAd.clicked.connect(self.next_window_plus_inputPage)
-        if hasattr(current_ui, 'next_button_3') and hasattr(current_ui, 'jobTextEdit'): # JobAd Page 3
-            current_ui.next_button_3.clicked.connect(self.next_window_plus_input)
         if hasattr(current_ui, 'next_button_4'): # Output Page 4, Page 11
             current_ui.next_button_4.clicked.connect(self.next_window_plus_checkboxes)
-        if hasattr(current_ui, 'next_button'): # Page 1, 5, 6, 7, 12, 13, 14
+        if hasattr(current_ui, 'next_button'): # Page 1,3,5, 6, 7, 12, 13, 14
             current_ui.next_button.clicked.connect(self.next_window)
 
 
@@ -109,6 +109,11 @@ class MainWindow(QtWidgets.QMainWindow):
             language = self.get_language()
             if language == "de":
                 n = 8
+        # getting the job_adv from the window
+        if hasattr(current_ui, 'jobTextEdit'):
+            global job_adv
+            job_adv = current_ui.jobTextEdit.toPlainText()
+            # print(job_adv)
         # starting at Checkbox Window - move over to right page
         if current_ui == self.ui_windows[3] or current_ui == self.ui_windows[10]:
             if not application_letter_checked and cheat_sheet_checked:
@@ -127,17 +132,6 @@ class MainWindow(QtWidgets.QMainWindow):
         # if all boxes are checked n =1 and program moves one by one
         self.current_window = (self.current_window + n) % len(self.ui_windows)
         self.setup_current_window()
-
-
-    # Define function to go to the next window 4 and store input
-    def next_window_plus_input(self):
-        '''stores the content of input field in variable before moving on to the next window'''
-        current_ui = self.ui_windows[self.current_window]
-        global job_adv
-        job_adv = current_ui.jobTextEdit.toPlainText()
-        print(job_adv)
-        self.next_window()
-        return job_adv
 
 
     # Define function to get language information from start page
@@ -257,10 +251,23 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 QMessageBox.warning(self, "Warning", "Please select at least one option.")
         else:
+            # start waiting Widgets # gif is not shown here!!!
+            waiting = LoadingGif()
+            waitingwindow = QtWidgets.QMainWindow()
+            waiting.mainUI(waitingwindow)
+            waitingwindow.show()
+            waiting.startAnimation()
+
+
             # create prompts
             self.instantiate_prompts()
+
             # let prompts run
             self.instantiate_ai()
+
+            # close waiting window after ai process is complete
+            waitingwindow.close()
+
             # move to next window
             self.next_window()
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
@@ -300,12 +307,16 @@ class MainWindow(QtWidgets.QMainWindow):
         cheat_resp = ""
         global cv_improv_resp
         cv_improv_resp = ""
+
+
+        # run prompts
         if letter:
             letter_resp = "".join(chat_gpt.chat_interface(letter))
         if cheat_sheet:
             cheat_resp = "".join(chat_gpt.chat_interface(cheat_sheet))
         if cv_pointers:
             cv_improv_resp = "".join(chat_gpt.chat_interface(cv_pointers))
+
 
         return letter_resp, cheat_resp, cv_improv_resp
 
@@ -316,9 +327,9 @@ class MainWindow(QtWidgets.QMainWindow):
         if current_ui == self.ui_windows[4] or current_ui == self.ui_windows[11]:
             content = current_ui.Appl_letter_space.toPlainText()
         if current_ui == self.ui_windows[5] or current_ui == self.ui_windows[12]:
-            content = current_ui.cv_pointers_space.toPlainText()
-        if current_ui == self.ui_windows[6] or current_ui == self.ui_windows[13]:
             content = current_ui.Cheat_Sheet_space.toPlainText()
+        if current_ui == self.ui_windows[6] or current_ui == self.ui_windows[13]:
+            content = current_ui.cv_pointers_space.toPlainText()
         # opening a file dialog to prompt the user to choose a location to save the PDF file
         if content:
             filePath, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Save as PDF", "", "PDF Files (*.pdf);;All Files (*)")
