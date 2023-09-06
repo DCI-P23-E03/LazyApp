@@ -23,7 +23,6 @@ import PyPDF2
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
 from ai_example2_Class import ChatGPTChat
 
-
 # Create class for the main window
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
