@@ -1,7 +1,7 @@
 import sys
 import PyPDF2
+import threading
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtGui import QMovie
 from Window_1_Start import Ui_Window_1_Start
 from Window_2_Input import Ui_Window_2_Input
 from Window_3_JobAd_en import Ui_Window_3_JobAd_en
@@ -17,13 +17,14 @@ from Window_12_Appl_letter_de import Ui_Window_12_Application_Letter_de
 from Window_13_Cheat_Sheet_de import Ui_Window_13_Cheat_Sheet_de
 from Window_14_cv_pointers_de import Ui_Window_14_cv_pointers_de
 from Window_15_Goodbye_de import Ui_Window_15_Goodbye_de
-from waiting import LoadingGif
 from PyQt6.QtGui import QTextDocument
 from PyQt6.QtPrintSupport import QPrinter
 from PyQt6.QtWidgets import QMessageBox
 from datetime import datetime
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
 from ai_example2_Class import ChatGPTChat
+from waiting_gif import LoadingGif, waiting_window
+
 
 
 # Create class for the main window
@@ -147,6 +148,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # Define function to browse for CV
     def cv_browseFile(self):
+        global filepath
         filepath = QtWidgets.QFileDialog.getOpenFileName()[0]
         # print(filepath)
         pdf_file = open(filepath, 'rb') # open PDF file
@@ -222,16 +224,18 @@ class MainWindow(QtWidgets.QMainWindow):
         # round to nearest 0.1
         ai_behaviour = format(round(ai_behaviour/0.1)*0.1, '.1f')
         ai_behaviour = float(ai_behaviour)
-        # get rid of trailing zeros
-        print(ai_behaviour)
-       ## if not cv:
-        ##    print("noCV")
-        ##    QtWidgets.QMessageBox.warning(self, "Missing Information", "Please select a CV.")
-        
-        self.next_window()
 
-        return date, salary, hours, word_amount, ai_behaviour
-      
+        try:
+            print(cv)
+        except NameError:
+            if language == "de":
+                QMessageBox.warning(self, "Achtung", "Bitte lade einen CV hoch.")
+            else:
+                QMessageBox.warning(self, "Warning", "Please upload a CV.")
+        else:
+            self.next_window()
+
+        return date, salary, hours, word_amount, ai_behaviour   
 
     # Define function to go to next window plus checkboxes
     def next_window_plus_checkboxes(self):
@@ -253,11 +257,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 QMessageBox.warning(self, "Warning", "Please select at least one option.")
         else:
             # start waiting Widgets # gif is not shown here!!!
-            waiting = LoadingGif()
-            waitingwindow = QtWidgets.QMainWindow()
-            waiting.mainUI(waitingwindow)
-            waitingwindow.show()
-            waiting.startAnimation()
+            
+            #open waiting window
+            #waitingwindow = QtWidgets.QMainWindow()
+            #waiting = LoadingGif()
+            #waiting.setupUi(waitingwindow)
+            #waitingwindow.show()
+            #waiting.startAnimation()
+            print("AI is working on your request.")
 
 
             # create prompts
@@ -265,13 +272,15 @@ class MainWindow(QtWidgets.QMainWindow):
 
             # let prompts run
             self.instantiate_ai()
-
-            # close waiting window after ai process is complete
-            waitingwindow.close()
+            
+            #waitingwindow.close()
 
             # move to next window
             self.next_window()
         return application_letter_checked, cheat_sheet_checked, cv_improvements_checked
+    
+    
+
 
     # instantiate Prompt Classes LetterPrompt, CheatSheetPrompt, CvPointersPrompt
     def instantiate_prompts(self):
