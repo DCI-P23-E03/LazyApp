@@ -24,21 +24,15 @@ To use LazyApp, follow these steps:
 
 git clone https://github.com/your-username/LazyApp.git
 
-arduino
-
 
 2. Install the required Python modules by running the following command:
 
 pip install -r requirements.txt
 
-javascript
-
 
 3. Set up your OpenAI API credentials by creating a `.env` file in the project directory and adding the following lines:
 
 OPENAI_API_KEY=your-api-key
-
-vbnet
 
 Replace `your-api-key` with your actual OpenAI API key.
 
@@ -46,12 +40,10 @@ Replace `your-api-key` with your actual OpenAI API key.
 
 python lazyapp.py
 
-vbnet
-
 
 The GUI will open, allowing you to interact with the application assistant. Use the provided options and input fields to modify the parameters and generate application letters, CV improvements, or cheatsheets based on your requirements.
 
-## Contributions
+## Explanations
 
 Customize the outcome by modifying the following parameters of the GUI:
 
