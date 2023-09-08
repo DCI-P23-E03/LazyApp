@@ -1,18 +1,17 @@
 from abc import ABC, abstractmethod
 
-
+# abstract class for the prompt mixin
 class PromptMixin(ABC):
     # constructor method including all prompt parameter with default values
     def __init__(self, job_adv: str, language: str):
         self.job_adv = job_adv
         self.language = language
 
-
     @abstractmethod
     def prompt(self):
         pass
 
-
+# class for the application letter prompt
 class LetterPrompt(PromptMixin):
     # application counter
     application_counter = 0
@@ -21,11 +20,11 @@ class LetterPrompt(PromptMixin):
         self,
         cv: str,
         job_adv: str,
-        salary_expt,
-        availability,
-        hours,
-        max_length,
-        language
+        salary_expt, # salary expectation
+        availability, # earliest possible start date
+        hours, # working hours
+        max_length, # maximum length of the letter  
+        language, # language of the prompt
     ):
         super().__init__(job_adv, language)
         self.cv = cv
@@ -42,7 +41,7 @@ class LetterPrompt(PromptMixin):
         if self.language == "de":
             return f"""Entwerfe ein Anschreiben für den Job {self.job_adv}, basierend auf diesem CV {self.cv}. Die folgenden Information müssen enthalten sein: {self.hours},Gehaltsvorstellungen (pro Jahr):{self.salary_expt},Verfügbarkeit:{self.availability}. Das Anschreiben sollte nicht länger als {self.max_length} Wörter sein. Stelle eine korrekte Rechtschreibung sicher und vermeide unnötige Leerzeichen. Übersetze Begriffe wenn nötig."""
 
-
+#class for the cheatsheet prompt
 class CheatSheetPrompt(PromptMixin):
     def __init__(self, job_adv, language):
         super().__init__(job_adv, language)
@@ -59,7 +58,7 @@ class CheatSheetPrompt(PromptMixin):
         if self.language == "de":
             return f"""Stelle einen Spickzettel für ein Bewerbungsgespräch für die genannte Stelle mit relevanten Infos zum Unternehmen,zur Branche und zu Gehältern."""
 
-
+#class for the cv improvements prompt
 class CvPointersPrompt(PromptMixin):
     def __init__(self, job_adv, language, cv):
         super().__init__(job_adv, language)
@@ -76,4 +75,3 @@ class CvPointersPrompt(PromptMixin):
             return f"Based on the previous information improve the CV. Make sure relevant Keywords are included."
         if self.language == "de":
             return f"""Mache Verbesserungsvorschläge für den Lebenslauf basierend auf den vorherigen Informationen. Stelle sicher dass relevante Schlagwörter verwendet werden."""
-
