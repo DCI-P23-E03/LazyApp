@@ -22,7 +22,6 @@ from PyQt6.QtWidgets import QMessageBox
 from datetime import datetime
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
 from ai_example2_Class import ChatGPTChat
-from waiting_gif import LoadingGif, waiting_window
 from PyQt6.QtGui import QMovie, QPixmap
 
 
@@ -355,6 +354,7 @@ class MainWindow(QtWidgets.QMainWindow):
             cheat_cost,
             cv_improv_cost,
         )
+
 
 
     # Define function to export to pdf for Letter, CV Pointers, Cheat Sheet
