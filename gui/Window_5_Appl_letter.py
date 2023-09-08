@@ -26,7 +26,7 @@ class Ui_Window_5_Application_Letter(object):
         self.next_button.setObjectName("next_button")
         self.Appl_letter_space = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
         self.Appl_letter_space.setGeometry(QtCore.QRect(50, 139, 900, 491))
-        self.Appl_letter_space.setStyleSheet("background-color: rgb(252, 240, 251);")
+        self.Appl_letter_space.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 12pt \"Ubuntu\";\n""\n""color: rgb(220, 138, 221);")
         self.Appl_letter_space.setPlainText("")
         self.Appl_letter_space.setOverwriteMode(True)
         self.Appl_letter_space.setBackgroundVisible(False)

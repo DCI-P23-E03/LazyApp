@@ -26,7 +26,7 @@ class Ui_Window_7_cv_pointers(object):
         self.next_button.setObjectName("next_button")
         self.cv_pointers_space = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
         self.cv_pointers_space.setGeometry(QtCore.QRect(50, 139, 900, 491))
-        self.cv_pointers_space.setStyleSheet("background-color: rgb(252, 240, 251);")
+        self.cv_pointers_space.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 12pt \"Ubuntu\";\n""\n""color: rgb(220, 138, 221);")
         self.cv_pointers_space.setPlainText("")
         self.cv_pointers_space.setOverwriteMode(True)
         self.cv_pointers_space.setBackgroundVisible(False)
