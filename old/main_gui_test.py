@@ -10,7 +10,6 @@ class Ui_Main_App_Window(QtWidgets.QMainWindow):
         self.ui = Ui_Window_1_Start()
         self.ui.setupUi(self)
         self.ui.start_button.clicked.connect(self.start_button_clicked)
-       
 
     def start_button_clicked(self):
         self.window = QtWidgets.QMainWindow()
@@ -26,5 +25,3 @@ if __name__ == "__main__":
     main_window.show()
 
     sys.exit(app.exec())
-
-
