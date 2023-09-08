@@ -83,7 +83,7 @@ def userinput():
         )
         if salary_expt.lower() == "v" or not salary_expt:
             salary_expt = ""  # empty until webscraping from glassdoor is finished
-        
+
     else:
         print(valid_choice)
 

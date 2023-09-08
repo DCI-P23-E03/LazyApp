@@ -1,10 +1,10 @@
-#pip install PyPDF2
+# pip install PyPDF2
 
 import PyPDF2
 
 # Open the PDF file in binary read mode
-pdf_file_path = '/home/user/Documents/DCI_CODE/LAZY/PDF input/Lebenslauf Simakov.pdf'
-pdf_file = open(pdf_file_path, 'rb')
+pdf_file_path = "/home/user/Documents/DCI_CODE/LAZY/PDF input/Lebenslauf Simakov.pdf"
+pdf_file = open(pdf_file_path, "rb")
 
 # Create a PDF reader object
 pdf_reader = PyPDF2.PdfReader(pdf_file)
