@@ -1,6 +1,12 @@
 import sys
 import PyPDF2
+from datetime import datetime
+# import PyQt 6 Modules
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtGui import QTextDocument
+from PyQt6.QtPrintSupport import QPrinter
+from PyQt6.QtWidgets import QMessageBox
+# import other from other files
 from Window_1_Start import Ui_Window_1_Start
 from Window_2_Input import Ui_Window_2_Input
 from Window_3_JobAd_en import Ui_Window_3_JobAd_en
@@ -16,13 +22,10 @@ from Window_12_Appl_letter_de import Ui_Window_12_Application_Letter_de
 from Window_13_Cheat_Sheet_de import Ui_Window_13_Cheat_Sheet_de
 from Window_14_cv_pointers_de import Ui_Window_14_cv_pointers_de
 from Window_15_Goodbye_de import Ui_Window_15_Goodbye_de
-from PyQt6.QtGui import QTextDocument
-from PyQt6.QtPrintSupport import QPrinter
-from PyQt6.QtWidgets import QMessageBox
-from datetime import datetime
-from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
 from ai_example2_Class import ChatGPTChat
-from PyQt6.QtGui import QMovie, QPixmap
+from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
+from waiting import msg_wait, msg_close
+
 
 
 # Creates class for the main window
@@ -282,12 +285,19 @@ class MainWindow(QtWidgets.QMainWindow):
                     self, "Warning", "Please select at least one option."
                 )
         else:
+            # open waiting animation # kitty now working as of now
+
+            msg_wait(language)
             
+
             # create prompts
             self.instantiate_prompts()
 
             # let prompts run
             self.instantiate_ai()
+
+            # close waiting animation
+            msg_close()
 
             # move to next window
             self.next_window()
