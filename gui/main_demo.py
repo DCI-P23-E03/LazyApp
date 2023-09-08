@@ -22,7 +22,6 @@ from PyQt6.QtWidgets import QMessageBox
 from datetime import datetime
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
 from ai_example2_Class import ChatGPTChat
-from waiting_gif import LoadingGif, waiting_window
 from PyQt6.QtGui import QMovie, QPixmap
 
 
@@ -357,17 +356,21 @@ class MainWindow(QtWidgets.QMainWindow):
     # waiting window
     def msg_wait (self):
         global msg
-        msg = QMessageBox()
+        msg = QtWidgets.QMessageBox()
 
         #create Label
         msg.setIconPixmap(QPixmap("loading_cat.gif").scaledToWidth(550))
+        icon_label = msg.findChild(QLabel, "qt_msgboxex_icon_label")
         #msg.setText("Keep calm and watch the kitty.")
         msg.setWindowTitle("Just a minute...")
         msg.setModal(False)
         msg.show()
-        movie = QtWidgets.QMessageBox()
+
+        #create QLabel to display the gif
+        movie = QtWidgets.QLabel(msg)
+        movie.setGeometry(0, 0, 550, 300)
         movie.setMovie(QMovie('loading_cat.gif'))
-        movie.movie().start()
+        movie.start()
 
 
        # icon_label = QtWidgets.QLabel()
