@@ -111,8 +111,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 show_cost = f"Kosten für deine Bewerbung {total_cost}€"
             else:
                 show_cost = f"Costs for your application {total_cost}€"
-            # print(show_cost)
-            current_ui.goodbye_text__3.setPlainText(show_cost)
+
+            #print(show_cost)    
+            current_ui.goodbye_text__3.setText(show_cost)
+        
 
     # Define function to go to the next window (including jumps)
     def next_window(self):

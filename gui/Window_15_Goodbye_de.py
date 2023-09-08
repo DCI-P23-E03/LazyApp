@@ -33,11 +33,13 @@ class Ui_Window_15_Goodbye_de(object):
         self.goodbye_text__2.setObjectName("goodbye_text__2")
         self.start_button_2 = QtWidgets.QPushButton(parent=self.centralwidget)
         self.start_button_2.setGeometry(QtCore.QRect(411, 522, 200, 50))
-        self.goodbye_text__3 = QtWidgets.QTextEdit(parent=self.centralwidget)
-        self.goodbye_text__3.setGeometry(QtCore.QRect(0, 660, 200, 50))
-        self.goodbye_text__3.setStyleSheet("background-color: rgb(252, 240, 251);")
-        self.goodbye_text__3.setPlainText("")
+               
+        self.goodbye_text__3 = QtWidgets.QLabel(parent=self.centralwidget)
+        self.goodbye_text__3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.goodbye_text__3.setGeometry(QtCore.QRect(0, 650, 1001, 50))
+        self.goodbye_text__3.setStyleSheet("background-color: rgb(67,110,238); color:#324990; font-size:18pt;")
         self.goodbye_text__3.setObjectName("goodbye_text__3")
+
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)

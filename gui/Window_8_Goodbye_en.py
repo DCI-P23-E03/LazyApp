@@ -33,12 +33,11 @@ class Ui_Window_8_Goodbye_en(object):
         self.goodbye_text__2.setObjectName("goodbye_text__2")
         self.start_button_2 = QtWidgets.QPushButton(parent=self.centralwidget)
         self.start_button_2.setGeometry(QtCore.QRect(411, 522, 200, 50))
-
-        self.goodbye_text__3 = QtWidgets.QTextEdit(parent=self.centralwidget)
-        self.goodbye_text__3.setGeometry(QtCore.QRect(0, 660, 1001, 121))
-        self.goodbye_text__3.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.goodbye_text__3.setStyleSheet("background-color: rgb(220, 138, 221); color:#b761b8")
-        self.goodbye_text__3.setPlainText("")
+                
+        self.goodbye_text__3 = QtWidgets.QLabel(parent=self.centralwidget)
+        self.goodbye_text__3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.goodbye_text__3.setGeometry(QtCore.QRect(200, 650, 1001, 50))
+        self.goodbye_text__3.setStyleSheet("background-color: rgb(220, 138, 221); color:#b761b8; font-size:18pt;")
         self.goodbye_text__3.setObjectName("goodbye_text__3")
 
         palette = QtGui.QPalette()
