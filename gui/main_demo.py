@@ -27,7 +27,6 @@ from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
 from waiting import msg_wait, msg_close
 
 
-
 # Creates class for the main window
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -108,7 +107,7 @@ class MainWindow(QtWidgets.QMainWindow):
         ) and cv_improv_resp:
             current_ui.cv_pointers_space.setPlainText(cv_improv_resp)
         if current_ui == self.ui_windows[7] or current_ui == self.ui_windows[14]:
-            total_cost = letter_cost + cheat_cost + cv_improv_cost
+            total_cost = round((letter_cost + cheat_cost + cv_improv_cost), 4)
             if language == "de":
                 show_cost = f"Kosten für deine Bewerbung {total_cost}€"
             else:
