@@ -281,8 +281,8 @@ class MainWindow(QtWidgets.QMainWindow):
             #waiting.setupUi(waitingwindow)
             #waitingwindow.show()
             #waiting.startAnimation()
-            print("AI is working on your request.")
-            self.msg_wait()
+            """ print("AI is working on your request.")
+            self.msg_wait()"""
 
             # create prompts
             self.instantiate_prompts()
@@ -290,7 +290,7 @@ class MainWindow(QtWidgets.QMainWindow):
             # let prompts run
             self.instantiate_ai()
             
-            msg.close()
+            #msg.close()
 
             # move to next window
             self.next_window()
@@ -354,7 +354,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         return letter_resp, cheat_resp, cv_improv_resp, letter_cost, cheat_cost, cv_improv_cost
 
-    # waiting window
+    """   # waiting window
     def msg_wait (self):
         global msg
         msg = QMessageBox()
@@ -368,7 +368,7 @@ class MainWindow(QtWidgets.QMainWindow):
         movie = QtWidgets.QMessageBox()
         movie.setMovie(QMovie('loading_cat.gif'))
         movie.movie().start()
-
+"""
 
        # icon_label = QtWidgets.QLabel()
         #movie = 

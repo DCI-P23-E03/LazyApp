@@ -26,7 +26,7 @@ class Ui_Window_6_Cheat_Sheet(object):
         self.next_button.setObjectName("next_button")
         self.Cheat_Sheet_space = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
         self.Cheat_Sheet_space.setGeometry(QtCore.QRect(50, 139, 900, 491))
-        self.Cheat_Sheet_space.setStyleSheet("background-color: rgb(252, 240, 251);")
+        self.Cheat_Sheet_space.setStyleSheet("background-color: rgb(255, 255, 255);\n""font: 12pt \"Ubuntu\";\n""\n""color: rgb(220, 138, 221);")
         self.Cheat_Sheet_space.setPlainText("")
         self.Cheat_Sheet_space.setOverwriteMode(True)
         self.Cheat_Sheet_space.setBackgroundVisible(False)

@@ -67,9 +67,9 @@ class CvPointersPrompt(PromptMixin):
 
     def prompt(self):
         if self.language == "en":
-            return f"Based on this job ad: {self.job_adv}improve the CV {self.cv}."
+            return f"Based on this job ad: {self.job_adv}improve the CV {self.cv}. Comment on your suggestions."
         if self.language == "de":
-            return f"""Mache Verbesserungsvorschläge für den CV {self.cv} basierend auf der Stellenausschreibung {self.job_adv}. Stelle sicher die relevanten Schlagwörter zu verwenden."""
+            return f"""Mache Verbesserungsvorschläge für den CV {self.cv} basierend auf der Stellenausschreibung {self.job_adv}. Stelle sicher die relevanten Schlagwörter zu verwenden. Kommentiere deine Vorschläge"""
 
     def follow_up(self):
         if self.language == "en":
