@@ -24,7 +24,7 @@ from Window_14_cv_pointers_de import Ui_Window_14_cv_pointers_de
 from Window_15_Goodbye_de import Ui_Window_15_Goodbye_de
 from ai_implementation import ChatGPTChat
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
-from waiting import msg_wait, msg_show, msg_close
+from waiting import msg_wait, msg_close
 
 
 # Creates class for the main window

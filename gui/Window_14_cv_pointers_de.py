@@ -34,7 +34,7 @@ class Ui_Window_14_cv_pointers_de(object):
             "color: rgb(67,110,238);"
         )
         self.cv_pointers_space.setPlainText("")
-        self.cv_pointers_space.setOverwriteMode(True)
+        self.cv_pointers_space.setOverwriteMode(False)
         self.cv_pointers_space.setBackgroundVisible(False)
         self.cv_pointers_space.setCenterOnScroll(False)
         self.cv_pointers_space.setObjectName("cv_pointers_space")

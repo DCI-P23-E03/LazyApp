@@ -35,7 +35,7 @@ class Ui_Window_7_cv_pointers(object):
         )
         #BACK BUTTON
         self.cv_pointers_space.setPlainText("")
-        self.cv_pointers_space.setOverwriteMode(True)
+        self.cv_pointers_space.setOverwriteMode(False)
         self.cv_pointers_space.setBackgroundVisible(False)
         self.cv_pointers_space.setCenterOnScroll(False)
         self.cv_pointers_space.setObjectName("cv_pointers_space")
