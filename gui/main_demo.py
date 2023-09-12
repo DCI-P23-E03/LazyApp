@@ -22,9 +22,9 @@ from Window_12_Appl_letter_de import Ui_Window_12_Application_Letter_de
 from Window_13_Cheat_Sheet_de import Ui_Window_13_Cheat_Sheet_de
 from Window_14_cv_pointers_de import Ui_Window_14_cv_pointers_de
 from Window_15_Goodbye_de import Ui_Window_15_Goodbye_de
-from ai_example2_Class import ChatGPTChat
+from ai_implementation import ChatGPTChat
 from prompting import LetterPrompt, CheatSheetPrompt, CvPointersPrompt
-from waiting import msg_wait, msg_close
+from waiting import msg_wait, msg_show, msg_close
 
 
 # Creates class for the main window
@@ -70,8 +70,10 @@ class MainWindow(QtWidgets.QMainWindow):
             )
         if hasattr(current_ui, "next_button_4"):  # Output Page 4, Page 11
             current_ui.next_button_4.clicked.connect(self.next_window_plus_checkboxes)
-        if hasattr(current_ui, "next_button"):  # Page 1,3,5, 6, 7, 12, 13, 14
+        if hasattr(current_ui, "next_button"):  # Page 1, 5, 6, 7, 12, 13, 14
             current_ui.next_button.clicked.connect(self.next_window)
+        if hasattr(current_ui, "jobTextEdit"): #Page 3 and 10
+            current_ui.next_button_3.clicked.connect(self.next_plus_jobad_special)
 
         # back buttons
         if hasattr(current_ui, "back_button"):  # Input page
@@ -116,6 +118,24 @@ class MainWindow(QtWidgets.QMainWindow):
             #print(show_cost)    
             current_ui.goodbye_text__3.setText(show_cost)
         
+    # Define function to get Job adv Information and any special requests
+    def next_plus_jobad_special(self):
+        current_ui = self.ui_windows[self.current_window]
+        #get job adv information
+        global job_adv
+        job_adv = current_ui.jobTextEdit.toPlainText()
+        # print(job_adv)
+        # getting the special request from the window
+        global specialrequest
+        specialrequest = ""
+        if current_ui.specialrequest.toPlainText() and not (current_ui.specialrequest.toPlainText() == "Please write down any special requests you may have for your application letter.(optional)" or current_ui.specialrequest.toPlainText() == "Schreibe hier alle besonderen Wünsche auf, die du für dein Anschreiben hast. (optional)"):
+            if language == "de":
+                specialrequest = f" Berücksichtige zusätzlich die folgende besondere Anfrage: {current_ui.specialrequest.toPlainText()}"
+            else:
+                specialrequest = f" Please consider the following special request as well: {current_ui.specialrequest.toPlainText()}."
+            print(specialrequest)
+        self.next_window()    
+        return job_adv, specialrequest
 
     # Define function to go to the next window (including jumps)
     def next_window(self):
@@ -126,11 +146,7 @@ class MainWindow(QtWidgets.QMainWindow):
             language = self.get_language()
             if language == "de":
                 n = 8
-        # getting the job_adv from the window
-        if hasattr(current_ui, "jobTextEdit"):
-            global job_adv
-            job_adv = current_ui.jobTextEdit.toPlainText()
-            # print(job_adv)
+
         # starting at Checkbox Window - move over to right page
         if current_ui == self.ui_windows[3] or current_ui == self.ui_windows[10]:
             if not application_letter_checked and cheat_sheet_checked:
@@ -284,10 +300,9 @@ class MainWindow(QtWidgets.QMainWindow):
                     self, "Warning", "Please select at least one option."
                 )
         else:
-            # open waiting animation # kitty now working as of now
-
+            # open waiting box
             msg_wait(language)
-            
+        
 
             # create prompts
             self.instantiate_prompts()
@@ -319,6 +334,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 hours=hours,
                 max_length=word_amount,
                 language=language,
+                specialrequest=specialrequest
             )
             letter = letter_prompt.prompt()
         if cheat_sheet_checked:
