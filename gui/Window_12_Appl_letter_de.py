@@ -37,7 +37,7 @@ class Ui_Window_12_Application_Letter_de(object):
             "color: rgb(67,110,238);"
         )
         self.Appl_letter_space.setPlainText("")
-        self.Appl_letter_space.setOverwriteMode(True)
+        self.Appl_letter_space.setOverwriteMode(False)
         self.Appl_letter_space.setBackgroundVisible(False)
         self.Appl_letter_space.setCenterOnScroll(False)
         self.Appl_letter_space.setObjectName("Appl_letter_space")

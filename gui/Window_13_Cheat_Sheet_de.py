@@ -35,7 +35,7 @@ class Ui_Window_13_Cheat_Sheet_de(object):
             "color: rgb(67,110,238);"
         )
         self.Cheat_Sheet_space.setPlainText("")
-        self.Cheat_Sheet_space.setOverwriteMode(True)
+        self.Cheat_Sheet_space.setOverwriteMode(False)
         self.Cheat_Sheet_space.setBackgroundVisible(False)
         self.Cheat_Sheet_space.setCenterOnScroll(False)
         self.Cheat_Sheet_space.setObjectName("Cheat_Sheet_space")
