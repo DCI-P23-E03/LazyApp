@@ -118,24 +118,6 @@ class MainWindow(QtWidgets.QMainWindow):
             #print(show_cost)    
             current_ui.goodbye_text__3.setText(show_cost)
         
-    # Define function to get Job adv Information and any special requests
-    def next_plus_jobad_special(self):
-        current_ui = self.ui_windows[self.current_window]
-        #get job adv information
-        global job_adv
-        job_adv = current_ui.jobTextEdit.toPlainText()
-        # print(job_adv)
-        # getting the special request from the window
-        global specialrequest
-        specialrequest = ""
-        if current_ui.specialrequest.toPlainText() and not (current_ui.specialrequest.toPlainText() == "Please write down any special requests you may have for your application letter.(optional)" or current_ui.specialrequest.toPlainText() == "Schreibe hier alle besonderen Wünsche auf, die du für dein Anschreiben hast. (optional)"):
-            if language == "de":
-                specialrequest = f" Berücksichtige zusätzlich die folgende besondere Anfrage: {current_ui.specialrequest.toPlainText()}"
-            else:
-                specialrequest = f" Please consider the following special request as well: {current_ui.specialrequest.toPlainText()}."
-            print(specialrequest)
-        self.next_window()    
-        return job_adv, specialrequest
 
     # Define function to go to the next window (including jumps)
     def next_window(self):
@@ -275,6 +257,27 @@ class MainWindow(QtWidgets.QMainWindow):
             self.next_window()
 
         return date, salary, hours, word_amount, ai_behaviour
+   
+
+    # Define function to get Job adv Information and any special requests
+    def next_plus_jobad_special(self):
+        current_ui = self.ui_windows[self.current_window]
+        #get job adv information
+        global job_adv
+        job_adv = current_ui.jobTextEdit.toPlainText()
+        # print(job_adv)
+        # getting the special request from the window
+        global specialrequest
+        specialrequest = ""
+        if current_ui.specialrequest.toPlainText() and not (current_ui.specialrequest.toPlainText() == "Please write down any special requests you may have for your application letter.(optional)" or current_ui.specialrequest.toPlainText() == "Schreibe hier alle besonderen Wünsche auf, die du für dein Anschreiben hast. (optional)"):
+            if language == "de":
+                specialrequest = f" Berücksichtige zusätzlich die folgende besondere Anfrage: {current_ui.specialrequest.toPlainText()}"
+            else:
+                specialrequest = f" Please consider the following special request as well: {current_ui.specialrequest.toPlainText()}."
+            print(specialrequest)
+        self.next_window()
+        return job_adv, specialrequest
+
 
     # Define function to go to next window plus checkboxes
     def next_window_plus_checkboxes(self):
@@ -292,7 +295,7 @@ class MainWindow(QtWidgets.QMainWindow):
             and not cheat_sheet_checked
             and not cv_improvements_checked
         ):
-            
+          
             if language == "de":
                 QMessageBox.warning(self, "Achtung", "Wähle mindestens eine option.")
             else:
