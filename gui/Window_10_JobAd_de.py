@@ -20,14 +20,14 @@ class Ui_Window_10_JobAd_de(object):
         self.headline_3.setObjectName("headline_3")
 
         # NEXT BUTTON and BACK BUTTON
-        self.next_button = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.next_button.setGeometry(QtCore.QRect(650, 705, 200, 50))
+        self.next_button_3 = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.next_button_3.setGeometry(QtCore.QRect(650, 705, 200, 50))
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        self.next_button.setFont(font)
-        self.next_button.setStyleSheet("color: rgb(255, 255, 255);")
-        self.next_button.setObjectName("next_button")
+        self.next_button_3.setFont(font)
+        self.next_button_3.setStyleSheet("color: rgb(255, 255, 255);")
+        self.next_button_3.setObjectName("next_button_3")
         self.back_button = QtWidgets.QPushButton(parent=self.centralwidget)
         self.back_button.setGeometry(QtCore.QRect(150, 705, 200, 50))
         font = QtGui.QFont()
@@ -39,7 +39,7 @@ class Ui_Window_10_JobAd_de(object):
 
         # Input field for Job Advertisement
         self.jobTextEdit = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
-        self.jobTextEdit.setGeometry(QtCore.QRect(50, 139, 900, 549))
+        self.jobTextEdit.setGeometry(QtCore.QRect(50, 139, 900, 350))
         self.jobTextEdit.setStyleSheet(
             "background-color: rgb(255, 255, 255);\n"
             'font: 12pt "Ubuntu";\n'
@@ -51,6 +51,21 @@ class Ui_Window_10_JobAd_de(object):
         self.jobTextEdit.setCenterOnScroll(False)
         self.jobTextEdit.setObjectName("plainTextEdit")
         self.jobTextEdit.canPaste()
+
+        # Input field for special request
+        self.specialrequest = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
+        self.specialrequest.setGeometry(QtCore.QRect(50, 500, 900, 150))
+        self.specialrequest.setStyleSheet(
+            "background-color: rgb(255, 255, 255);\n"
+            'font: 12pt "Ubuntu";\n'
+            "\n"
+            "color: rgb(67,110,238);"
+        )
+        self.specialrequest.setOverwriteMode(True)
+        self.specialrequest.setBackgroundVisible(True)
+        self.specialrequest.setCenterOnScroll(False)
+        self.specialrequest.setObjectName("plainTextEdit")
+        self.specialrequest.canPaste()
 
         Window_10_JobAd_de.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=Window_10_JobAd_de)
@@ -73,11 +88,17 @@ class Ui_Window_10_JobAd_de(object):
                 '<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-size:26pt;">Für welchen Job möchtest du dich bewerben?</span></p></body></html>',
             )
         )
-        self.next_button.setText(_translate("Window_10_JobAd_de", "VOR ->"))
+        self.next_button_3.setText(_translate("Window_10_JobAd_de", "VOR ->"))
         self.jobTextEdit.setPlainText(
             _translate(
                 "Window_10_JobAd_de",
                 "Bitte kopiere hier die Anzeige für deinen Traumjob hinein.",
+            )
+        )
+        self.specialrequest.setPlainText(
+            _translate(
+                "Window_3_JobAd_en",
+                "Schreibe hier alle besonderen Wünsche auf, die du für dein Anschreiben hast. (optional)",
             )
         )
         self.back_button.setText(_translate("Window_10_JobAd_de", "<- ZURÜCK"))
