@@ -115,12 +115,12 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 show_cost = f"Costs for your application {total_cost}€"
 
-            #print(show_cost)    
+            #print(show_cost) 
             current_ui.goodbye_text__3.setText(show_cost)
-        
 
-    # Define function to go to the next window (including jumps)
+
     def next_window(self):
+        '''Moves to the next window and jumps depending on user input'''
         current_ui = self.ui_windows[self.current_window]
         n = 1
         # getting the language information from first window

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 # abstract class for the prompt mixin
-class PromptMixin(ABC):
+class Prompt(ABC):
     # constructor method including all prompt parameter with default values
     def __init__(self, job_adv: str, language: str):
         self.job_adv = job_adv
@@ -12,7 +12,7 @@ class PromptMixin(ABC):
         pass
 
 # class for the application letter prompt
-class LetterPrompt(PromptMixin):
+class LetterPrompt(Prompt):
     # application counter
     application_counter = 0
 
@@ -44,7 +44,7 @@ class LetterPrompt(PromptMixin):
             return f"""Entwerfe ein Anschreiben für den Job {self.job_adv}, basierend auf diesem CV {self.cv}. Die folgenden Information müssen enthalten sein: {self.hours},Gehaltsvorstellungen (pro Jahr):{self.salary_expt},Verfügbarkeit:{self.availability}. Das Anschreiben sollte nicht länger als {self.max_length} Wörter sein. Stelle eine korrekte Rechtschreibung sicher und vermeide unnötige Leerzeichen. Übersetze Begriffe wenn nötig.{self.specialrequest}"""
 
 #class for the cheatsheet prompt
-class CheatSheetPrompt(PromptMixin):
+class CheatSheetPrompt(Prompt):
     def __init__(self, job_adv, language):
         super().__init__(job_adv, language)
 
@@ -61,7 +61,7 @@ class CheatSheetPrompt(PromptMixin):
             return f"""Stelle einen Spickzettel für ein Bewerbungsgespräch für die genannte Stelle mit relevanten Infos zum Unternehmen,zur Branche und zu Gehältern."""
 
 #class for the cv improvements prompt
-class CvPointersPrompt(PromptMixin):
+class CvPointersPrompt(Prompt):
     def __init__(self, job_adv, language, cv):
         super().__init__(job_adv, language)
         self.cv = cv
